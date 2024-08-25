@@ -1,6 +1,7 @@
 import {css} from "@emotion/css"
 import NoisePng from "../assets/noise.png"
 
+// global class names
 export const gcn = {
   elevateShadow: css`
     box-shadow: inset var(--shadow-size-up) var(--shadow-size-up) 0 0

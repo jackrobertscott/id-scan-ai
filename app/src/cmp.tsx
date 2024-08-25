@@ -2,10 +2,10 @@ export const Btn = () => {
   return <div>Button</div>
 }
 
-export const Frm = () => {
+export const Form = () => {
   return <div>Form</div>
 }
 
-export const Lnk = () => {
+export const Link = () => {
   return <div>Link</div>
 }
