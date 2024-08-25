@@ -1,0 +1,59 @@
+:root {
+  --rem-size: 20px;
+  --font-regular: "Times New Roman";
+  --line-height: 1.3;
+  --body-bg-color: hsl(0, 0%, 25%);
+  --body-font-color: hsl(0, 0%, 100%);
+  --cell-size-x: 0.5rem;
+  --cell-size-y: 0.25rem;
+  --cell-size-yx: var(--cell-size-y) var(--cell-size-x);
+  --shadow-size-up: 0.1rem;
+  --shadow-size-down: calc(var(--shadow-size-up) * -1);
+  --scrollbar-bg-color: hsl(0, 0%, 100%, 0);
+  --scrollbar-thumb-color: hsl(0, 0%, 100%, 0.05);
+  --scrollbar-width-mouse: 1rem;
+  --scrollbar-width-touch: 2rem;
+}
+
+html {
+  font-size: var(--rem-size);
+}
+
+body {
+  font-style: normal;
+  font-weight: normal;
+  font-optical-sizing: auto;
+  font-family: var(--font-regular);
+  line-height: var(--line-height);
+  padding-top: var(--safe-area-inset-top, env(safe-area-inset-top));
+  padding-right: var(--safe-area-inset-right, env(safe-area-inset-right));
+  padding-bottom: var(--safe-area-inset-bottom, env(safe-area-inset-bottom));
+  padding-left: var(--safe-area-inset-left, env(safe-area-inset-left));
+  background-color: var(--body-bg-color);
+  color: var(--body-font-color);
+}
+
+div {
+  display: flex;
+  flex-direction: column;
+}
+
+a {
+  text-decoration: none;
+}
+
+#root {
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  /* overflow: auto; <- can not use when generating pdf */
+}
+
+@keyframes rotate360 {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

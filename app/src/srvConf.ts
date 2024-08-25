@@ -3,7 +3,7 @@ import {resolve} from "path"
 import {z} from "zod"
 
 dotenv.config({
-  path: resolve(import.meta.dirname, "../../.env"),
+  path: resolve(import.meta.dirname, "../.env"),
 })
 
 let _config
@@ -39,4 +39,4 @@ try {
   throw e
 }
 
-export const serverConfig = _config
+export const srvConf = _config

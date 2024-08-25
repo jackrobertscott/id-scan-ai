@@ -24,4 +24,4 @@ try {
   throw e
 }
 
-export const browserConfig = _config
+export const brwConf = _config
