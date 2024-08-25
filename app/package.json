@@ -1,0 +1,51 @@
+{
+  "private": true,
+  "name": "id-scan-ai",
+  "version": "0.0.1",
+  "author": "Jack Scott",
+  "license": "UNLICENSED",
+  "type": "module",
+  "scripts": {
+    "b:dev": "vite dev",
+    "b:build": "vite build",
+    "b:start": "vite preview",
+    "s:dev": "tsx watch src/server.ts",
+    "s:start": "tsx src/server.ts",
+    "t:e2e": "playwright test"
+  },
+  "dependencies": {
+    "@aws-sdk/client-rekognition": "^3.552.0",
+    "@aws-sdk/client-s3": "^3.418.0",
+    "@aws-sdk/client-sesv2": "^3.577.0",
+    "@aws-sdk/s3-request-presigner": "^3.418.0",
+    "@emotion/css": "^11.13.0",
+    "@mdi/js": "^7.4.47",
+    "@paralleldrive/cuid2": "^2.2.2",
+    "@stripe/stripe-js": "^4.1.0",
+    "busboy": "^1.6.0",
+    "canvas": "^2.11.2",
+    "chalk": "^5.3.0",
+    "dotenv": "^16.4.5",
+    "jsonwebtoken": "^9.0.2",
+    "mongodb": "^6.8.0",
+    "puppeteer": "^22.10.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.24.1",
+    "stripe": "^16.1.0",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.45.3",
+    "@types/busboy": "^1.5.3",
+    "@types/jsonwebtoken": "^9.0.3",
+    "@types/node": "^20.12.7",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react": "^4.3.1",
+    "tsx": "^4.17.0",
+    "typescript": "^5.4.5",
+    "vite": "^5.3.3",
+    "vite-plugin-pwa": "^0.20.0"
+  }
+}

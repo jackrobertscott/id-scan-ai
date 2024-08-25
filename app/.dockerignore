@@ -1,0 +1,10 @@
+.git
+*Dockerfile*
+*docker-compose*
+npm-debug.log
+node_modules
+coverage
+build
+dist
+logs
+lib

@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "strict": true, // Enable strict type checking
+    "noEmit": true, // Do not emit output files during compilation
+    "sourceMap": true, // Generate source map files for debugging
+    "declaration": true, // Generate declaration files (.d.ts) for TypeScript modules
+    "skipLibCheck": true, // Skip type checking of declaration files in node_modules
+    "esModuleInterop": true, // Enable compatibility with CommonJS modules
+    "resolveJsonModule": true, // Allow importing JSON files as modules
+    "allowSyntheticDefaultImports": true, // Allow default imports from modules with no default export
+    "jsx": "react-jsx", // Specify JSX code generation
+    "moduleResolution": "Node", // Use Node.js module resolution strategy
+    "module": "ESNext", // Specify module code generation
+    "target": "ESNext", // Specify ECMAScript target version
+    "outDir": "build" // Specify output directory for compiled file
+    // WARNING: "baseUrl" causes errors in vercel
+  },
+  "include": [
+    "src"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
