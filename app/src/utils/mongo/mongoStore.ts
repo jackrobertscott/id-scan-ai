@@ -1,26 +1,28 @@
 import {AggregateOptions, Filter, FindOptions, ObjectId} from "mongodb"
-import {z} from "zod"
+import {z, ZodRawShape} from "zod"
 import {toCapitalCase, toSpacedCase} from "../changeCase"
-import {OptionalKeys} from "../sharedTypes"
+import {MergeObjects, OptionalKeys} from "../sharedTypes"
 import {idSchema} from "../zodSchema"
-import {createBaseStoreSchema} from "./baseStore"
+import {StoreBaseSchemaType, StoreDefType} from "./baseStore"
 import {getMongoCollection} from "./mongoClient"
 
 // Mongo's lib types are bad... so don't bother getting them to work
 // use this file to overwrite the mongo types
 
-export function createMongoStore<
-  S extends ReturnType<typeof createBaseStoreSchema>
->({name, schema, prefix}: {name: string; schema: S; prefix: string}) {
-  type Schema = z.infer<S>
+export function createMongoStore<T extends StoreBaseSchemaType>({
+  colname,
+  schema,
+  prefix,
+}: MergeObjects<StoreDefType<ZodRawShape>, {schema: T}>) {
+  type Schema = z.infer<T>
 
   return {
-    name,
+    colname,
     schema,
     prefix,
 
     async getCollection() {
-      return getMongoCollection(name)
+      return getMongoCollection(colname)
     },
 
     validateOne(raw: Schema) {
@@ -36,7 +38,7 @@ export function createMongoStore<
       const collection = await this.getCollection()
       const i = await collection.findOne(this.preprocessQuery(filter))
       if (!i)
-        throw new Error(`Failed to find ${toSpacedCase(name).toLowerCase()}`)
+        throw new Error(`Failed to find ${toSpacedCase(colname).toLowerCase()}`)
       return i
     },
 
@@ -113,7 +115,7 @@ export function createMongoStore<
       if (raw.id) delete raw.id // don't overwrite id
       const collection = await this.getCollection()
       const old = await collection.findOne(this.preprocessQuery(filter))
-      if (!old) throw new Error(`${toCapitalCase(name)} not found`)
+      if (!old) throw new Error(`${toCapitalCase(colname)} not found`)
       const data = this.validateOne({...old, ...raw})
       const i = await collection.updateOne(filter, {$set: data})
       return [data, i.matchedCount] as const
