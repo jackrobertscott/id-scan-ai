@@ -1,14 +1,14 @@
 import {z} from "zod"
 import {StoreValueType, createStoreDef} from "../utils/mongo/baseStore"
 import {shortStrSchema} from "../utils/zodSchema"
-import {AccountDef} from "./account.iso"
+import {UserDef} from "./user.iso"
 import {VenueDef} from "./venue.iso"
 
 export type AlbumType = StoreValueType<typeof AlbumDef>
 
 export const AlbumDef = createStoreDef("abm", "album", {
   venueId: VenueDef.schema.shape.id,
-  createdByAccId: AccountDef.schema.shape.id,
+  createdByUserId: UserDef.schema.shape.id,
   isActive: z.boolean().nullish(),
   emails: z.array(z.string().email()),
   name: shortStrSchema(),

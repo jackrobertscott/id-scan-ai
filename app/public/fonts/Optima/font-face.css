@@ -1,0 +1,20 @@
+@font-face {
+  font-family: "Optima";
+  font-style: normal;
+  font-weight: normal;
+  src: url("fonts/Optima/OptimaRegular.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Optima";
+  font-style: italic;
+  font-weight: normal;
+  src: url("fonts/Optima/OptimaItalic.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Optima";
+  font-style: normal;
+  font-weight: bold;
+  src: url("fonts/Optima/OptimaBold.woff") format("woff");
+}

@@ -1,0 +1,17 @@
+import {z} from "zod"
+import {faceMetaSchema} from "../utils/faceMetaSchema"
+import {StoreValueType, createStoreDef} from "../utils/mongo/baseStore"
+import {s3ImageSchema} from "../utils/s3SchemaUtils"
+import {UserDef} from "./user.iso"
+import {VenueDef} from "./venue.iso"
+
+export type LivePhotoType = StoreValueType<typeof LivePhotoDef>
+
+export const LivePhotoDef = createStoreDef("lph", "livePhoto", {
+  venueId: VenueDef.schema.shape.id,
+  createdByUserId: UserDef.schema.shape.id,
+  s3FullImage: s3ImageSchema(),
+  s3FaceImage: s3ImageSchema(),
+  faceMeta: faceMetaSchema(),
+  awsFaceId: z.string().min(1),
+})

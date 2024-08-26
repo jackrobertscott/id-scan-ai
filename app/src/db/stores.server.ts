@@ -1,8 +1,8 @@
 import {createMongoStore} from "../utils/mongo/mongoStore"
-import {AccountDef} from "./account.iso"
 import {MembershipDef} from "./membership.iso"
+import {UserDef} from "./user.iso"
 import {VenueDef} from "./venue.iso"
 
-export const AccountStore = createMongoStore(AccountDef)
+export const UserStore = createMongoStore(UserDef)
 export const VenueStore = createMongoStore(VenueDef)
 export const MembershipStore = createMongoStore(MembershipDef)
