@@ -29,3 +29,10 @@ export function numberStringSchema(length: number) {
 export function fileSchema() {
   return z.custom((data) => data instanceof File)
 }
+
+export function zodRefineEnum(values: readonly string[]) {
+  return [
+    (val: any) => typeof val === "string" && values.includes(val as any),
+    {message: "Invalid value"},
+  ] as const
+}

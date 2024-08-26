@@ -6,8 +6,10 @@ import {idSchema} from "../zodSchema"
 import {StoreBaseSchemaType, StoreDefType} from "./baseStore"
 import {getMongoCollection} from "./mongoClient"
 
-// Mongo's lib types are bad... so don't bother getting them to work
-// use this file to overwrite the mongo types
+/**
+ * Mongo's lib types are bad... so don't bother getting them to work
+ * use this file to overwrite the mongo types
+ */
 
 export function createMongoStore<T extends StoreBaseSchemaType>({
   colname,
