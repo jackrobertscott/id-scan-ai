@@ -3,9 +3,9 @@ import {StoreValueType, createStoreDef} from "../utils/mongo/baseStore"
 import {s3ImageSchema} from "../utils/s3SchemaUtils"
 import {strArr2Rec} from "../utils/strArr2Rec"
 import {enumStrSchema} from "../utils/zodSchema"
-import {ScanDef} from "./scan.iso"
-import {UserDef} from "./user.iso"
-import {VenueDef} from "./venue.iso"
+import {ScanDef} from "./scan_storeDef.iso"
+import {UserDef} from "./user_storeDef.iso"
+import {VenueDef} from "./venue_storeDef.iso"
 
 export const TAG_CATEGORIES_ARRAY = ["NOTE", "FIGHTING", "DRUGS"] as const
 export const TAG_CATEGORIES_OBJ = strArr2Rec(TAG_CATEGORIES_ARRAY)

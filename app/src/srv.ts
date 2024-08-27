@@ -1,4 +1,4 @@
-import {createMongoStoreIndexes} from "./db/stores.server"
+import {createMongoStoreIndexes} from "./db/stores.srv"
 
 console.log("Hello, World!")
 

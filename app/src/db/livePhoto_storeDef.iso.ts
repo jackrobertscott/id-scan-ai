@@ -2,8 +2,8 @@ import {z} from "zod"
 import {faceMetaSchema} from "../utils/faceMetaSchema"
 import {StoreValueType, createStoreDef} from "../utils/mongo/baseStore"
 import {s3ImageSchema} from "../utils/s3SchemaUtils"
-import {UserDef} from "./user.iso"
-import {VenueDef} from "./venue.iso"
+import {UserDef} from "./user_storeDef.iso"
+import {VenueDef} from "./venue_storeDef.iso"
 
 export type LivePhotoType = StoreValueType<typeof LivePhotoDef>
 

@@ -2,8 +2,8 @@ import {z} from "zod"
 import {StoreValueType, createStoreDef} from "../utils/mongo/baseStore"
 import {strArr2Rec} from "../utils/strArr2Rec"
 import {enumStrSchema, idSchema} from "../utils/zodSchema"
-import {UserDef} from "./user.iso"
-import {VenueDef} from "./venue.iso"
+import {UserDef} from "./user_storeDef.iso"
+import {VenueDef} from "./venue_storeDef.iso"
 
 export const LOGGED_EVENT_CATEGORY_ARRAY = [
   "AUTH",

@@ -2,8 +2,8 @@ import {z} from "zod"
 import {StoreValueType, createStoreDef} from "../utils/mongo/baseStore"
 import {s3FileSchema} from "../utils/s3SchemaUtils"
 import {shortStrSchema} from "../utils/zodSchema"
-import {UserDef} from "./user.iso"
-import {VenueDef} from "./venue.iso"
+import {UserDef} from "./user_storeDef.iso"
+import {VenueDef} from "./venue_storeDef.iso"
 
 export type PdfExportType = StoreValueType<typeof PdfExportDef>
 
