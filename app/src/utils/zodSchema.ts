@@ -4,9 +4,12 @@ export function shortStrSchema() {
   return z.string().min(1).max(255).trim()
 }
 
-export function enumSchema(values: readonly string[]) {
+export function enumStrSchema(values: readonly string[]) {
   return z
     .string()
+    .min(1)
+    .max(255)
+    .trim()
     .refine((val) => values.includes(val), {message: "Invalid value"})
 }
 

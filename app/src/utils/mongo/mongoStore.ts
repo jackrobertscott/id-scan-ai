@@ -1,4 +1,5 @@
-import {AggregateOptions, Filter, FindOptions, ObjectId} from "mongodb"
+import {createId} from "@paralleldrive/cuid2"
+import {AggregateOptions, Filter, FindOptions} from "mongodb"
 import {z, ZodRawShape} from "zod"
 import {toCapitalCase, toSpacedCase} from "../changeCase"
 import {MergeObjects, OptionalKeys} from "../sharedTypes"
@@ -15,10 +16,12 @@ export function createMongoStore<T extends StoreBaseSchemaType>({
   colname,
   schema,
   prefix,
+  ...rest
 }: MergeObjects<StoreDefType<ZodRawShape>, {schema: T}>) {
   type Schema = z.infer<T>
 
   return {
+    ...rest,
     colname,
     schema,
     prefix,
@@ -79,15 +82,15 @@ export function createMongoStore<T extends StoreBaseSchemaType>({
 
     async createOne(
       raw: Omit<OptionalKeys<Schema, "createdDate">, "id">,
-      _id: ObjectId = new ObjectId()
+      id?: string
     ): Promise<Schema> {
       const collection = await this.getCollection()
       const data = this.validateOne({
         createdDate: new Date(),
         ...raw,
-        id: this.createPrefixedId(_id),
+        id: id ?? this.createPrefixedId(),
       })
-      await collection.insertOne({...data, _id})
+      await collection.insertOne(data)
       return data
     },
 
@@ -97,14 +100,11 @@ export function createMongoStore<T extends StoreBaseSchemaType>({
       const collection = await this.getCollection()
       const createdDate = new Date()
       const data = raw.map((i) => {
-        const _id = new ObjectId()
-        const data = this.validateOne({
+        return this.validateOne({
           createdDate,
           ...i,
-          id: this.createPrefixedId(_id),
+          id: this.createPrefixedId(),
         })
-        Object.assign(data, {_id})
-        return data
       })
       await collection.insertMany(data)
       return data
@@ -167,8 +167,8 @@ export function createMongoStore<T extends StoreBaseSchemaType>({
       await collection.deleteMany(this.preprocessQuery(filter))
     },
 
-    createPrefixedId(_id: ObjectId) {
-      return [prefix, _id.toHexString()].join("_")
+    createPrefixedId() {
+      return [prefix, createId()].join("_")
     },
 
     preprocessQuery(filter: Filter<Schema>) {

@@ -6,11 +6,16 @@ import {VenueDef} from "./venue.iso"
 
 export type DeviceType = StoreValueType<typeof DeviceDef>
 
-export const DeviceDef = createStoreDef("dvc", "device", {
-  venueId: VenueDef.schema.shape.id,
-  createdByUserId: UserDef.schema.shape.id,
-  name: shortStrSchema(),
-  desc: z.string().max(1000).nullish(),
-  isActive: z.boolean().nullish(),
-  deviceKey: shortStrSchema(),
+export const DeviceDef = createStoreDef({
+  prefix: "dvc",
+  colname: "device",
+  indexes: ["id", "createdDate", "venueId"],
+  schema: {
+    venueId: VenueDef.schema.shape.id,
+    createdByUserId: UserDef.schema.shape.id,
+    name: shortStrSchema(),
+    desc: z.string().max(1000).nullish(),
+    isActive: z.boolean().nullish(),
+    deviceKey: shortStrSchema(),
+  },
 })

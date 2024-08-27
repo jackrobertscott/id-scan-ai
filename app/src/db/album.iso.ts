@@ -6,17 +6,22 @@ import {VenueDef} from "./venue.iso"
 
 export type AlbumType = StoreValueType<typeof AlbumDef>
 
-export const AlbumDef = createStoreDef("abm", "album", {
-  venueId: VenueDef.schema.shape.id,
-  createdByUserId: UserDef.schema.shape.id,
-  isActive: z.boolean().nullish(),
-  emails: z.array(z.string().email()),
-  name: shortStrSchema(),
-  filters: z.object({
-    createdAfterDate: z.coerce.date(),
-    createdBeforeDate: z.coerce.date(),
-    gender: shortStrSchema().nullish(),
-    postCode: shortStrSchema().nullish(),
-    hasFaceMismatch: z.boolean().nullish(),
-  }),
+export const AlbumDef = createStoreDef({
+  prefix: "abm",
+  colname: "album",
+  indexes: ["id", "createdDate", "venueId"],
+  schema: {
+    venueId: VenueDef.schema.shape.id,
+    createdByUserId: UserDef.schema.shape.id,
+    isActive: z.boolean().nullish(),
+    emails: z.array(z.string().email()),
+    name: shortStrSchema(),
+    filters: z.object({
+      createdAfterDate: z.coerce.date(),
+      createdBeforeDate: z.coerce.date(),
+      gender: shortStrSchema().nullish(),
+      postCode: shortStrSchema().nullish(),
+      hasFaceMismatch: z.boolean().nullish(),
+    }),
+  },
 })

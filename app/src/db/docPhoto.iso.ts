@@ -8,12 +8,17 @@ import {VenueDef} from "./venue.iso"
 
 export type DocPhotoType = StoreValueType<typeof DocPhotoDef>
 
-export const DocPhotoDef = createStoreDef("dph", "docPhoto", {
-  venueId: VenueDef.schema.shape.id,
-  createdByUserId: UserDef.schema.shape.id,
-  s3FullImage: s3ImageSchema(),
-  s3FaceImage: s3ImageSchema(),
-  faceMeta: faceMetaSchema(),
-  awsFaceId: shortStrSchema(),
-  detectedText: z.string(),
+export const DocPhotoDef = createStoreDef({
+  prefix: "dph",
+  colname: "docPhoto",
+  indexes: ["id", "createdDate", "venueId"],
+  schema: {
+    venueId: VenueDef.schema.shape.id,
+    createdByUserId: UserDef.schema.shape.id,
+    s3FullImage: s3ImageSchema(),
+    s3FaceImage: s3ImageSchema(),
+    faceMeta: faceMetaSchema(),
+    awsFaceId: shortStrSchema(),
+    detectedText: z.string(),
+  },
 })
