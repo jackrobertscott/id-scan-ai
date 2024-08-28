@@ -7,8 +7,8 @@
   --cell-size-x: 0.5rem;
   --cell-size-y: 0.25rem;
   --cell-size-yx: var(--cell-size-y) var(--cell-size-x);
-  --shadow-size-up: 0.1rem;
-  --shadow-size-down: calc(var(--shadow-size-up) * -1);
+  --shadow-up: 0.1rem 0.1rem;
+  --shadow-down: -0.1rem -0.1rem;
   --scrollbar-bg-color: hsl(0, 0%, 100%, 0);
   --scrollbar-thumb-color: hsl(0, 0%, 100%, 0.05);
   --scrollbar-width-mouse: 1rem;
@@ -25,10 +25,10 @@ body {
   font-optical-sizing: auto;
   font-family: var(--font-regular);
   line-height: var(--line-height);
-  padding-top: var(--safe-area-inset-top, env(safe-area-inset-top));
-  padding-right: var(--safe-area-inset-right, env(safe-area-inset-right));
-  padding-bottom: var(--safe-area-inset-bottom, env(safe-area-inset-bottom));
-  padding-left: var(--safe-area-inset-left, env(safe-area-inset-left));
+  padding-top: env(safe-area-inset-top);
+  padding-right: env(safe-area-inset-right);
+  padding-bottom: env(safe-area-inset-bottom);
+  padding-left: env(safe-area-inset-left);
   background-color: var(--body-bg-color);
   color: var(--body-font-color);
 }

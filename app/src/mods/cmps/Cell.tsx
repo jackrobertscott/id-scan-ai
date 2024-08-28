@@ -2,7 +2,7 @@ import {css} from "@emotion/css"
 import {mdiLoading} from "@mdi/js"
 import {cnx, createCns} from "../../utils/classNames"
 import {Icon} from "./Icon"
-import {gcn} from "./global_cns"
+import {gcn} from "./globalClassNames"
 
 export type CellProps = {
   icon?: string

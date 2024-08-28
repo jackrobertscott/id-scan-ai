@@ -2,8 +2,8 @@
 import "./global.css"
 // ...rest
 import {createRoot} from "react-dom/client"
-import {AuthEmail} from "./mods/auth/auth_email_cmp"
+import {Root} from "./mods/root/Root"
 
-const app = <AuthEmail />
+const app = <Root />
 
 createRoot(document.getElementById("root")!).render(app)
