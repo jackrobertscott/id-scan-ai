@@ -76,7 +76,6 @@ export function useNumStr<T extends {}>({
     [onValue, decimals]
   )
 
-  // return [stringValue, handleValueChange] as const
   return {
     ...rest,
     value: stringValue,

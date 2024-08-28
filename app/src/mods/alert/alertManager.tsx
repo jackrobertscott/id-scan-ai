@@ -1,4 +1,4 @@
-import {createContext} from "react"
+import {createContext, useContext} from "react"
 
 export type Alert = {
   id: string
@@ -15,3 +15,7 @@ export const AlertManagerContext = createContext<{
   create: () => console.log("Alert provider not initialized yet"),
   close: () => console.log("Alert provider not initialized yet"),
 })
+
+export const useAlertManager = () => {
+  return useContext(AlertManagerContext)
+}
