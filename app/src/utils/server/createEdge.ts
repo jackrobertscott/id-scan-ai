@@ -28,9 +28,7 @@ export function createEdgeGroup<R extends Record<string, EdgeDef>>(
     const def = edgeGroup[key]
     const handler = handlers[key]
     if (!def || !handler) return all
-    return {
-      ...all,
-      [key]: createEdge({def, handler}),
-    }
-  }, {} as Record<string, Edge<any>>)
+    all.push(createEdge({def, handler}))
+    return all
+  }, [] as Edge<any>[])
 }

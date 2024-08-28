@@ -9,8 +9,8 @@
     "b:dev": "vite dev",
     "b:build": "vite build",
     "b:start": "vite preview",
-    "s:dev": "tsx watch src/server.ts",
-    "s:start": "tsx src/server.ts",
+    "s:dev": "tsx watch src/srv.ts",
+    "s:start": "tsx src/srv.ts",
     "t:e2e": "playwright test"
   },
   "dependencies": {
