@@ -25,9 +25,11 @@ try {
       AWS_SES_FROM_EMAIL: z.string().min(1),
       AWS_REKOG_COLNAME_PREFIX: z.string().min(1),
       STRIPE_SECRET_KEY: z.string().min(1).startsWith("sk_"),
+      IS_DEV: z.boolean().optional(),
     })
     .parse({
       ...process.env,
+      IS_DEV: process.env.URL_CLIENT?.includes("localhost"),
     })
 } catch (e) {
   if (e instanceof z.ZodError) {

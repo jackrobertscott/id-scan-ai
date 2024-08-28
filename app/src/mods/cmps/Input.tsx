@@ -1,5 +1,6 @@
 import {css} from "@emotion/css"
-import {createCns} from "../../utils/classNames"
+import {cnx, createCns} from "../../utils/classNames"
+import {gcn} from "./globalClassNames"
 
 export type InputProps = {
   disabled?: boolean
@@ -24,7 +25,7 @@ export const Input = ({
       type={content === "password" ? "password" : "text"}
       disabled={disabled}
       placeholder={placeholder}
-      className={cn.input}
+      className={cnx([cn.input, gcn.depress])}
       onChange={({currentTarget}) => {
         if (disabled) return
         if (maxLength && currentTarget.value.length > maxLength) return
@@ -43,9 +44,6 @@ const cn = createCns({
     padding: var(--cell-size-y) var(--cell-size-x);
     &::placeholder {
       color: hsl(0, 0%, 100%, 0.25);
-    }
-    &:focus-within {
-      background-color: hsl(0, 0%, 0%, 0.5);
     }
   `,
 })

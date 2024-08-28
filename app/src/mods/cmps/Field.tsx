@@ -2,13 +2,13 @@ import {css} from "@emotion/css"
 import {ReactNode} from "react"
 import {createCns} from "../../utils/classNames"
 
-export type FormFieldProps = {
+export type FieldProps = {
   label?: string
   children?: ReactNode
   direction?: "row" | "column"
 }
 
-export const FormField = ({label, children, direction}: FormFieldProps) => {
+export const Field = ({label, children, direction}: FieldProps) => {
   return (
     <div className={cn.field} data-direction={direction}>
       {label && (

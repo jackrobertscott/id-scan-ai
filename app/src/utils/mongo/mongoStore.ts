@@ -12,12 +12,32 @@ import {getMongoCollection} from "./mongoClient"
  * use this file to overwrite the mongo types
  */
 
-export function createMongoStore<T extends StoreBaseSchemaType>({
+type ZodMongoStoreDef<T extends StoreBaseSchemaType> = MergeObjects<
+  StoreDefType<ZodRawShape>,
+  {schema: T}
+>
+
+export function createMongoStore<
+  T extends StoreBaseSchemaType,
+  X extends Record<string, any>
+>({
+  def,
+  extend,
+}: {
+  def: ZodMongoStoreDef<T>
+  extend: (store: ReturnType<typeof _createMongoStore<T>>) => X
+}) {
+  const data = _createMongoStore(def)
+  const newData = extend?.(data)
+  return {...data, ...newData}
+}
+
+export function _createMongoStore<T extends StoreBaseSchemaType>({
   colname,
   schema,
   prefix,
   ...rest
-}: MergeObjects<StoreDefType<ZodRawShape>, {schema: T}>) {
+}: ZodMongoStoreDef<T>) {
   type Schema = z.infer<T>
 
   return {

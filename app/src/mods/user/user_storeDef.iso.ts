@@ -13,8 +13,9 @@ export const UserDef = createStoreDef({
   schema: {
     isAdmin: z.boolean().nullish(),
     email: z.string().email(),
-    firstName: z.string().min(1),
-    lastName: z.string().min(1),
+    firstName: z.string().min(1).nullish(),
+    lastName: z.string().min(1).nullish(),
+    verifFailedTimestamps: z.array(z.number()).nullish(),
     emailVerif: z
       .object({
         code: numberStringSchema(6),

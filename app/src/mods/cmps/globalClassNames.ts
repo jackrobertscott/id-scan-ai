@@ -10,6 +10,6 @@ export const gcn = createCns({
   `,
   depress: css`
     box-shadow: inset var(--shadow-up) 0 0 hsl(0, 0%, 0%, 0.25),
-      inset var(--shadow-down) 0 0 hsl(0, 0%, 100%, 0.25);
+      inset var(--shadow-down) 0 0 hsl(0, 0%, 100%, 0.15);
   `,
 })
