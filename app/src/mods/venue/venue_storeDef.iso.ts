@@ -1,5 +1,5 @@
 import {z} from "zod"
-import {StoreValueType, createStoreDef} from "../utils/mongo/baseStore"
+import {StoreValueType, createStoreDef} from "../../utils/mongo/baseStore"
 
 export type VenueType = StoreValueType<typeof VenueDef>
 

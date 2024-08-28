@@ -1,8 +1,8 @@
 import {z} from "zod"
-import {faceMetaSchema} from "../utils/faceMetaSchema"
-import {StoreValueType, createStoreDef} from "../utils/mongo/baseStore"
-import {s3ImageSchema} from "../utils/s3SchemaUtils"
-import {numberStringSchema} from "../utils/zodSchema"
+import {faceMetaSchema} from "../../utils/faceMetaSchema"
+import {StoreValueType, createStoreDef} from "../../utils/mongo/baseStore"
+import {s3ImageSchema} from "../../utils/s3SchemaUtils"
+import {numberStringSchema} from "../../utils/zodSchema"
 
 export type UserType = StoreValueType<typeof UserDef>
 

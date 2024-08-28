@@ -1,7 +1,7 @@
 import {createRoot} from "react-dom/client"
 
 import "./global.css"
-import {AuthEmail} from "./ui/auth/auth_email_cmp"
+import {AuthEmail} from "./mods/auth/auth_email_cmp"
 
 const app = <AuthEmail />
 

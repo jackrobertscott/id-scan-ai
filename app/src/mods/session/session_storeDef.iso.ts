@@ -1,7 +1,7 @@
 import {z} from "zod"
-import {StoreValueType, createStoreDef} from "../utils/mongo/baseStore"
-import {DeviceDef} from "./device_storeDef.iso"
-import {UserDef} from "./user_storeDef.iso"
+import {StoreValueType, createStoreDef} from "../../utils/mongo/baseStore"
+import {DeviceDef} from "../device/device_storeDef.iso"
+import {UserDef} from "../user/user_storeDef.iso"
 
 export type SessionType = StoreValueType<typeof SessionDef>
 

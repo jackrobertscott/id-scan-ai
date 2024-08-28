@@ -1,11 +1,11 @@
 import {z} from "zod"
-import {faceMetaSchema} from "../utils/faceMetaSchema"
-import {StoreValueType, createStoreDef} from "../utils/mongo/baseStore"
-import {shortStrSchema} from "../utils/zodSchema"
-import {DocPhotoDef} from "./docPhoto_storeDef.iso"
-import {LivePhotoDef} from "./livePhoto_storeDef.iso"
-import {UserDef} from "./user_storeDef.iso"
-import {VenueDef} from "./venue_storeDef.iso"
+import {faceMetaSchema} from "../../utils/faceMetaSchema"
+import {StoreValueType, createStoreDef} from "../../utils/mongo/baseStore"
+import {shortStrSchema} from "../../utils/zodSchema"
+import {DocPhotoDef} from "../docPhoto/docPhoto_storeDef.iso"
+import {VenueDef} from "../venue/venue_storeDef.iso"
+import {LivePhotoDef} from "../livePhoto/livePhoto_storeDef.iso"
+import {UserDef} from "../user/user_storeDef.iso"
 
 export type ScanType = StoreValueType<typeof ScanDef>
 

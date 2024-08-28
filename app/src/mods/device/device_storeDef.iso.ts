@@ -1,8 +1,8 @@
-import {z} from "zod"
-import {StoreValueType, createStoreDef} from "../utils/mongo/baseStore"
-import {shortStrSchema} from "../utils/zodSchema"
-import {UserDef} from "./user_storeDef.iso"
-import {VenueDef} from "./venue_storeDef.iso"
+import { z } from "zod"
+import { StoreValueType, createStoreDef } from "../../utils/mongo/baseStore"
+import { shortStrSchema } from "../../utils/zodSchema"
+import { UserDef } from "../user/user_storeDef.iso"
+import { VenueDef } from "../venue/venue_storeDef.iso"
 
 export type DeviceType = StoreValueType<typeof DeviceDef>
 
