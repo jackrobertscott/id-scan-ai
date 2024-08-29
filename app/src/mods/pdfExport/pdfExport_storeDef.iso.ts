@@ -12,8 +12,8 @@ export const PdfExportDef = createStoreDef({
   colname: "pdfExport",
   indexes: ["id", "createdDate", "venueId"],
   schema: {
-    userId: UserDef.schema.shape.id,
     venueId: VenueDef.schema.shape.id,
+    createdByUserId: UserDef.schema.shape.id,
     name: shortStrSchema(),
     s3PdfFile: s3FileSchema().optional(),
     filters: z.object({
@@ -25,3 +25,15 @@ export const PdfExportDef = createStoreDef({
     }),
   },
 })
+
+export type PdfExportFormSchema = ReturnType<
+  typeof getPdfExportFormSchema
+>["shape"]
+
+export const getPdfExportFormSchema = () =>
+  z.object({
+    ...PdfExportDef.schema.pick({
+      name: true,
+      filters: true,
+    }).shape,
+  })
