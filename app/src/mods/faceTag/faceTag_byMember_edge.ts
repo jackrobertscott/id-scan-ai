@@ -54,14 +54,14 @@ export default createEdgeGroup(faceTag_byMember_eDef, {
     const s3PatronFaceCopy = s3ImageSchema().parse({
       ...livePhoto.s3FaceImage,
       key: join(
-        BUCKET_FOLDERS.TAGS_PATRONS_FACE,
+        BUCKET_FOLDERS.TAGS_PATRON_FACE,
         createRandomString(24).concat(".jpeg")
       ),
     })
     const s3DocumentFaceCopy = s3ImageSchema().parse({
       ...docPhoto.s3FaceImage,
       key: join(
-        BUCKET_FOLDERS.TAGS_DOCUMENTS_FACE,
+        BUCKET_FOLDERS.TAGS_DOCUMENT_FACE,
         createRandomString(24).concat(".jpeg")
       ),
     })

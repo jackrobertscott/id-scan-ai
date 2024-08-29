@@ -1,7 +1,7 @@
 import {Image} from "canvas"
 import {join} from "path"
 import {z} from "zod"
-import {serverConfig} from "../serverConfig"
+import {srvConf} from "../srvConf"
 import {getCroppedFaceImage} from "./faceUtils"
 import {createRandomString} from "./randomString"
 import {remapRekogFace} from "./rekogFaceUtils"
@@ -32,8 +32,8 @@ export async function s3CropAndUploadFacePhoto(
   // Extract the face from the photo
   const [faceBuffer, faceImage] = await getCroppedFaceImage(fullImage, faceMeta)
   const s3FaceImage = s3ImageSchema().parse({
-    region: serverConfig.AWS_DEFAULT_REGION,
-    bucket: serverConfig.AWS_S3_BUCKET,
+    region: srvConf.AWS_DEFAULT_REGION,
+    bucket: srvConf.AWS_S3_BUCKET,
     key: join(folder, createRandomString(24).concat(".jpeg")),
     bytes: faceBuffer.length,
     width: faceImage.width,

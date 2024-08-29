@@ -54,7 +54,7 @@ export default createEdgeGroup(pdfExport_byMember_eDef, {
       const dateKey = new Date().toISOString().split("T")[0]
       const s3File = s3FileSchema().parse({
         bucket: srvConf.AWS_S3_BUCKET,
-        key: join(BUCKET_FOLDERS.PDF_EXPORTS, dateKey, `${pdfExport.id}.pdf`),
+        key: join(BUCKET_FOLDERS.PDF_EXPORT, dateKey, `${pdfExport.id}.pdf`),
         bytes: pdf.length,
         region: srvConf.AWS_DEFAULT_REGION,
       })

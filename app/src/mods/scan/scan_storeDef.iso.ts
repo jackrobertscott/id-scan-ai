@@ -3,9 +3,9 @@ import {faceMetaSchema} from "../../utils/faceMetaSchema"
 import {StoreValueType, createStoreDef} from "../../utils/mongo/baseStore"
 import {shortStrSchema} from "../../utils/zodSchema"
 import {DocPhotoDef} from "../docPhoto/docPhoto_storeDef.iso"
-import {VenueDef} from "../venue/venue_storeDef.iso"
 import {LivePhotoDef} from "../livePhoto/livePhoto_storeDef.iso"
 import {UserDef} from "../user/user_storeDef.iso"
+import {VenueDef} from "../venue/venue_storeDef.iso"
 
 export type ScanType = StoreValueType<typeof ScanDef>
 
@@ -19,7 +19,7 @@ export const ScanDef = createStoreDef({
     livePhotoId: LivePhotoDef.schema.shape.id,
     docPhotoId: DocPhotoDef.schema.shape.id,
     faceSimilarity: z.number().gte(0).lte(100),
-    patronFaceMeta: faceMetaSchema(),
+    liveFaceMeta: faceMetaSchema(),
     detectedText: z.string(),
     docMeta: z.object({
       docType: shortStrSchema().nullish(),

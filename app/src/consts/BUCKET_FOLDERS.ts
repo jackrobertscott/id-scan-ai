@@ -1,18 +1,18 @@
 import {join} from "path"
 import {srvConf} from "../srvConf"
 
-const createS3Path = (...folders: string[]) => {
-  return join(srvConf.AWS_S3_BUCKET_FOLDER, ...folders)
+const createS3Path = (folder: string) => {
+  return join(srvConf.AWS_S3_BUCKET_FOLDER, folder)
 }
 
 export const BUCKET_FOLDERS = {
-  TAGS_PATRONS_FACE: createS3Path("tag", "live", "face"),
-  TAGS_DOCUMENTS_FACE: createS3Path("tag", "doc", "face"),
-  PATRON_PHOTOS_FULL: createS3Path("live", "full"),
-  PATRON_PHOTOS_FACE: createS3Path("live", "face"),
-  DOCUMENT_PHOTOS_FULL: createS3Path("doc", "full"),
-  DOCUMENT_PHOTOS_FACE: createS3Path("doc", "face"),
-  USERS_FULL: createS3Path("user", "full"),
-  USERS_FACE: createS3Path("user", "face"),
-  PDF_EXPORTS: createS3Path("pdf_export"),
+  TAGS_PATRON_FACE: createS3Path("tag_live_face"),
+  TAGS_DOCUMENT_FACE: createS3Path("tag_doc_face"),
+  LIVE_PHOTO_FULL: createS3Path("live_full"),
+  LIVE_PHOTO_FACE: createS3Path("live_face"),
+  DOC_PHOTOS_FULL: createS3Path("doc_full"),
+  DOC_PHOTOS_FACE: createS3Path("doc_face"),
+  USER_FULL: createS3Path("user_full"),
+  USER_FACE: createS3Path("user_face"),
+  PDF_EXPORT: createS3Path("pdf_export"),
 }
