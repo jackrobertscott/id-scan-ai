@@ -33,3 +33,14 @@ export const UserDef = createStoreDef({
       .nullish(),
   },
 })
+
+export type UserByAdminFormSchema = ReturnType<
+  typeof getUserByAdminFormSchema
+>["shape"]
+
+export const getUserByAdminFormSchema = () =>
+  UserDef.schema.pick({
+    email: true,
+    firstName: true,
+    lastName: true,
+  })

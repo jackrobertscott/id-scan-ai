@@ -1,18 +1,18 @@
 import {z} from "zod"
 import {listOptionsSchema} from "../../utils/mongo/listOptionUtils"
-import {createEdgeDefGroup} from "../../utils/server/createEdgeDef"
+import {createEdgeGroupDef} from "../../utils/server/createEdgeDef"
 import {idSchema} from "../../utils/zodSchema"
 import {DeviceDef, getDeviceByMemberFormSchema} from "./device_storeDef.iso"
 
-export const device_eDef = createEdgeDefGroup("device", {
-  create_byMember: {
+export const device_byMember_eDef = createEdgeGroupDef("device_byMember", {
+  create: {
     input: getDeviceByMemberFormSchema(),
     output: DeviceDef.schema.pick({
       id: true,
     }),
   },
 
-  get_byMember: {
+  get: {
     input: z.object({
       deviceId: idSchema(),
     }),
@@ -27,14 +27,14 @@ export const device_eDef = createEdgeDefGroup("device", {
     }),
   },
 
-  update_byMember: {
+  update: {
     input: z.object({
       deviceId: idSchema(),
       ...getDeviceByMemberFormSchema().shape,
     }),
   },
 
-  list_byMember: {
+  list: {
     input: listOptionsSchema().extend({
       status: z.string().nullish(),
     }),
@@ -51,7 +51,7 @@ export const device_eDef = createEdgeDefGroup("device", {
     }),
   },
 
-  delete_byMember: {
+  delete: {
     input: z.object({
       deviceId: idSchema(),
     }),

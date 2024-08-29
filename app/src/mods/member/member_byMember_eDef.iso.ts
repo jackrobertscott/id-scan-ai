@@ -1,10 +1,10 @@
 import {z} from "zod"
 import {listOptionsSchema} from "../../utils/mongo/listOptionUtils"
-import {createEdgeDefGroup} from "../../utils/server/createEdgeDef"
+import {createEdgeGroupDef} from "../../utils/server/createEdgeDef"
 import {getMemberByMemberFormSchema, MemberDef} from "./member_storeDef.iso"
 
-export const member_eDef = createEdgeDefGroup("member", {
-  create_byMember: {
+export const member_byMember_eDef = createEdgeGroupDef("member_byMember", {
+  create: {
     input: getMemberByMemberFormSchema().extend({
       userEmail: z.string().email(),
     }),
@@ -13,7 +13,7 @@ export const member_eDef = createEdgeDefGroup("member", {
     }),
   },
 
-  get_byMember: {
+  get: {
     input: z.object({
       memberId: MemberDef.schema.shape.id,
     }),
@@ -29,14 +29,14 @@ export const member_eDef = createEdgeDefGroup("member", {
     }),
   },
 
-  update_byMember: {
+  update: {
     input: z.object({
       memberId: MemberDef.schema.shape.id,
       ...getMemberByMemberFormSchema().shape,
     }),
   },
 
-  list_byMember: {
+  list: {
     input: listOptionsSchema().extend({
       fullAccess: z.string().nullish(),
       hasPermission: z.string().nullish(),
@@ -57,7 +57,7 @@ export const member_eDef = createEdgeDefGroup("member", {
     }),
   },
 
-  delete_byMember: {
+  delete: {
     input: z.object({
       memberId: MemberDef.schema.shape.id,
     }),

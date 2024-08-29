@@ -1,8 +1,8 @@
 import {z} from "zod"
-import {createEdgeDefGroup} from "../../utils/server/createEdgeDef"
+import {createEdgeGroupDef} from "../../utils/server/createEdgeDef"
 import {AuthDataSchema} from "./auth_schemas"
 
-export const auth_email_eDef = createEdgeDefGroup("auth_email", {
+export const auth_email_eDef = createEdgeGroupDef("auth_email", {
   sendAuthCode: {
     input: z.object({
       email: z.string().email(),

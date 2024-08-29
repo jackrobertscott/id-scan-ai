@@ -21,13 +21,13 @@ import {
 } from "../logEvent/logEvent_storeDef.iso"
 import {MEMBER_PERMISSIONS_OBJ} from "../member/member_storeDef.iso"
 import {ScanStore} from "../scan/scan_store"
+import {faceTag_byMember_eDef} from "./faceTag_byMember_eDef.iso"
 import {faceTag_calcExpiry} from "./faceTag_calcExpiry"
-import {faceTag_eDef} from "./faceTag_eDef.iso"
 import {FaceTagStore} from "./faceTag_store"
 import {FaceTagType} from "./faceTag_storeDef.iso"
 
-export default createEdgeGroup(faceTag_eDef, {
-  create_byMember: async ({request, body}) => {
+export default createEdgeGroup(faceTag_byMember_eDef, {
+  create: async ({request, body}) => {
     const auth = await ensureMemberOfVenue(
       request,
       [MEMBER_PERMISSIONS_OBJ.TAG_CREATE],
@@ -130,7 +130,7 @@ export default createEdgeGroup(faceTag_eDef, {
     return tag
   },
 
-  get_byMember: async ({request, body: {tagId}}) => {
+  get: async ({request, body: {tagId}}) => {
     const auth = await ensureMemberOfVenue(request, [], {isDeviceEnabled: true})
 
     // Ensure the tag is from the user's venue
@@ -152,7 +152,7 @@ export default createEdgeGroup(faceTag_eDef, {
     }
   },
 
-  update_byMember: async ({request, body: {tagId, ...body}}) => {
+  update: async ({request, body: {tagId, ...body}}) => {
     const auth = await ensureMemberOfVenue(
       request,
       [MEMBER_PERMISSIONS_OBJ.TAG_UPDATE],
@@ -196,7 +196,7 @@ export default createEdgeGroup(faceTag_eDef, {
     })
   },
 
-  list_byMember: async ({request, body}) => {
+  list: async ({request, body}) => {
     const auth = await ensureMemberOfVenue(request, [], {isDeviceEnabled: true})
 
     const query = createListSearchQuery<FaceTagType>({
@@ -239,7 +239,7 @@ export default createEdgeGroup(faceTag_eDef, {
     }
   },
 
-  delete_byMember: async ({request, body: {tagId}}) => {
+  delete: async ({request, body: {tagId}}) => {
     const auth = await ensureMemberOfVenue(request, [
       MEMBER_PERMISSIONS_OBJ.TAG_DELETE,
     ])

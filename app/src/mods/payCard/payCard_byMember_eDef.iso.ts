@@ -1,10 +1,10 @@
 import {z} from "zod"
 import {listOptionsSchema} from "../../utils/mongo/listOptionUtils"
-import {createEdgeDefGroup} from "../../utils/server/createEdgeDef"
+import {createEdgeGroupDef} from "../../utils/server/createEdgeDef"
 import {shortStrSchema} from "../../utils/zodSchema"
 
-export const payCard_eDef = createEdgeDefGroup("payCard", {
-  create_byMember: {
+export const payCard_byMember_eDef = createEdgeGroupDef("payCard", {
+  create: {
     input: z.object({
       stripeToken: z.string(),
       nameOnCard: shortStrSchema(),
@@ -14,7 +14,7 @@ export const payCard_eDef = createEdgeDefGroup("payCard", {
     }),
   },
 
-  get_byMember: {
+  get: {
     input: z.object({
       payCardId: z.string(),
     }),
@@ -30,13 +30,13 @@ export const payCard_eDef = createEdgeDefGroup("payCard", {
     }),
   },
 
-  setDefault_byMember: {
+  setDefault: {
     input: z.object({
       payCardId: z.string(),
     }),
   },
 
-  list_byMember: {
+  list: {
     input: listOptionsSchema(),
     output: z.object({
       payCards: z.array(
@@ -52,7 +52,7 @@ export const payCard_eDef = createEdgeDefGroup("payCard", {
     }),
   },
 
-  delete_byMember: {
+  delete: {
     input: z.object({
       payCardId: z.string(),
     }),

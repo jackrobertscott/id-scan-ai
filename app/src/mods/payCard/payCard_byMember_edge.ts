@@ -9,10 +9,10 @@ import {
   LOG_EVENT_TABLES_OBJ,
 } from "../logEvent/logEvent_storeDef.iso"
 import {MEMBER_PERMISSIONS_OBJ} from "../member/member_storeDef.iso"
-import {payCard_eDef} from "./payCard_eDef.iso"
+import {payCard_byMember_eDef} from "./payCard_byMember_eDef.iso"
 
-export default createEdgeGroup(payCard_eDef, {
-  create_byMember: async ({request, body}) => {
+export default createEdgeGroup(payCard_byMember_eDef, {
+  create: async ({request, body}) => {
     const auth = await ensureMemberOfVenue(request, [
       MEMBER_PERMISSIONS_OBJ.STRIPE_CARD_CREATE,
     ])
@@ -41,7 +41,7 @@ export default createEdgeGroup(payCard_eDef, {
     }
   },
 
-  get_byMember: async ({request, body: {payCardId}}) => {
+  get: async ({request, body: {payCardId}}) => {
     const auth = await ensureMemberOfVenue(request)
 
     const stripeCustomer = await getStripeCustomerOfVenue(auth.venue)
@@ -63,7 +63,7 @@ export default createEdgeGroup(payCard_eDef, {
     }
   },
 
-  setDefault_byMember: async ({request, body: {payCardId}}) => {
+  setDefault: async ({request, body: {payCardId}}) => {
     const auth = await ensureMemberOfVenue(request, [
       MEMBER_PERMISSIONS_OBJ.STRIPE_CARD_UPDATE,
     ])
@@ -89,7 +89,7 @@ export default createEdgeGroup(payCard_eDef, {
     })
   },
 
-  list_byMember: async ({request, body}) => {
+  list: async ({request, body}) => {
     const auth = await ensureMemberOfVenue(request)
 
     // const query = createListSearchQuery<PayCardSchema>({
@@ -124,7 +124,7 @@ export default createEdgeGroup(payCard_eDef, {
     }
   },
 
-  delete_byMember: async ({request, body: {payCardId}}) => {
+  delete: async ({request, body: {payCardId}}) => {
     const auth = await ensureMemberOfVenue(request, [
       MEMBER_PERMISSIONS_OBJ.STRIPE_CARD_DELETE,
     ])

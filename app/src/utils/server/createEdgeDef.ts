@@ -32,7 +32,7 @@ export function createEdgeDef<E extends EdgeDef>(data: E) {
   return data
 }
 
-export function createEdgeDefGroup<
+export function createEdgeGroupDef<
   R extends Record<string, Omit<EdgeDef, "slug">>
 >(prefix: string, routes: R): {[K in keyof R]: R[K] & Pick<EdgeDef, "slug">} {
   return Object.keys(routes).reduce((all, key) => {

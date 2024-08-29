@@ -1,18 +1,18 @@
 import {z} from "zod"
 import {listOptionsSchema} from "../../utils/mongo/listOptionUtils"
-import {createEdgeDefGroup} from "../../utils/server/createEdgeDef"
+import {createEdgeGroupDef} from "../../utils/server/createEdgeDef"
 import {idSchema} from "../../utils/zodSchema"
 import {getPdfExportFormSchema, PdfExportDef} from "./pdfExport_storeDef.iso"
 
-export const pdfExport_eDef = createEdgeDefGroup("pdfExport", {
-  create_byMember: {
+export const pdfExport_byMember_eDef = createEdgeGroupDef("pdfExport", {
+  create: {
     input: getPdfExportFormSchema(),
     output: PdfExportDef.schema.pick({
       id: true,
     }),
   },
 
-  get_byMember: {
+  get: {
     input: z.object({
       pdfExportId: PdfExportDef.schema.shape.id,
     }),
@@ -27,13 +27,13 @@ export const pdfExport_eDef = createEdgeDefGroup("pdfExport", {
     }),
   },
 
-  download_byMember: {
+  download: {
     input: z.object({
       pdfExportId: idSchema(),
     }),
   },
 
-  list_byMember: {
+  list: {
     input: listOptionsSchema(),
     output: z.object({
       total: z.number(),
@@ -47,7 +47,7 @@ export const pdfExport_eDef = createEdgeDefGroup("pdfExport", {
     }),
   },
 
-  delete_byMember: {
+  delete: {
     input: z.object({
       pdfExportId: PdfExportDef.schema.shape.id,
     }),

@@ -1,11 +1,11 @@
 import {z} from "zod"
 import {listOptionsSchema} from "../../utils/mongo/listOptionUtils"
-import {createEdgeDefGroup} from "../../utils/server/createEdgeDef"
+import {createEdgeGroupDef} from "../../utils/server/createEdgeDef"
 import {LivePhotoDef} from "../livePhoto/livePhoto_storeDef.iso"
 import {FaceTagDef, getFaceTagSchema} from "./faceTag_storeDef.iso"
 
-export const faceTag_eDef = createEdgeDefGroup("faceTag", {
-  create_byMember: {
+export const faceTag_byMember_eDef = createEdgeGroupDef("faceTag_byMember", {
+  create: {
     input: z.object({
       ...FaceTagDef.schema.pick({scanId: true}).shape,
       ...getFaceTagSchema().shape,
@@ -15,7 +15,7 @@ export const faceTag_eDef = createEdgeDefGroup("faceTag", {
     }),
   },
 
-  get_byMember: {
+  get: {
     input: z.object({
       tagId: FaceTagDef.schema.shape.id,
     }),
@@ -31,14 +31,14 @@ export const faceTag_eDef = createEdgeDefGroup("faceTag", {
     }),
   },
 
-  update_byMember: {
+  update: {
     input: z.object({
       tagId: FaceTagDef.schema.shape.id,
       ...getFaceTagSchema().shape,
     }),
   },
 
-  list_byMember: {
+  list: {
     input: listOptionsSchema().extend({
       category: z.string().nullish(),
       expiresAfterDate: z.coerce.date().nullish(),
@@ -61,7 +61,7 @@ export const faceTag_eDef = createEdgeDefGroup("faceTag", {
     }),
   },
 
-  delete_byMember: {
+  delete: {
     input: z.object({
       tagId: FaceTagDef.schema.shape.id,
     }),

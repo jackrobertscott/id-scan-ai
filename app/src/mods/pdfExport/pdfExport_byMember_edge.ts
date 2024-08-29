@@ -19,15 +19,15 @@ import {
   LOG_EVENT_TABLES_OBJ,
 } from "../logEvent/logEvent_storeDef.iso"
 import {MEMBER_PERMISSIONS_OBJ} from "../member/member_storeDef.iso"
-import {pdfExport_eDef} from "./pdfExport_eDef.iso"
+import {pdfExport_byMember_eDef} from "./pdfExport_byMember_eDef.iso"
 import {PdfExportStore} from "./pdfExport_store"
 import {PdfExportType} from "./pdfExport_storeDef.iso"
 
-export default createEdgeGroup(pdfExport_eDef, {
+export default createEdgeGroup(pdfExport_byMember_eDef, {
   /**
    * Create a pdfExport and generate the pdf using puppeteer.
    */
-  create_byMember: async ({request, body}) => {
+  create: async ({request, body}) => {
     const auth = await ensureMemberOfVenue(request, [
       MEMBER_PERMISSIONS_OBJ.STRIPE_CARD_CREATE,
     ])
@@ -88,7 +88,7 @@ export default createEdgeGroup(pdfExport_eDef, {
   /**
    * Get the pdf document and return the signed url to the s3 file.
    */
-  get_byMember: async ({request, body: {pdfExportId}}) => {
+  get: async ({request, body: {pdfExportId}}) => {
     const auth = await ensureMemberOfVenue(request)
 
     // Ensure the pdfExport is from the user's venue
@@ -112,7 +112,7 @@ export default createEdgeGroup(pdfExport_eDef, {
   /**
    * Send the pdf file to the client as a readable stream.
    */
-  download_byMember: async ({request, body: {pdfExportId}, response}) => {
+  download: async ({request, body: {pdfExportId}, response}) => {
     const auth = await ensureMemberOfVenue(request)
 
     // Ensure the pdfExport is from the user's venue
@@ -137,7 +137,7 @@ export default createEdgeGroup(pdfExport_eDef, {
   /**
    * List all pdfExports from the user's venue.
    */
-  list_byMember: async ({request, body}) => {
+  list: async ({request, body}) => {
     const auth = await ensureMemberOfVenue(request)
 
     const query = createListSearchQuery<PdfExportType>({
@@ -162,7 +162,7 @@ export default createEdgeGroup(pdfExport_eDef, {
   /**
    * Delete the pdfExport.
    */
-  delete_byMember: async ({request, body: {pdfExportId}}) => {
+  delete: async ({request, body: {pdfExportId}}) => {
     const auth = await ensureMemberOfVenue(request, [
       MEMBER_PERMISSIONS_OBJ.PDF_EXPORT_DELETE,
     ])

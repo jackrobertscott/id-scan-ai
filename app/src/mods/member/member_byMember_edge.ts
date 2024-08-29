@@ -9,12 +9,12 @@ import {
   LOG_EVENT_TABLES_OBJ,
 } from "../logEvent/logEvent_storeDef.iso"
 import {UserStore} from "../user/user_store"
-import {member_eDef} from "./member_eDef.iso"
+import {member_byMember_eDef} from "./member_byMember_eDef.iso"
 import {MemberStore} from "./member_store"
 import {MEMBER_PERMISSIONS_OBJ, MemberType} from "./member_storeDef.iso"
 
-export default createEdgeGroup(member_eDef, {
-  create_byMember: async ({request, body: {userEmail, ...body}}) => {
+export default createEdgeGroup(member_byMember_eDef, {
+  create: async ({request, body: {userEmail, ...body}}) => {
     const auth = await ensureMemberOfVenue(request, [
       MEMBER_PERMISSIONS_OBJ.MEMBER_CREATE,
     ])
@@ -41,7 +41,7 @@ export default createEdgeGroup(member_eDef, {
     return member
   },
 
-  get_byMember: async ({request, body: {memberId}}) => {
+  get: async ({request, body: {memberId}}) => {
     const auth = await ensureMemberOfVenue(request)
 
     // Ensure the member is from the user's venue
@@ -62,7 +62,7 @@ export default createEdgeGroup(member_eDef, {
     }
   },
 
-  update_byMember: async ({request, body: {memberId, ...body}}) => {
+  update: async ({request, body: {memberId, ...body}}) => {
     const auth = await ensureMemberOfVenue(request, [
       MEMBER_PERMISSIONS_OBJ.MEMBER_UPDATE,
     ])
@@ -93,7 +93,7 @@ export default createEdgeGroup(member_eDef, {
     })
   },
 
-  list_byMember: async ({request, body}) => {
+  list: async ({request, body}) => {
     const auth = await ensureMemberOfVenue(request)
 
     const query = createListSearchQuery<MemberType>({
@@ -140,7 +140,7 @@ export default createEdgeGroup(member_eDef, {
     }
   },
 
-  delete_byMember: async ({request, body: {memberId}}) => {
+  delete: async ({request, body: {memberId}}) => {
     const auth = await ensureMemberOfVenue(request, [
       MEMBER_PERMISSIONS_OBJ.MEMBER_DELETE,
     ])

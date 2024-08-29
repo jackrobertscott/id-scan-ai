@@ -1,18 +1,17 @@
 import {z} from "zod"
 import {listOptionsSchema} from "../../utils/mongo/listOptionUtils"
-import {createEdgeDefGroup} from "../../utils/server/createEdgeDef"
-import {VenueDef} from "../venue/venue_storeDef.iso"
+import {createEdgeGroupDef} from "../../utils/server/createEdgeDef"
 import {AlbumDef, getAlbumFormSchema} from "./album_storeDef.iso"
 
-export const album_eDef = createEdgeDefGroup("album", {
-  create_byMember: {
+export const album_byMember_eDef = createEdgeGroupDef("album_byMember", {
+  create: {
     input: getAlbumFormSchema(),
     output: AlbumDef.schema.pick({
       id: true,
     }),
   },
 
-  get_byMember: {
+  get: {
     input: z.object({
       albumId: AlbumDef.schema.shape.id,
     }),
@@ -27,14 +26,14 @@ export const album_eDef = createEdgeDefGroup("album", {
     }),
   },
 
-  update_byMember: {
+  update: {
     input: z.object({
       albumId: AlbumDef.schema.shape.id,
       ...getAlbumFormSchema().shape,
     }),
   },
 
-  list_byMember: {
+  list: {
     input: listOptionsSchema().extend({
       status: z.string().nullish(),
     }),
@@ -52,27 +51,7 @@ export const album_eDef = createEdgeDefGroup("album", {
     }),
   },
 
-  list_byUser: {
-    input: listOptionsSchema(),
-    output: z.object({
-      total: z.number(),
-      albums: z.array(
-        z.object({
-          ...AlbumDef.schema.pick({
-            id: true,
-            name: true,
-            createdDate: true,
-          }).shape,
-          venue: VenueDef.schema.pick({
-            id: true,
-            name: true,
-          }),
-        })
-      ),
-    }),
-  },
-
-  delete_byMember: {
+  delete: {
     input: z.object({
       albumId: AlbumDef.schema.shape.id,
     }),

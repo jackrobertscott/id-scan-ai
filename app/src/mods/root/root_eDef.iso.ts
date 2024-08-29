@@ -1,7 +1,7 @@
 import {z} from "zod"
-import {createEdgeDefGroup} from "../../utils/server/createEdgeDef"
+import {createEdgeGroupDef} from "../../utils/server/createEdgeDef"
 
-export const root_eDef = createEdgeDefGroup("root", {
+export const root_eDef = createEdgeGroupDef("root", {
   ping: {
     input: z.object({
       time: z.number(),

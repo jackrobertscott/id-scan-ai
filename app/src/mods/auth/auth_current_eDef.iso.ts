@@ -1,8 +1,8 @@
 import {z} from "zod"
-import {createEdgeDefGroup} from "../../utils/server/createEdgeDef"
+import {createEdgeGroupDef} from "../../utils/server/createEdgeDef"
 import {AuthDataSchema} from "./auth_schemas"
 
-export const auth_current_eDef = createEdgeDefGroup("auth_current", {
+export const auth_current_eDef = createEdgeGroupDef("auth_current", {
   getCurrent: {
     output: z.object({
       payload: z.optional(
