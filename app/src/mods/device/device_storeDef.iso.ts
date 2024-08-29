@@ -1,8 +1,8 @@
-import { z } from "zod"
-import { StoreValueType, createStoreDef } from "../../utils/mongo/baseStore"
-import { shortStrSchema } from "../../utils/zodSchema"
-import { UserDef } from "../user/user_storeDef.iso"
-import { VenueDef } from "../venue/venue_storeDef.iso"
+import {z} from "zod"
+import {StoreValueType, createStoreDef} from "../../utils/mongo/baseStore"
+import {shortStrSchema} from "../../utils/zodSchema"
+import {UserDef} from "../user/user_storeDef.iso"
+import {VenueDef} from "../venue/venue_storeDef.iso"
 
 export type DeviceType = StoreValueType<typeof DeviceDef>
 
@@ -19,3 +19,16 @@ export const DeviceDef = createStoreDef({
     deviceKey: shortStrSchema(),
   },
 })
+
+export type DeviceByMemberFormSchema = ReturnType<
+  typeof getDeviceByMemberFormSchema
+>["shape"]
+
+export const getDeviceByMemberFormSchema = () =>
+  z.object({
+    ...DeviceDef.schema.pick({
+      name: true,
+      desc: true,
+      isActive: true,
+    }).shape,
+  })
