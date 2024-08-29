@@ -1,1 +1,3 @@
 The app folders are broken into modules or "mods" which contain a group of code which relate to the same feature. These mods can be interconnected. Best if the modules connect in a "forward" direction as opposed to in a "cyclic" fashion.
+
+- [ ] Stripe may need address to be added when saving card?
