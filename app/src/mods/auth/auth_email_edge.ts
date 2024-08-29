@@ -12,7 +12,7 @@ import {VenueStore} from "../venue/venue_store"
 import {auth_email_eDef} from "./auth_email_eDef.iso"
 import {createAuthToken} from "./authUtils"
 
-export const auth_email_edge = createEdgeGroup(auth_email_eDef, {
+export default createEdgeGroup(auth_email_eDef, {
   /**
    * Create a new user (or update an existing one) and send them an email with
    * a login code. This is the most secure method of authentication given that

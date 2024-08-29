@@ -1,8 +1,8 @@
 import cluster from "cluster"
 import os from "os"
 import {AWS_REKOG_COLNAMES} from "./consts/AWS_REKOG_COLNAMES"
-import {auth_email_edge} from "./mods/auth/auth_email_edge"
-import {root_edge} from "./mods/root/root_edge"
+import * as edges from "./edges"
+import {getEdgeImportFile} from "./scripts/genEdgeImportFile"
 import {srvConf} from "./srvConf"
 import {formatZodErrors} from "./utils/formatZodErrors"
 import {createMongoStoreIndexes} from "./utils/mongo/indexOfStores"
@@ -12,9 +12,10 @@ import {createEdgeServer} from "./utils/server/serverCreate"
 
 const START_TIME = Date.now()
 const MAX_CLUSTER_WORKERS = 3
-const EDGE_ARRAY: Edge<any>[] = [root_edge, auth_email_edge].flat()
+const EDGE_ARRAY: Edge<any>[] = Object.values(edges).flat() as any
 
 if (srvConf.IS_DEV) {
+  getEdgeImportFile()
   startServer()
   runSetup()
 } else {
