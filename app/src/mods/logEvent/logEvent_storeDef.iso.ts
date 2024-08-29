@@ -5,16 +5,16 @@ import {enumStrSchema, idSchema} from "../../utils/zodSchema"
 import {UserDef} from "../user/user_storeDef.iso"
 import {VenueDef} from "../venue/venue_storeDef.iso"
 
-export const LOGGED_EVENT_CATEGORY_ARRAY = [
+export const LOG_EVENT_CATEGORY_ARRAY = [
   "AUTH",
   "CREATE",
   "UPDATE",
   "DELETE",
   "OTHER", // try to avoid using other
 ] as const
-export const LOGGED_EVENT_CATEGORY_OBJ = strArr2Rec(LOGGED_EVENT_CATEGORY_ARRAY)
+export const LOG_EVENT_CATEGORY_OBJ = strArr2Rec(LOG_EVENT_CATEGORY_ARRAY)
 
-export const LOGGED_EVENT_TABLE_ARRAY = [
+export const LOG_EVENT_TABLE_ARRAY = [
   "ALBUM",
   "DEVICE",
   "DOC_PHOTO",
@@ -29,7 +29,7 @@ export const LOGGED_EVENT_TABLE_ARRAY = [
   "STRIPE_CARD",
   "OTHER", // try to avoid using other
 ] as const
-export const LOGGED_EVENT_MODELS_OBJ = strArr2Rec(LOGGED_EVENT_TABLE_ARRAY)
+export const LOG_EVENT_TABLES_OBJ = strArr2Rec(LOG_EVENT_TABLE_ARRAY)
 
 export type LogEventType = StoreValueType<typeof LogEventDef>
 
@@ -39,10 +39,10 @@ export const LogEventDef = createStoreDef({
   indexes: ["id", "createdDate", "venueId"],
   schema: {
     venueId: VenueDef.schema.shape.id,
-    createdByUserId: UserDef.schema.shape.id,
+    triggeredByUserId: UserDef.schema.shape.id,
     byAdmin: z.boolean().nullish(),
-    category: enumStrSchema(LOGGED_EVENT_CATEGORY_ARRAY),
-    table: enumStrSchema(LOGGED_EVENT_TABLE_ARRAY),
+    category: enumStrSchema(LOG_EVENT_CATEGORY_ARRAY),
+    table: enumStrSchema(LOG_EVENT_TABLE_ARRAY),
     dataId: idSchema().nullish(), // id of model effected
     description: z.string().min(1).nullish(),
     meta: z.record(z.unknown()).nullish(),

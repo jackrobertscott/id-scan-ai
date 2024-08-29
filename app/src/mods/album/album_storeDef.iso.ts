@@ -25,3 +25,11 @@ export const AlbumDef = createStoreDef({
     }),
   },
 })
+
+export const getAlbumFormSchema = () =>
+  AlbumDef.schema.pick({
+    isActive: true,
+    emails: true,
+    name: true,
+    filters: true,
+  })

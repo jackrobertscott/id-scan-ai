@@ -50,7 +50,7 @@ export type DeepNullable<T extends object> = {
 
 export type Writeable<T> = {-readonly [P in keyof T]: Writeable<T[P]>}
 
-export type NestedKeyOf<T extends object> = {
+export type NestedKeyOf<T> = {
   [K in keyof T]-?: T[K] extends Primitive
     ? `${K & (string | number)}`
     : T[K] extends Array<infer U>
