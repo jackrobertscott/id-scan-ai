@@ -7,7 +7,7 @@ const createName = (suffix: string) => {
 
 export const AWS_REKOG_COLNAMES = {
   LIVE: createName("Live"),
-  DOCS: createName("Docs"),
-  TAGS: createName("Tags"),
-  USERS: createName("Users"),
+  DOC: createName("Doc"),
+  TAG: createName("Tag"),
+  USER: createName("User"),
 }

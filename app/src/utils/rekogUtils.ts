@@ -21,12 +21,21 @@ const rekogClient = new RekognitionClient({
 
 export async function ensureCollectionsExists(names: string[]) {
   const existingCols = await rekogClient.send(new ListCollectionsCommand())
-  const tasks = names.map(async (name) => {
+  // if (existingCols.CollectionIds) {
+  //   for (const colId of existingCols.CollectionIds) {
+  //     const descCol = await rekogClient.send(
+  //       new DescribeCollectionCommand({CollectionId: colId})
+  //     )
+  //     console.log(colId, descCol.FaceCount)
+  //   }
+  // }
+  for (const name of names) {
     if (!existingCols.CollectionIds?.includes(name)) {
+      // Do not use Promise.all() to prevent AWS rate limiting
+      console.log(`Creating collection: ${name}`)
       await rekogClient.send(new CreateCollectionCommand({CollectionId: name}))
     }
-  })
-  await Promise.all(tasks)
+  }
 }
 
 export async function detectImageText(
