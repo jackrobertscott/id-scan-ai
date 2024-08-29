@@ -32,11 +32,11 @@ export const MEMBER_PERMISSIONS_ARRAY = [
 ] as const
 export const MEMBER_PERMISSIONS_OBJ = strArr2Rec(MEMBER_PERMISSIONS_ARRAY)
 
-export type MembershipType = StoreValueType<typeof MembershipDef>
+export type MemberType = StoreValueType<typeof MemberDef>
 
-export const MembershipDef = createStoreDef({
+export const MemberDef = createStoreDef({
   prefix: "mbr",
-  colname: "membership",
+  colname: "member",
   indexes: ["id", "createdDate", "userId", "venueId"],
   schema: {
     userId: UserDef.schema.shape.id,

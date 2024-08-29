@@ -2,8 +2,8 @@ import {z} from "zod"
 import {StoreValueType, createStoreDef} from "../../utils/mongo/baseStore"
 import {strArr2Rec} from "../../utils/strArr2Rec"
 import {enumStrSchema, idSchema} from "../../utils/zodSchema"
-import {VenueDef} from "../venue/venue_storeDef.iso"
 import {UserDef} from "../user/user_storeDef.iso"
+import {VenueDef} from "../venue/venue_storeDef.iso"
 
 export const LOGGED_EVENT_CATEGORY_ARRAY = [
   "AUTH",
@@ -20,7 +20,7 @@ export const LOGGED_EVENT_TABLE_ARRAY = [
   "DOC_PHOTO",
   "FACE_TAG",
   "LIVE_PHOTO",
-  "MEMBERSHIP",
+  "MEMBER",
   "PDF_EXPORT",
   "SCAN",
   "SESSION",

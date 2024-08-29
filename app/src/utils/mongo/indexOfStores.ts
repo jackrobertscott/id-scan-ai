@@ -5,7 +5,7 @@ import {DocPhotoStore} from "../../mods/docPhoto/docPhoto_store"
 import {FaceTagStore} from "../../mods/faceTag/faceTag_store"
 import {LivePhotoStore} from "../../mods/livePhoto/livePhoto_store"
 import {LogEventStore} from "../../mods/logEvent/logEvent_store"
-import {MembershipStore} from "../../mods/membership/membership_store"
+import {MemberStore} from "../../mods/member/member_store"
 import {PdfExportStore} from "../../mods/pdfExport/pdfExport_store"
 import {ScanStore} from "../../mods/scan/scan_store"
 import {UserStore} from "../../mods/user/user_store"
@@ -19,7 +19,7 @@ export const createMongoStoreIndexes = async () => {
     FaceTagStore,
     LivePhotoStore,
     LogEventStore,
-    MembershipStore,
+    MemberStore,
     PdfExportStore,
     ScanStore,
     VenueStore,

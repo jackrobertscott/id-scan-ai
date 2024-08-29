@@ -5,7 +5,7 @@ import {
 import {srvConf} from "../../srvConf"
 import {createEdgeGroup} from "../../utils/server/createEdge"
 import {sendTextEmail} from "../../utils/sesEmailUtils"
-import {MembershipStore} from "../membership/membership_store"
+import {MemberStore} from "../member/member_store"
 import {SessionStore} from "../session/session_store"
 import {UserStore} from "../user/user_store"
 import {VenueStore} from "../venue/venue_store"
@@ -76,7 +76,7 @@ export default createEdgeGroup(auth_email_eDef, {
       }),
 
       // Get the members of the user
-      MembershipStore.getMany({userId: user.id}),
+      MemberStore.getMany({userId: user.id}),
 
       // Clear the verification code
       UserStore.updateOneById(user.id, {

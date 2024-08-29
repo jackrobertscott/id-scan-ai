@@ -11,8 +11,8 @@ import {AlbumStore} from "../album/album_store"
 import {AlbumDef} from "../album/album_storeDef.iso"
 import {DeviceStore} from "../device/device_store"
 import {DeviceType} from "../device/device_storeDef.iso"
-import {MembershipStore} from "../membership/membership_store"
-import {MembershipType} from "../membership/membership_storeDef.iso"
+import {MemberStore} from "../member/member_store"
+import {MemberType} from "../member/member_storeDef.iso"
 import {SessionStore} from "../session/session_store"
 import {SessionType} from "../session/session_storeDef.iso"
 import {UserStore} from "../user/user_store"
@@ -35,7 +35,7 @@ export async function createAuthToken({
   session: SessionType
   user: UserType
   venue?: VenueType | null
-  member?: MembershipType | null
+  member?: MemberType | null
   device?: DeviceType | null
 }) {
   if (member && member.userId !== user.id) {
@@ -166,7 +166,7 @@ export async function ensureMemberOfVenue(
   if (!venue) throw new InvalidAuthLogoutError("Venue not found")
 
   // Ensure user has a member for the venue
-  const member = await MembershipStore.maybeOne({
+  const member = await MemberStore.maybeOne({
     userId: authData.user.id,
     venueId: venue.id,
   })
@@ -197,7 +197,7 @@ export async function ensureAdmin(request: IncomingMessage) {
 }
 
 export function validatePermissions(
-  member: MembershipType,
+  member: MemberType,
   requiredPermissions: string[]
 ) {
   if (!member.fullAccess) {

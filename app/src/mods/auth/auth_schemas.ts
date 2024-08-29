@@ -1,6 +1,6 @@
 import {z} from "zod"
 import {DeviceDef} from "../device/device_storeDef.iso"
-import {MembershipDef} from "../membership/membership_storeDef.iso"
+import {MemberDef} from "../member/member_storeDef.iso"
 import {SessionDef} from "../session/session_storeDef.iso"
 import {UserDef} from "../user/user_storeDef.iso"
 import {VenueDef} from "../venue/venue_storeDef.iso"
@@ -16,6 +16,6 @@ export const AuthDataSchema = z.object({
   // public data
   isAdmin: UserDef.schema.shape.isAdmin,
   sessionCreatedDate: SessionDef.schema.shape.createdDate,
-  fullAccess: MembershipDef.schema.shape.fullAccess.nullish(),
-  permissions: MembershipDef.schema.shape.permissions.nullish(),
+  fullAccess: MemberDef.schema.shape.fullAccess.nullish(),
+  permissions: MemberDef.schema.shape.permissions.nullish(),
 })
