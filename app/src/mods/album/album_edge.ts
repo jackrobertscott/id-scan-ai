@@ -15,7 +15,7 @@ import {AlbumStore} from "./album_store"
 import {AlbumType} from "./album_storeDef.iso"
 
 export default createEdgeGroup(album_eDef, {
-  createByMember: async ({request, body}) => {
+  create_byMember: async ({request, body}) => {
     const auth = await ensureMemberOfVenue(request, [
       MEMBER_PERMISSIONS_OBJ.ALBUM_CREATE,
     ])
@@ -37,7 +37,7 @@ export default createEdgeGroup(album_eDef, {
     return album
   },
 
-  getByMember: async ({request, body: {albumId}}) => {
+  get_byMember: async ({request, body: {albumId}}) => {
     const auth = await ensureMemberOfVenue(request)
 
     // Ensure the album is from the user's venue
@@ -49,7 +49,7 @@ export default createEdgeGroup(album_eDef, {
     return {album}
   },
 
-  updateByMember: async ({request, body: {albumId, ...body}}) => {
+  update_byMember: async ({request, body: {albumId, ...body}}) => {
     const auth = await ensureMemberOfVenue(request, [
       MEMBER_PERMISSIONS_OBJ.ALBUM_UPDATE,
     ])
@@ -72,7 +72,7 @@ export default createEdgeGroup(album_eDef, {
     })
   },
 
-  listByMember: async ({request, body}) => {
+  list_byMember: async ({request, body}) => {
     const auth = await ensureMemberOfVenue(request)
 
     const query = createListSearchQuery<AlbumType>({
@@ -103,7 +103,7 @@ export default createEdgeGroup(album_eDef, {
     }
   },
 
-  listByUser: async ({request, body}) => {
+  list_byUser: async ({request, body}) => {
     const auth = await ensureUser(request)
 
     const query = createListSearchQuery<AlbumType>({
@@ -135,7 +135,7 @@ export default createEdgeGroup(album_eDef, {
     }
   },
 
-  deleteByMember: async ({request, body: {albumId}}) => {
+  delete_byMember: async ({request, body: {albumId}}) => {
     const auth = await ensureMemberOfVenue(request, [
       MEMBER_PERMISSIONS_OBJ.ALBUM_DELETE,
     ])

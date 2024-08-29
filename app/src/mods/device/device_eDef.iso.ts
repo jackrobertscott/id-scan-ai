@@ -5,14 +5,14 @@ import {idSchema} from "../../utils/zodSchema"
 import {DeviceDef, getDeviceByMemberFormSchema} from "./device_storeDef.iso"
 
 export const device_eDef = createEdgeDefGroup("device", {
-  createByMember: {
+  create_byMember: {
     input: getDeviceByMemberFormSchema(),
     output: DeviceDef.schema.pick({
       id: true,
     }),
   },
 
-  getDeviceByMember: {
+  get_byMember: {
     input: z.object({
       deviceId: idSchema(),
     }),
@@ -27,14 +27,14 @@ export const device_eDef = createEdgeDefGroup("device", {
     }),
   },
 
-  updateDeviceByMember: {
+  update_byMember: {
     input: z.object({
       deviceId: idSchema(),
       ...getDeviceByMemberFormSchema().shape,
     }),
   },
 
-  listDeviceByMember: {
+  list_byMember: {
     input: listOptionsSchema().extend({
       status: z.string().nullish(),
     }),
@@ -51,7 +51,7 @@ export const device_eDef = createEdgeDefGroup("device", {
     }),
   },
 
-  deleteDeviceByMember: {
+  delete_byMember: {
     input: z.object({
       deviceId: idSchema(),
     }),

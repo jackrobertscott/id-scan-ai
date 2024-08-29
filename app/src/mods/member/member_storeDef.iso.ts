@@ -39,9 +39,20 @@ export const MemberDef = createStoreDef({
   colname: "member",
   indexes: ["id", "createdDate", "userId", "venueId"],
   schema: {
+    createdByUserId: UserDef.schema.shape.id.nullish(),
     userId: UserDef.schema.shape.id,
     venueId: VenueDef.schema.shape.id,
     fullAccess: z.boolean().nullish(),
     permissions: z.array(enumStrSchema(MEMBER_PERMISSIONS_ARRAY)),
   },
 })
+
+export type MemberByMemberFormSchema = ReturnType<
+  typeof getMemberByMemberFormSchema
+>["shape"]
+
+export const getMemberByMemberFormSchema = () =>
+  MemberDef.schema.pick({
+    fullAccess: true,
+    permissions: true,
+  })

@@ -14,7 +14,7 @@ import {DeviceStore} from "./device_store"
 import {DeviceType} from "./device_storeDef.iso"
 
 export default createEdgeGroup(device_eDef, {
-  createByMember: async ({request, body}) => {
+  create_byMember: async ({request, body}) => {
     const auth = await ensureMemberOfVenue(request, [
       MEMBER_PERMISSIONS_OBJ.DEVICE_CREATE,
     ])
@@ -40,7 +40,7 @@ export default createEdgeGroup(device_eDef, {
     return device
   },
 
-  getDeviceByMember: async ({request, body: {deviceId}}) => {
+  get_byMember: async ({request, body: {deviceId}}) => {
     const auth = await ensureMemberOfVenue(request)
 
     // Ensure the device is from the user's venue
@@ -52,7 +52,7 @@ export default createEdgeGroup(device_eDef, {
     return {device}
   },
 
-  updateDeviceByMember: async ({request, body: {deviceId, ...body}}) => {
+  update_byMember: async ({request, body: {deviceId, ...body}}) => {
     const auth = await ensureMemberOfVenue(request, [
       MEMBER_PERMISSIONS_OBJ.DEVICE_UPDATE,
     ])
@@ -75,7 +75,7 @@ export default createEdgeGroup(device_eDef, {
     })
   },
 
-  listDeviceByMember: async ({request, body}) => {
+  list_byMember: async ({request, body}) => {
     const auth = await ensureMemberOfVenue(request)
 
     const query = createListSearchQuery<DeviceType>({
@@ -106,7 +106,7 @@ export default createEdgeGroup(device_eDef, {
     }
   },
 
-  deleteDeviceByMember: async ({request, body: {deviceId}}) => {
+  delete_byMember: async ({request, body: {deviceId}}) => {
     const auth = await ensureMemberOfVenue(request, [
       MEMBER_PERMISSIONS_OBJ.DEVICE_DELETE,
     ])

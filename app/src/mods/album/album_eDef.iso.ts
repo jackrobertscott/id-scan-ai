@@ -5,14 +5,14 @@ import {VenueDef} from "../venue/venue_storeDef.iso"
 import {AlbumDef, getAlbumFormSchema} from "./album_storeDef.iso"
 
 export const album_eDef = createEdgeDefGroup("album", {
-  createByMember: {
+  create_byMember: {
     input: getAlbumFormSchema(),
     output: AlbumDef.schema.pick({
       id: true,
     }),
   },
 
-  getByMember: {
+  get_byMember: {
     input: z.object({
       albumId: AlbumDef.schema.shape.id,
     }),
@@ -27,14 +27,14 @@ export const album_eDef = createEdgeDefGroup("album", {
     }),
   },
 
-  updateByMember: {
+  update_byMember: {
     input: z.object({
       albumId: AlbumDef.schema.shape.id,
       ...getAlbumFormSchema().shape,
     }),
   },
 
-  listByMember: {
+  list_byMember: {
     input: listOptionsSchema().extend({
       status: z.string().nullish(),
     }),
@@ -52,7 +52,7 @@ export const album_eDef = createEdgeDefGroup("album", {
     }),
   },
 
-  listByUser: {
+  list_byUser: {
     input: listOptionsSchema(),
     output: z.object({
       total: z.number(),
@@ -72,7 +72,7 @@ export const album_eDef = createEdgeDefGroup("album", {
     }),
   },
 
-  deleteByMember: {
+  delete_byMember: {
     input: z.object({
       albumId: AlbumDef.schema.shape.id,
     }),
