@@ -6,8 +6,8 @@ const createS3Path = (folder: string) => {
 }
 
 export const BUCKET_FOLDERS = {
-  TAGS_PATRON_FACE: createS3Path("tag_live_face"),
-  TAGS_DOCUMENT_FACE: createS3Path("tag_doc_face"),
+  TAG_LIVE_FACE: createS3Path("tag_live_face"),
+  TAG_DOC_FACE: createS3Path("tag_doc_face"),
   LIVE_PHOTO_FULL: createS3Path("live_full"),
   LIVE_PHOTO_FACE: createS3Path("live_face"),
   DOC_PHOTOS_FULL: createS3Path("doc_full"),

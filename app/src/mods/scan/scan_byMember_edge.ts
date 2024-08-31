@@ -14,6 +14,7 @@ import {serverFileSchema} from "../../utils/server/serverSchemas"
 import {ensureMemberOfVenue} from "../auth/authUtils"
 import {parseDocText} from "../docPhoto/docPhoto_parseText"
 import {DocPhotoStore} from "../docPhoto/docPhoto_store"
+import {FaceTagStore} from "../faceTag/faceTag_store"
 import {LivePhotoStore} from "../livePhoto/livePhoto_store"
 import {LogEventStore} from "../logEvent/logEvent_store"
 import {
@@ -25,6 +26,60 @@ import {scan_byMember_eDef} from "./scan_byMember_eDef.iso"
 import {ScanStore} from "./scan_store"
 
 export default createEdgeGroup(scan_byMember_eDef, {
+  get: async ({request, body}) => {
+    const auth = await ensureMemberOfVenue(request, [], {isDeviceEnabled: true})
+
+    // Ensure the scan is from the user's venue
+    const scan = await ScanStore.getOne({
+      id: body.scanId,
+      venueId: auth.venue.id,
+    })
+
+    // Get the photo images from the scan
+    const [patronPhoto, documentPhoto] = await Promise.all([
+      LivePhotoStore.getOne({
+        venueId: auth.venue.id,
+        id: scan.livePhotoId,
+      }),
+      DocPhotoStore.getOne({
+        venueId: auth.venue.id,
+        id: scan.docPhotoId,
+      }),
+    ])
+
+    // Find the faces in the tags database
+    const tagFaceResults = await searchFacesByImage(
+      patronPhoto.s3FaceImage,
+      AWS_REKOG_COLNAMES.TAG
+    )
+    const tagAwsFaceIds = tagFaceResults.FaceMatches?.map(({Face}) => {
+      return Face?.FaceId
+    }).filter(Boolean) as string[]
+    const tags = tagAwsFaceIds?.length
+      ? await FaceTagStore.getMany({
+          venueId: auth.venue.id,
+          awsFaceIds: {$in: tagAwsFaceIds},
+          expiryDate: {$gt: new Date()},
+        })
+      : []
+
+    // Get signed URLs for the photos
+    const [patronPhotoUrl, documentPhotoUrl] = await Promise.all([
+      getSignedUrlOfBucketObject(patronPhoto.s3FaceImage),
+      getSignedUrlOfBucketObject(documentPhoto.s3FaceImage),
+    ])
+
+    // Return the scan and tags
+    return {
+      scan: {
+        ...scan,
+        patronPhotoUrl,
+        documentPhotoUrl,
+      },
+      tags,
+    }
+  },
+
   uploadLivePhoto: async ({request, body}) => {
     const auth = await ensureMemberOfVenue(
       request,

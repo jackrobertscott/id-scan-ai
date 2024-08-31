@@ -51,17 +51,17 @@ export default createEdgeGroup(faceTag_byMember_eDef, {
     ])
 
     // Create new s3 face images for the tag
-    const s3PatronFaceCopy = s3ImageSchema().parse({
+    const s3LiveFaceCopy = s3ImageSchema().parse({
       ...livePhoto.s3FaceImage,
       key: join(
-        BUCKET_FOLDERS.TAGS_PATRON_FACE,
+        BUCKET_FOLDERS.TAG_LIVE_FACE,
         createRandomString(24).concat(".jpeg")
       ),
     })
     const s3DocumentFaceCopy = s3ImageSchema().parse({
       ...docPhoto.s3FaceImage,
       key: join(
-        BUCKET_FOLDERS.TAGS_DOCUMENT_FACE,
+        BUCKET_FOLDERS.TAG_DOC_FACE,
         createRandomString(24).concat(".jpeg")
       ),
     })
@@ -70,7 +70,7 @@ export default createEdgeGroup(faceTag_byMember_eDef, {
     await Promise.all([
       copyBucketObject({
         source: livePhoto.s3FaceImage,
-        destination: s3PatronFaceCopy,
+        destination: s3LiveFaceCopy,
       }),
       copyBucketObject({
         source: docPhoto.s3FaceImage,
@@ -85,7 +85,7 @@ export default createEdgeGroup(faceTag_byMember_eDef, {
     // Add the faces to the AWS Rekognition collection
     const results = await Promise.all([
       addFaceToCollection(
-        s3PatronFaceCopy,
+        s3LiveFaceCopy,
         AWS_REKOG_COLNAMES.TAG,
         rekogFaceOption
       ),
@@ -99,8 +99,8 @@ export default createEdgeGroup(faceTag_byMember_eDef, {
     // Calculate the expiry date
     const expiryDate = faceTag_calcExpiry(
       new Date(),
-      body.expiry.timeUnit,
-      body.expiry.timeAmount
+      body.timeUnit,
+      body.timeAmount
     )
 
     // Create the tag in the database
@@ -108,13 +108,13 @@ export default createEdgeGroup(faceTag_byMember_eDef, {
       ...body,
       scanId: scan.id,
       createdByUserId: auth.user.id,
-      s3FaceImages: [s3PatronFaceCopy, s3DocumentFaceCopy],
+      s3FaceImages: [s3LiveFaceCopy, s3DocumentFaceCopy],
       awsFaceIds: results
         .map((result) => result.FaceRecords?.[0]?.Face?.FaceId)
         .filter(Boolean) as string[],
       venueId: auth.venue.id,
       expiry: {
-        ...body.expiry,
+        ...body,
         date: expiryDate,
       },
     })
@@ -147,6 +147,7 @@ export default createEdgeGroup(faceTag_byMember_eDef, {
     return {
       tag: {
         ...tag,
+        ...tag.expiry,
         livePhotoId: scan?.livePhotoId,
       },
     }
@@ -168,8 +169,8 @@ export default createEdgeGroup(faceTag_byMember_eDef, {
     // Calculate the expiry date
     const expiryDate = faceTag_calcExpiry(
       tag.createdDate,
-      body.expiry.timeUnit,
-      body.expiry.timeAmount
+      body.timeUnit,
+      body.timeAmount
     )
 
     // Ensure the tag is from the user's venue
@@ -181,7 +182,7 @@ export default createEdgeGroup(faceTag_byMember_eDef, {
       {
         ...body,
         expiry: {
-          ...body.expiry,
+          ...body,
           date: expiryDate,
         },
       }
