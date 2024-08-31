@@ -1,6 +1,6 @@
 import {z} from "zod"
 import {faceMetaSchema} from "../../utils/faceMetaSchema"
-import {StoreValueType, createStoreDef} from "../../utils/mongo/baseStore"
+import {createStoreDef, StoreValueType} from "../../utils/mongo/baseStore"
 import {shortStrSchema} from "../../utils/zodSchema"
 import {DocPhotoDef} from "../docPhoto/docPhoto_storeDef.iso"
 import {LivePhotoDef} from "../livePhoto/livePhoto_storeDef.iso"
@@ -31,3 +31,36 @@ export const ScanDef = createStoreDef({
     }),
   },
 })
+
+export type ScanLargeFilterFormSchema = ReturnType<
+  typeof getScanFilterFormSchema
+>
+
+export const getScanLargeFilterFormSchema = () => {
+  return z.object({
+    createdAfterDate: z.coerce.date().nullish(),
+    createdBeforeDate: z.coerce.date().nullish(),
+    primaryEmotion: z.string().nullish(),
+    postCode: z.string().nullish(),
+    bornAfterDate: z.coerce.date().nullish(),
+    bornBeforeDate: z.coerce.date().nullish(),
+    gender: z.string().nullish(),
+    hasFaceMismatch: z.boolean().nullish(),
+    hasGlasses: z.boolean().nullish(),
+    hasSunglasses: z.boolean().nullish(),
+    hasBeard: z.boolean().nullish(),
+    hasMustache: z.boolean().nullish(),
+    hasSmile: z.boolean().nullish(),
+  })
+}
+
+export type ScanFilterFormSchema = ReturnType<typeof getScanFilterFormSchema>
+
+export const getScanFilterFormSchema = () =>
+  getScanLargeFilterFormSchema().pick({
+    createdAfterDate: true,
+    createdBeforeDate: true,
+    gender: true,
+    postCode: true,
+    hasFaceMismatch: true,
+  })
