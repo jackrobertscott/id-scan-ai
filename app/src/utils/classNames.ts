@@ -10,6 +10,6 @@ export const createCns = <T extends Record<string, string>>(data: T) => {
   }, {} as T)
 }
 
-export const cnx = (classNames: Array<string | undefined | null | false>) => {
+export const cn_jn = (classNames: Array<string | undefined | null | false>) => {
   return classNames.filter(Boolean).join(" ")
 }

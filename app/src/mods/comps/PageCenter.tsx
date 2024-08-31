@@ -1,7 +1,7 @@
 import {css} from "@emotion/css"
 import {ReactNode} from "react"
-import {cnx, createCns} from "../../utils/classNames"
-import {gcn} from "./globalClassNames"
+import {cn_jn, createCns} from "../../utils/classNames"
+import {gcn} from "./gcn.css"
 
 export type PageCenterProps = {
   title: string
@@ -12,12 +12,12 @@ export const PageCenter = ({title, children}: PageCenterProps) => {
   return (
     <div className={cn.pageCenter}>
       <div className={cn.container}>
-        <div className={cnx([cn.top, gcn.elevate])}>
+        <div className={cn_jn([cn.top, gcn.elevate])}>
           <div className={cn.grab} />
           <div>{title}</div>
           <div className={cn.grab} />
         </div>
-        <div className={cnx([cn.body, gcn.elevate])}>{children}</div>
+        <div className={cn_jn([cn.body, gcn.elevate])}>{children}</div>
       </div>
     </div>
   )
@@ -35,7 +35,7 @@ const cn = createCns({
   top: css`
     flex-direction: row;
     gap: var(--cell-size-x);
-    padding: var(--cell-size-y) var(--cell-size-x);
+    padding: var(--cell-size-yx);
   `,
   grab: css`
     opacity: 0.1;

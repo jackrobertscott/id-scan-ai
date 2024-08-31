@@ -1,8 +1,8 @@
 import {css} from "@emotion/css"
 import {mdiLoading} from "@mdi/js"
-import {cnx, createCns} from "../../utils/classNames"
+import {cn_jn, createCns} from "../../utils/classNames"
 import {Icon} from "./Icon"
-import {gcn} from "./globalClassNames"
+import {gcn} from "./gcn.css"
 
 export type CellProps = {
   icon?: string
@@ -24,8 +24,9 @@ export const Cell = ({
   return (
     <div
       onClick={disabled || loading ? undefined : onClick}
-      className={cnx([
+      className={cn_jn([
         cn.cell,
+        gcn.elevate,
         centered && cn.cellCenter,
         onClick && !disabled && !loading && cn.cellClick,
       ])}>
@@ -45,9 +46,8 @@ const cn = createCns({
   cell: css`
     flex-grow: 1;
     flex-shrink: 0;
-    ${gcn.elevate}
     background-color: hsl(210, 100%, 40%);
-    padding: var(--cell-size-y) var(--cell-size-x);
+    padding: var(--cell-size-yx);
   `,
   cellCenter: css`
     align-items: center;
