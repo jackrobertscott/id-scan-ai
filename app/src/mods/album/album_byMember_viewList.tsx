@@ -10,8 +10,8 @@ import {Spacer} from "../../theme/Spacer"
 import {TitleBar} from "../../theme/TitleBar"
 import {useEdge} from "../../utils/server/useEdge"
 import {album_byMember_eDef} from "./album_byMember_eDef.iso"
-import {CreateAlbumByMemberView} from "./CreateAlbumByMemberView"
-import {UpdateAlbumByMemberView} from "./UpdateAlbumByMemberView"
+import {CreateAlbumByMemberView} from "./album_byMember_viewCreate"
+import {UpdateAlbumByMemberView} from "./album_byMember_viewUpdate"
 
 export const ListAlbumByMemberView = () => {
   const $listAlbums = useEdge(album_byMember_eDef.list, {

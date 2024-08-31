@@ -5,7 +5,7 @@ import {VenueDef} from "../venue/venue_storeDef.iso"
 import {AlbumDef} from "./album_storeDef.iso"
 
 export const album_byUser_eDef = createEdgeGroupDef("album_byUser", {
-  list_byUser: {
+  list: {
     input: listOptionsSchema(),
     output: z.object({
       total: z.number(),

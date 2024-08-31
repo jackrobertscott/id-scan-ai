@@ -9,9 +9,9 @@ import {Modal} from "../../theme/Modal"
 import {Spacer} from "../../theme/Spacer"
 import {TitleBar, updatePageOptions} from "../../theme/TitleBar"
 import {useEdge} from "../../utils/server/useEdge"
-import {AlbumForm} from "./AlbumForm"
-import {DeleteAlbumByMemberView} from "./DeleteAlbumByMemberView"
 import {album_byMember_eDef} from "./album_byMember_eDef.iso"
+import {DeleteAlbumByMemberView} from "./album_byMember_viewDelete"
+import {AlbumForm} from "./album_form"
 import {AlbumDef} from "./album_storeDef.iso"
 
 export type UpdateAlbumByMemberViewProps = {

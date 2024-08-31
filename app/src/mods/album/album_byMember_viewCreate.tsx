@@ -4,7 +4,7 @@ import {Spacer} from "../../theme/Spacer"
 import {createPageOptions, TitleBar} from "../../theme/TitleBar"
 import {useEdge} from "../../utils/server/useEdge"
 import {album_byMember_eDef} from "./album_byMember_eDef.iso"
-import {AlbumForm} from "./AlbumForm"
+import {AlbumForm} from "./album_form"
 
 export type CreateAlbumByMemberViewProps = {
   onClose: (id?: string) => void

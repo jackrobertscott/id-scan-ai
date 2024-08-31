@@ -9,7 +9,7 @@ import {AlbumStore} from "./album_store"
 import {AlbumType} from "./album_storeDef.iso"
 
 export default createEdgeGroup(album_byUser_eDef, {
-  list_byUser: async ({request, body}) => {
+  list: async ({request, body}) => {
     const auth = await ensureUser(request)
 
     const query = createListSearchQuery<AlbumType>({
