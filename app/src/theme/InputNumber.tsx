@@ -1,9 +1,9 @@
 import {UseNumStrProps, useNumStr} from "../utils/useNumStr"
 import {Input, InputProps} from "./Input"
 
-export type InpNumProps = UseNumStrProps<InputProps> & {}
+export type InputNumberProps = UseNumStrProps<InputProps> & {}
 
-export const InpNum = ({...props}: InpNumProps) => {
+export const InputNumber = ({...props}: InputNumberProps) => {
   const inputStrProps = useNumStr(props)
   return <Input {...inputStrProps} />
 }
