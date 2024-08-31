@@ -1,4 +1,5 @@
 import {css} from "@emotion/css"
+import {mdiClose, mdiContentSave, mdiPlus} from "@mdi/js"
 import {Fragment, useState} from "react"
 import {createCns} from "../utils/classNames"
 import {Button} from "./Button"
@@ -6,6 +7,46 @@ import {Icon} from "./Icon"
 import {Modal} from "./Modal"
 import {Poster, PosterProps} from "./Poster"
 import {Spacer} from "./Spacer"
+
+export const updatePageOptions = (
+  onClose: () => void,
+  hasChanged?: boolean
+): TitleBarOption[] => {
+  return [
+    {
+      icon: mdiClose,
+      label: hasChanged ? "Cancel" : "Close",
+      onClick: onClose,
+      intercept: hasChanged
+        ? {
+            icon: mdiContentSave,
+            // variant: "yellow",
+            title: "Are you sure?",
+            description: "You have unsaved changes",
+            buttonLabel: "Leave without saving",
+          }
+        : undefined,
+    },
+  ]
+}
+
+export const createPageOptions = (onClose: () => void): TitleBarOption[] => {
+  return [
+    {
+      icon: mdiClose,
+      label: "Cancel",
+      onClick: onClose,
+    },
+  ]
+}
+
+export const listCreateOption = (onClick: () => void) => {
+  return {
+    icon: mdiPlus,
+    label: "New",
+    onClick: onClick,
+  }
+}
 
 export type TitleBarOption = {
   icon: string
