@@ -2,7 +2,7 @@ import {css} from "@emotion/css"
 import {mdiChevronDown, mdiChevronUp} from "@mdi/js"
 import {FC, Fragment, ReactNode, useState} from "react"
 import {toKebabCase} from "../utils/changeCase"
-import {useCn} from "../utils/classNames"
+import {useCnStatic} from "../utils/classNames"
 import {Icon} from "./Icon"
 import {InputButton} from "./InputButton"
 import {Spacer} from "./Spacer"
@@ -14,7 +14,7 @@ export const FieldGroup: FC<{
 }> = ({label, children, init = true}) => {
   const [open, setOpen] = useState(init)
 
-  const cn = useCn("field-group", {
+  const cn = useCnStatic("field-group", () => ({
     root: css`
       flex-shrink: 0;
       gap: calc(0.5rem - var(--padding-small-y));
@@ -46,7 +46,7 @@ export const FieldGroup: FC<{
       border-radius: var(--radius-regular);
       border: var(--border-regular);
     `,
-  })
+  }))
 
   return (
     <div className={cn.root} data-name={label ? toKebabCase(label) : undefined}>

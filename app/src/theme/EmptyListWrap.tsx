@@ -1,7 +1,7 @@
 import {css} from "@emotion/css"
 import {mdiLoading} from "@mdi/js"
 import {ReactNode} from "react"
-import {useCn} from "../utils/classNames"
+import {useCnStatic} from "../utils/classNames"
 import {Icon} from "./Icon"
 
 export const EmptyListWrap = <T extends any[]>({
@@ -17,7 +17,7 @@ export const EmptyListWrap = <T extends any[]>({
   render?: (data: T) => ReactNode
   nested?: boolean
 }): ReactNode => {
-  const cn = useCn("empty-list-wrap", {
+  const cn = useCnStatic("empty-list-wrap", () => ({
     root: css`
       text-align: center;
       color: hsl(0, 0%, 100%, 0.5);
@@ -29,7 +29,7 @@ export const EmptyListWrap = <T extends any[]>({
         background-color: hsl(0, 0%, 100%, 0.05);
       }
     `,
-  })
+  }))
 
   if (data?.length && data.length > 0) {
     return render?.(data)

@@ -2,7 +2,7 @@ import {css} from "@emotion/css"
 import {mdiContentCopy} from "@mdi/js"
 import {ReactNode} from "react"
 import {useAlertManager} from "../mods/alert/alertManager"
-import {useCn} from "../utils/classNames"
+import {useCnStatic} from "../utils/classNames"
 import {Icon} from "./Icon"
 import {InputButton} from "./InputButton"
 
@@ -21,7 +21,7 @@ export const InputStatic = ({
 }: InputStaticProps): ReactNode => {
   const alertManager = useAlertManager()
 
-  const cn = useCn("input-static", {
+  const cn = useCnStatic("input-static", () => ({
     root: css`
       flex-grow: 1;
       overflow: auto;
@@ -36,7 +36,7 @@ export const InputStatic = ({
     label: css`
       min-height: calc(var(--line-height) * 1rem);
     `,
-  })
+  }))
 
   return (
     <div className={cn.root}>

@@ -1,3 +1,4 @@
+import {useMemo} from "react"
 import {toKebabCase} from "./changeCase"
 
 export const createCns = <T extends Record<string, string>>(data: T) => {
@@ -14,13 +15,16 @@ export const cn_jn = (classNames: Array<string | undefined | null | false>) => {
   return classNames.filter(Boolean).join(" ")
 }
 
-export function useCn<T extends Record<string, string>>(
+export function useCnStatic<T extends Record<string, string>>(
   prefix: string,
-  data: T
+  data: () => T
 ) {
-  // no need to memoize the results as the output is just a string map
-  return Object.entries(data).reduce((acc, [key, value]) => {
-    acc[key as keyof T] = `${toKebabCase(prefix)}-${toKebabCase(key)} ${value}`
-    return acc
-  }, {} as {[K in keyof T]: string})
+  return useMemo(() => {
+    return Object.entries(data()).reduce((acc, [key, value]) => {
+      acc[key as keyof T] = `${toKebabCase(prefix)}-${toKebabCase(
+        key
+      )} ${value}`
+      return acc
+    }, {} as {[K in keyof T]: string})
+  }, [])
 }

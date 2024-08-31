@@ -1,6 +1,6 @@
 import {css} from "@emotion/css"
 import {CSSProperties, FC} from "react"
-import {useCn} from "../utils/classNames"
+import {useCnStatic} from "../utils/classNames"
 
 export const Icon: FC<{
   icon: string
@@ -8,7 +8,7 @@ export const Icon: FC<{
   className?: string
   style?: CSSProperties
 }> = ({icon, spinning, className, style}) => {
-  const cn = useCn("icon", {
+  const cn = useCnStatic("icon", () => ({
     root: css`
       user-select: none;
       align-items: center;
@@ -23,7 +23,7 @@ export const Icon: FC<{
       stroke: transparent;
       animation: ${spinning ? `500ms linear infinite rotate360` : "none"};
     `,
-  })
+  }))
 
   return (
     <div

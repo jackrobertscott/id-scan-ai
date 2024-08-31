@@ -1,14 +1,14 @@
 import {css} from "@emotion/css"
 import {FC, ReactNode} from "react"
 import {MEDIA_WIDTH_MOBILE} from "../consts/MEDIA_SIZES"
-import {useCn} from "../utils/classNames"
+import {useCnStatic} from "../utils/classNames"
 
 export const Container: FC<{
   overlay?: boolean
   children?: ReactNode
   width?: string
 }> = ({children, width = "20rem", overlay}) => {
-  const cn = useCn("container", {
+  const cn = useCnStatic("container", () => ({
     root: css`
       overflow: auto;
       width: ${width};
@@ -47,7 +47,7 @@ export const Container: FC<{
         }
       }
     `,
-  })
+  }))
 
   return (
     <div className={cn.root}>

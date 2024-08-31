@@ -3,7 +3,7 @@ import {mdiClose} from "@mdi/js"
 import {FC, useEffect, useState} from "react"
 import {DATETIME_DAYS, DATETIME_MONTHS} from "../consts/DATETIME"
 import {toCapitalCase} from "../utils/changeCase"
-import {useCn} from "../utils/classNames"
+import {useCnStatic} from "../utils/classNames"
 import {Button} from "./Button"
 import {Field} from "./Field"
 import {InputButton} from "./InputButton"
@@ -49,7 +49,7 @@ export const InputDate: FC<{
     }
   }, [value])
 
-  const cn = useCn("input-date", {
+  const cn = useCnStatic("input-date", () => ({
     root: css`
       flex-grow: 1;
       flex-direction: row;
@@ -65,7 +65,7 @@ export const InputDate: FC<{
         background-color: hsl(0, 0%, 100%, 0.05);
       }
     `,
-  })
+  }))
 
   return (
     <Popup
@@ -208,7 +208,7 @@ const DayGrid: FC<{
   today: Date
   onValue: (d: Date) => void
 }> = ({contextDate, currentDate, today, onValue}) => {
-  const cn = useCn("day-grid", {
+  const cn = useCnStatic("day-grid", () => ({
     root: css`
       flex-grow: 1;
       display: grid;
@@ -223,7 +223,7 @@ const DayGrid: FC<{
       text-align: center;
       justify-content: center;
     `,
-  })
+  }))
 
   return (
     <div className={cn.root}>
@@ -274,7 +274,7 @@ const DateCell: FC<{
   inMonth: boolean
   onValue: (d: Date) => void
 }> = ({day, currentDate, isToday, isCur, inMonth, onValue}) => {
-  const cn = useCn("date-cell", {
+  const cn = useCnStatic("date-cell", () => ({
     root: css`
       user-select: none;
       text-align: center;
@@ -286,7 +286,7 @@ const DateCell: FC<{
         background-color: hsl(0, 0%, 100%, 0.05);
       }
     `,
-  })
+  }))
 
   return (
     <div

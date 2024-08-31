@@ -1,6 +1,6 @@
 import {css} from "@emotion/css"
 import {FC} from "react"
-import {useCn} from "../utils/classNames"
+import {useCnStatic} from "../utils/classNames"
 import {Icon} from "./Icon"
 
 export type SimpleListOptionAction = {
@@ -21,7 +21,7 @@ export const SimpleList: FC<{
   maxHeight?: number
   options: Array<false | null | undefined | SimpleListOption>
 }> = ({maxHeight, options}) => {
-  const cn = useCn("simple-list", {
+  const cn = useCnStatic("simple-list", () => ({
     root: css`
       flex-grow: 1;
       flex-shrink: 0;
@@ -31,7 +31,7 @@ export const SimpleList: FC<{
         border-bottom: var(--border-regular);
       }
     `,
-  })
+  }))
 
   return (
     <div style={{maxHeight}} className={cn.root}>
@@ -46,7 +46,7 @@ export const SimpleList: FC<{
 const ListItem: FC<{
   option: SimpleListOption
 }> = ({option}) => {
-  const cn = useCn("list-item", {
+  const cn = useCnStatic("list-item", () => ({
     root: css`
       flex-shrink: 0;
       overflow: auto;
@@ -94,7 +94,7 @@ const ListItem: FC<{
       color: hsl(0, 0%, 100%, 0.5);
       font-size: var(--font-size-small);
     `,
-  })
+  }))
 
   return (
     <div className={cn.root}>

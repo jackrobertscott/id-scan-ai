@@ -1,5 +1,5 @@
 import {css} from "@emotion/css"
-import {useCn} from "../utils/classNames"
+import {useCnStatic} from "../utils/classNames"
 
 export type InputStringProps = {
   disabled?: boolean
@@ -16,7 +16,7 @@ export const InputString = ({
   disabled,
   maxLength,
 }: InputStringProps) => {
-  const cn = useCn("input-string", {
+  const cn = useCnStatic("input-string", () => ({
     root: css`
       width: 0; // don't use "100%" or "auto"
       min-width: 0;
@@ -26,7 +26,7 @@ export const InputString = ({
         color: hsl(0, 0%, 100%, 0.25);
       }
     `,
-  })
+  }))
 
   return (
     <input

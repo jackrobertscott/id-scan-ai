@@ -1,7 +1,7 @@
 import {css} from "@emotion/css"
 import {mdiLoading} from "@mdi/js"
 import {ReactNode} from "react"
-import {useCn} from "../utils/classNames"
+import {useCnStatic} from "../utils/classNames"
 import {Icon} from "./Icon"
 
 export const LoadingScreen = <T extends any>({
@@ -11,7 +11,7 @@ export const LoadingScreen = <T extends any>({
   data?: T
   render?: (data: T) => ReactNode
 }): ReactNode => {
-  const cn = useCn("loading-screen", {
+  const cn = useCnStatic("loading-screen", () => ({
     root: css`
       flex-grow: 1;
       font-size: 2rem;
@@ -20,7 +20,7 @@ export const LoadingScreen = <T extends any>({
       align-items: center;
       text-align: center;
     `,
-  })
+  }))
 
   if (data) {
     return render?.(data)

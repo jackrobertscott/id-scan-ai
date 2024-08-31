@@ -1,6 +1,6 @@
 import {css} from "@emotion/css"
 import {isValidElement, ReactNode} from "react"
-import {useCn} from "../utils/classNames"
+import {useCnStatic} from "../utils/classNames"
 
 export type PdfTableProps = {
   nested?: boolean
@@ -10,14 +10,14 @@ export type PdfTableProps = {
 }
 
 export const PdfTable = ({nested, headings, footings, rows}: PdfTableProps) => {
-  const cn = useCn("pdf-table", {
+  const cn = useCnStatic("pdf-table", () => ({
     root: css`
       border: ${nested ? undefined : "var(--border-pdf)"};
     `,
     table: css`
       flex-shrink: 0;
     `,
-  })
+  }))
 
   return (
     <div className={cn.root}>
@@ -57,7 +57,7 @@ export type PdfTableHeadProps = {
 }
 
 const PdfTableHead = ({label}: PdfTableHeadProps) => {
-  const cn = useCn("pdf-table-head", {
+  const cn = useCnStatic("pdf-table-head", () => ({
     root: css`
       border-bottom: var(--border-pdf);
       :not(:last-child) {
@@ -70,7 +70,7 @@ const PdfTableHead = ({label}: PdfTableHeadProps) => {
       padding: var(--padding-small);
       gap: var(--gap-small);
     `,
-  })
+  }))
 
   return (
     <th className={cn.root}>
@@ -86,7 +86,7 @@ export type PdfTableRowProps = {
 }
 
 const PdfTableRow = ({columns, nested}: PdfTableRowProps) => {
-  const cn = useCn("pdf-table-row", {
+  const cn = useCnStatic("pdf-table-row", () => ({
     root: css`
       page-break-inside: avoid;
       :nth-child(2n) {
@@ -110,7 +110,7 @@ const PdfTableRow = ({columns, nested}: PdfTableRowProps) => {
       gap: var(--gap-small);
       white-space: pre-line;
     `,
-  })
+  }))
 
   return (
     <tr className={cn.root}>
@@ -132,7 +132,7 @@ export type PdfTableFootProps = {
 }
 
 const PdfTableFoot = ({label}: PdfTableFootProps) => {
-  const cn = useCn("pdf-table-foot", {
+  const cn = useCnStatic("pdf-table-foot", () => ({
     root: css`
       border-top: var(--border-pdf);
       :not(:last-child) {
@@ -144,7 +144,7 @@ const PdfTableFoot = ({label}: PdfTableFootProps) => {
       padding: var(--padding-small);
       gap: var(--gap-small);
     `,
-  })
+  }))
 
   return (
     <td className={cn.root}>

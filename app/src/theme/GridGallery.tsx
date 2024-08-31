@@ -1,6 +1,6 @@
 import {css} from "@emotion/css"
 import {FC} from "react"
-import {useCn} from "../utils/classNames"
+import {useCnStatic} from "../utils/classNames"
 
 export const GridGallery: FC<{
   minRowHeight?: string
@@ -15,7 +15,7 @@ export const GridGallery: FC<{
   minColumnWidth = `${(data?.[0]?.imagePreviewUrls.length ?? 1) * 8}rem`
   minRowHeight = `calc(${minColumnWidth} * (3/4))`
 
-  const cn = useCn("grid-gallery", {
+  const cn = useCnStatic("grid-gallery", () => ({
     root: css`
       flex-grow: 1;
       overflow: auto;
@@ -27,7 +27,7 @@ export const GridGallery: FC<{
       gap: var(--border-regular-width);
       grid-template-columns: repeat(auto-fill, minmax(${minColumnWidth}, 1fr));
     `,
-  })
+  }))
 
   return (
     <div className={cn.root}>
@@ -55,7 +55,7 @@ const GalleryItem: FC<{
 }> = ({item, minRowHeight}) => {
   const previewUrls = item.imagePreviewUrls.filter(Boolean)
 
-  const cn = useCn("gallery-item", {
+  const cn = useCnStatic("gallery-item", () => ({
     root: css`
       user-select: none;
       position: relative;
@@ -83,7 +83,7 @@ const GalleryItem: FC<{
       right: 0;
       left: 0;
     `,
-  })
+  }))
 
   return (
     <div key={item.key} onClick={item.onClick} className={cn.root}>

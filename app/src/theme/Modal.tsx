@@ -1,7 +1,7 @@
 import {css} from "@emotion/css"
 import {ReactNode, useEffect} from "react"
 import {MEDIA_WIDTH_MOBILE} from "../consts/MEDIA_SIZES"
-import {useCn} from "../utils/classNames"
+import {useCnStatic} from "../utils/classNames"
 import {useLayerStack} from "../utils/useLayerStack"
 import {Container} from "./Container"
 import {Portal} from "./Portal"
@@ -22,7 +22,7 @@ export const Modal = ({show = true, children, width}: ModalProps) => {
     }
   }, [show])
 
-  const cn = useCn("modal", {
+  const cn = useCnStatic("modal", () => ({
     root: css`
       inset: 0;
       width: 100%;
@@ -39,7 +39,7 @@ export const Modal = ({show = true, children, width}: ModalProps) => {
         justify-content: end;
       }
     `,
-  })
+  }))
 
   if (!show) {
     return null

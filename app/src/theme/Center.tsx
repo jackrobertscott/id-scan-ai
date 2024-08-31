@@ -1,12 +1,12 @@
 import {css} from "@emotion/css"
 import {FC, ReactNode} from "react"
 import {MEDIA_WIDTH_MOBILE} from "../consts/MEDIA_SIZES"
-import {useCn} from "../utils/classNames"
+import {useCnStatic} from "../utils/classNames"
 
 export const Center: FC<{
   children: ReactNode
 }> = ({children}) => {
-  const cn = useCn("center", {
+  const cn = useCnStatic("center", () => ({
     root: css`
       flex-grow: 1;
       align-items: safe center;
@@ -18,7 +18,7 @@ export const Center: FC<{
         justify-content: stretch;
       }
     `,
-  })
+  }))
 
   return <div className={cn.root}>{children}</div>
 }

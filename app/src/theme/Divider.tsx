@@ -1,11 +1,11 @@
 import {css} from "@emotion/css"
 import {FC} from "react"
-import {useCn} from "../utils/classNames"
+import {useCnStatic} from "../utils/classNames"
 
 export const Divider: FC<{
   thickness?: string
 }> = ({thickness = "0.5rem"}) => {
-  const cn = useCn("divider", {
+  const cn = useCnStatic("divider", () => ({
     root: css`
       height: 1px;
       margin: 0 1rem;
@@ -20,7 +20,7 @@ export const Divider: FC<{
         var(--border-regular-color) calc(1 * ${thickness})
       );
     `,
-  })
+  }))
 
   return <div className={cn.root} />
 }

@@ -1,7 +1,7 @@
 import {css} from "@emotion/css"
 import {FC, ReactNode} from "react"
 import {toKebabCase} from "../utils/changeCase"
-import {useCn} from "../utils/classNames"
+import {useCnStatic} from "../utils/classNames"
 
 export const Field: FC<{
   grow?: boolean
@@ -21,7 +21,7 @@ export const Field: FC<{
   overflow,
   direction = "row",
 }) => {
-  const cn = useCn("field", {
+  const cn = useCnStatic("field", () => ({
     root: css`
       gap: 0.25rem;
       overflow: ${overflow};
@@ -53,7 +53,7 @@ export const Field: FC<{
       font-size: var(--font-size-small);
       text-align: center;
     `,
-  })
+  }))
 
   return (
     <div

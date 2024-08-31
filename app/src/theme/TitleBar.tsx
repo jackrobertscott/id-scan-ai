@@ -1,7 +1,7 @@
 import {css} from "@emotion/css"
 import {useState} from "react"
 import {Fragment} from "react/jsx-runtime"
-import {useCn} from "../utils/classNames"
+import {useCnStatic} from "../utils/classNames"
 import {Button} from "./Button"
 import {Icon} from "./Icon"
 import {Modal} from "./Modal"
@@ -25,7 +25,7 @@ export const TitleBar = ({title, options = []}: TitleBarProps) => {
     TitleBarOption["intercept"] & {onClick: () => void}
   >()
 
-  const cn = useCn("title-bar", {
+  const cn = useCnStatic("title-bar", () => ({
     root: css`
       padding: 0 0.25rem;
       flex-direction: row;
@@ -52,7 +52,7 @@ export const TitleBar = ({title, options = []}: TitleBarProps) => {
         background-color: hsl(0, 0%, 100%, 0.1);
       }
     `,
-  })
+  }))
 
   return (
     <Fragment>

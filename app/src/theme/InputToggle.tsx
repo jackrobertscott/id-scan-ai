@@ -1,7 +1,7 @@
 import {css} from "@emotion/css"
 import {mdiCheck} from "@mdi/js"
 import {ReactNode} from "react"
-import {useCn} from "../utils/classNames"
+import {useCnStatic} from "../utils/classNames"
 import {Icon} from "./Icon"
 
 export type InputToggleProps = {
@@ -17,7 +17,7 @@ export const InputToggle = ({
   disabled,
   getLabel,
 }: InputToggleProps): ReactNode => {
-  const cn = useCn("input-toggle", {
+  const cn = useCnStatic("input-toggle", () => ({
     root: css`
       flex-grow: 1;
       flex-direction: row;
@@ -48,7 +48,7 @@ export const InputToggle = ({
       min-height: calc(var(--line-height) * 1rem);
       color: ${value ? "hsl(0, 0%, 100%)" : "hsl(0, 0%, 100%, 0.5)"};
     `,
-  })
+  }))
 
   return (
     <div

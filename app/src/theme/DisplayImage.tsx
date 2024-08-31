@@ -1,6 +1,6 @@
 import {css} from "@emotion/css"
 import {ReactNode} from "react"
-import {useCn} from "../utils/classNames"
+import {useCnStatic} from "../utils/classNames"
 
 export type DisplayImageProps = {
   source?: string
@@ -15,7 +15,7 @@ export const DisplayImage = ({
   width,
   aspectRatio,
 }: DisplayImageProps): ReactNode => {
-  const cn = useCn("display-image", {
+  const cn = useCnStatic("display-image", () => ({
     root: css`
       flex-grow: 1;
       flex-shrink: 0;
@@ -26,7 +26,7 @@ export const DisplayImage = ({
       object-fit: cover;
       object-position: center;
     `,
-  })
+  }))
 
   return (
     <img

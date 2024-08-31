@@ -1,9 +1,9 @@
 import {css} from "@emotion/css"
 import {mdiClose} from "@mdi/js"
 import {toSentenceCase, toSpacedCase} from "../utils/changeCase"
+import {useCnStatic} from "../utils/classNames"
 import {InputSelect, InputSelectOption} from "./InputSelect"
 import {SimpleList} from "./SimpleList"
-import {useCn} from "../utils/classNames"
 
 export type InputMultiSelectProps = {
   value?: string[] | null
@@ -20,17 +20,11 @@ export const InputMultiSelect = ({
 }: InputMultiSelectProps) => {
   value ||= []
 
-  const cn = useCn("input-multi-select", {
+  const cn = useCnStatic("input-multi-select", () => ({
     root: css`
       flex-grow: 1;
-      ${value.length > 0 &&
-      css`
-        > *:not(:last-child) {
-          border-bottom: var(--border-regular);
-        }
-      `}
     `,
-  })
+  }))
 
   return (
     <div className={cn.root}>

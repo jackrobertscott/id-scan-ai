@@ -2,11 +2,11 @@ import {css} from "@emotion/css"
 import {mdiClose, mdiPlus} from "@mdi/js"
 import {useState} from "react"
 import {z} from "zod"
+import {useCnStatic} from "../utils/classNames"
 import {EmptyListWrap} from "./EmptyListWrap"
 import {InputButton} from "./InputButton"
 import {InputString} from "./InputString"
 import {SimpleList} from "./SimpleList"
-import {useCn} from "../utils/classNames"
 
 export type InputStringArrayProps = {
   value?: string[] | null
@@ -29,20 +29,14 @@ export const InputStringArray = ({
   const validationResult = validate?.schema.safeParse(inputValue)
   const inputValid = validationResult?.success ?? inputValue?.trim()?.length
 
-  const cn = useCn("input-string-array", {
+  const cn = useCnStatic("input-string-array", () => ({
     root: css`
       flex-grow: 1;
-      > *:not(:last-child) {
-        border-bottom: var(--border-regular);
-      }
     `,
     head: css`
       flex-direction: row;
-      > *:not(:last-child) {
-        border-right: var(--border-regular);
-      }
     `,
-  })
+  }))
 
   return (
     <div className={cn.root}>

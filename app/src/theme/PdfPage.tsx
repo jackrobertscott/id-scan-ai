@@ -1,6 +1,6 @@
 import {css} from "@emotion/css"
 import {FC, ReactNode} from "react"
-import {useCn} from "../utils/classNames"
+import {useCnStatic} from "../utils/classNames"
 
 const A4_PDF_SIZES = {
   WIDTH: 794,
@@ -12,7 +12,7 @@ export const PdfPage: FC<{
   children: ReactNode
   inAppPreview?: boolean
 }> = ({children, inAppPreview}) => {
-  const cn = useCn("pdf-page", {
+  const cn = useCnStatic("pdf-page", () => ({
     root: css`
       width: 100%;
       flex-grow: 1;
@@ -30,7 +30,7 @@ export const PdfPage: FC<{
       min-height: ${inAppPreview ? `${A4_PDF_SIZES.HEIGHT}px` : "auto"};
       background-color: hsl(0, 0%, 100%);
     `,
-  })
+  }))
 
   return (
     <div className={cn.root}>

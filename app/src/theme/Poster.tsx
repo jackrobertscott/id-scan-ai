@@ -1,5 +1,5 @@
 import {css} from "@emotion/css"
-import {useCn} from "../utils/classNames"
+import {useCnStatic} from "../utils/classNames"
 import {Icon} from "./Icon"
 
 export type PosterProps = {
@@ -10,7 +10,7 @@ export type PosterProps = {
 }
 
 export const Poster = ({icon, title, description, grow}: PosterProps) => {
-  const cn = useCn("poster", {
+  const cn = useCnStatic("poster", () => ({
     root: css`
       padding: 1rem;
       flex-grow: ${grow ? 1 : 0};
@@ -30,7 +30,7 @@ export const Poster = ({icon, title, description, grow}: PosterProps) => {
       color: hsl(0, 0%, 100%, 0.5);
       font-size: var(--font-size-small);
     `,
-  })
+  }))
 
   return (
     <div className={cn.root}>

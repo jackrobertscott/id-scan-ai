@@ -1,7 +1,7 @@
 import {css} from "@emotion/css"
 import {mdiCamera, mdiCameraOff, mdiLoading, mdiSync} from "@mdi/js"
 import {FC, useEffect, useState} from "react"
-import {useCn} from "../utils/classNames"
+import {useCnStatic} from "../utils/classNames"
 import {useWebcam} from "../utils/useWebcam"
 import {Button} from "./Button"
 import {Icon} from "./Icon"
@@ -36,7 +36,7 @@ export const InputCamera: FC<{
     }
   }, [value])
 
-  const cn = useCn("input-camera", {
+  const cn = useCnStatic("input-camera", () => ({
     root: css`
       flex-grow: 1;
       min-height: ${minHeight ?? "10rem"};
@@ -73,7 +73,7 @@ export const InputCamera: FC<{
       transform: translateX(-50%);
       white-space: nowrap;
     `,
-  })
+  }))
 
   return (
     <div className={cn.root}>

@@ -1,11 +1,11 @@
 import {css} from "@emotion/css"
 import {mdiCheck, mdiClose, mdiLoading} from "@mdi/js"
 import {MutableRefObject} from "react"
+import {useCnStatic} from "../utils/classNames"
 import {Icon} from "./Icon"
 import {InputButton} from "./InputButton"
 import {InputStatic} from "./InputStatic"
 import {Popup, PopupContainer} from "./Popup"
-import {useCn} from "../utils/classNames"
 
 export type InputSelectOption<T = string> = {
   value: T
@@ -72,7 +72,7 @@ export const InputSelectOption = <R extends boolean, T = string>({
   onValue,
   doHide,
 }: InputSelectOptionProps<R, T>) => {
-  const cn = useCn("input-select-option", {
+  const cn = useCnStatic("input-select-option", () => ({
     root: css`
       flex-shrink: 0;
       user-select: none;
@@ -89,7 +89,7 @@ export const InputSelectOption = <R extends boolean, T = string>({
         background-color: hsl(0, 0%, 100%, 0.05);
       }
     `,
-  })
+  }))
 
   return (
     <div
@@ -125,7 +125,7 @@ export const InputSelectLabel = <T = string,>({
   required,
   loading,
 }: InputSelectLabelProps<T>) => {
-  const cn = useCn("input-select-label", {
+  const cn = useCnStatic("input-select-label", () => ({
     root: css`
       flex-grow: 1;
       flex-direction: row;
@@ -144,7 +144,7 @@ export const InputSelectLabel = <T = string,>({
         background-color: hsl(0, 0%, 100%, 0.05);
       }
     `,
-  })
+  }))
 
   return (
     <div className={cn.root}>

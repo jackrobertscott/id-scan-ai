@@ -1,6 +1,6 @@
 import {css} from "@emotion/css"
 import {FC, MutableRefObject, ReactNode, useEffect, useRef} from "react"
-import {useCn} from "../utils/classNames"
+import {useCnStatic} from "../utils/classNames"
 import {useBoundingBox} from "../utils/useBoundingBox"
 import {useLayerStack} from "../utils/useLayerStack"
 import {Portal} from "./Portal"
@@ -28,7 +28,7 @@ export const Popup: FC<{
     }
   }, [boundingBox.box])
 
-  const cn = useCn("popup", {
+  const cn = useCnStatic("popup", () => ({
     overlay: css`
       top: 0;
       right: 0;
@@ -48,7 +48,7 @@ export const Popup: FC<{
       margin: -20px;
       padding: 20px;
     `,
-  })
+  }))
 
   return (
     <>
@@ -90,7 +90,7 @@ export const PopupContainer: FC<{
   bigRadius?: boolean
   children: ReactNode
 }> = ({minWidth, maxHeight = "100vh", bigRadius, children}) => {
-  const cn = useCn("popup-container", {
+  const cn = useCnStatic("popup-container", () => ({
     root: css`
       flex-shrink: 0;
       overflow: auto;
@@ -106,7 +106,7 @@ export const PopupContainer: FC<{
     overflow: css`
       overflow: auto;
     `,
-  })
+  }))
 
   return (
     <div className={cn.root}>
