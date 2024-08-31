@@ -1,4 +1,4 @@
-import {Fragment} from "react/jsx-runtime"
+import {Fragment} from "react"
 import {Field} from "../../theme/Field"
 import {InputDate} from "../../theme/InputDate"
 import {InputSelect} from "../../theme/InputSelect"

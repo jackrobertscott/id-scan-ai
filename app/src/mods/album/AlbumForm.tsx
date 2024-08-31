@@ -1,4 +1,4 @@
-import {Fragment} from "react/jsx-runtime"
+import {Fragment} from "react"
 import {z} from "zod"
 import {Divider} from "../../theme/Divider"
 import {Field} from "../../theme/Field"
@@ -7,8 +7,8 @@ import {InputString} from "../../theme/InputString"
 import {InputStringArray} from "../../theme/InputStringArray"
 import {InputToggle} from "../../theme/InputToggle"
 import {ZodFormValue, useZodForm} from "../../utils/useZodForm"
-import {AlbumFormSchema, getAlbumFormSchema} from "./album_storeDef.iso"
 import {ScanFilterForm} from "../scan/ScanFilterForm"
+import {AlbumFormSchema, getAlbumFormSchema} from "./album_storeDef.iso"
 
 export type AlbumFormProps = {
   value: ZodFormValue<AlbumFormSchema>
@@ -26,15 +26,12 @@ export const AlbumForm = ({value, onValue}: AlbumFormProps) => {
     <Fragment>
       <Field
         label="Label"
-        // variant="required"
+        variant="required"
         footNote="Add a short description for the album">
         <InputString {...form.getPropsOf("name")} />
       </Field>
 
-      <Field
-        label="Emails"
-        //  variant="required"
-      >
+      <Field label="Emails" variant="required">
         <InputStringArray
           {...form.getPropsOf("emails")}
           placeholder="example@email.com"

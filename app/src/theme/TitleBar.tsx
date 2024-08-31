@@ -1,6 +1,5 @@
 import {css} from "@emotion/css"
-import {useState} from "react"
-import {Fragment} from "react/jsx-runtime"
+import {Fragment, useState} from "react"
 import {createCns} from "../utils/classNames"
 import {Button} from "./Button"
 import {Icon} from "./Icon"

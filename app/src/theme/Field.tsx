@@ -13,6 +13,7 @@ export const Field: FC<{
   isAdmin?: boolean
   overflow?: "auto"
   direction?: "row" | "column"
+  variant?: string // flag strings separated by spaces
 }> = ({
   grow,
   label,
@@ -25,10 +26,10 @@ export const Field: FC<{
   return (
     <div
       className={jn_cns([
-        cn_f.root,
         className,
-        overflow && gcn.overAuto,
+        cn_f.root,
         grow && gcn.grow,
+        overflow && gcn.overAuto,
       ])}
       data-name={label ? toKebabCase(label) : undefined}>
       {label && (

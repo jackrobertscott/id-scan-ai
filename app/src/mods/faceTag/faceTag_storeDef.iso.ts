@@ -35,11 +35,15 @@ export const FaceTagDef = createStoreDef({
   },
 })
 
-export type FaceTagFormSchema = ReturnType<typeof getFaceTagSchema>["shape"]
+export type FaceTagFormSchema = ReturnType<typeof getFaceTagFormSchema>["shape"]
 
-export const getFaceTagSchema = () =>
-  FaceTagDef.schema.pick({
-    category: true,
-    desc: true,
-    expiry: true,
-  })
+export const getFaceTagFormSchema = () =>
+  FaceTagDef.schema
+    .pick({
+      category: true,
+      desc: true,
+    })
+    .extend(
+      FaceTagDef.schema.shape.expiry.pick({timeUnit: true, timeAmount: true})
+        .shape
+    )
