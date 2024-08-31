@@ -1,6 +1,6 @@
 import {css} from "@emotion/css"
-import {cn_jn, createCns} from "../../utils/classNames"
 import {gcn} from "./gcn.css"
+import {cn_jn, createCns} from "../utils/classNames"
 
 export type InputProps = {
   disabled?: boolean

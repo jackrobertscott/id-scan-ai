@@ -1,5 +1,5 @@
 import {css} from "@emotion/css"
-import {createCns} from "../../utils/classNames"
+import {createCns} from "../utils/classNames"
 
 export const gcn = createCns({
   grow: css({flexGrow: 1}),

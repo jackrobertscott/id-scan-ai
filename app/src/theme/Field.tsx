@@ -1,6 +1,6 @@
 import {css} from "@emotion/css"
 import {ReactNode} from "react"
-import {createCns} from "../../utils/classNames"
+import {createCns} from "../utils/classNames"
 
 export type FieldProps = {
   label?: string

@@ -1,7 +1,7 @@
 import {css} from "@emotion/css"
 import {ReactNode} from "react"
-import {cn_jn, createCns} from "../../utils/classNames"
 import {gcn} from "./gcn.css"
+import {cn_jn, createCns} from "../utils/classNames"
 
 export type PageCenterProps = {
   title: string
