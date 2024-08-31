@@ -1,7 +1,7 @@
 import {css} from "@emotion/css"
 import {mdiCamera, mdiCameraOff, mdiLoading, mdiSync} from "@mdi/js"
 import {FC, useEffect, useState} from "react"
-import {createCns} from "../utils/classNames"
+import {useCn} from "../utils/classNames"
 import {useWebcam} from "../utils/useWebcam"
 import {Button} from "./Button"
 import {Icon} from "./Icon"
@@ -36,17 +36,53 @@ export const InputCamera: FC<{
     }
   }, [value])
 
+  const cn = useCn("input-camera", {
+    root: css`
+      flex-grow: 1;
+      min-height: ${minHeight ?? "10rem"};
+      position: relative;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    `,
+    video: css`
+      flex-grow: 1;
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: ${previewUrl ? "none" : "block"};
+    `,
+    previewImg: css`
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    `,
+    centerIcon: css`
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 1.5rem;
+    `,
+    button: css`
+      left: 50%;
+      bottom: 1rem;
+      position: absolute;
+      transform: translateX(-50%);
+      white-space: nowrap;
+    `,
+  })
+
   return (
-    <div className={cn.root} style={{"--min-height": minHeight}}>
+    <div className={cn.root}>
       {webcam.ready && (
         <video
           autoPlay
           playsInline
           ref={webcam.videoRef}
           className={cn.video}
-          style={{
-            "--display-type": previewUrl ? "none" : "block",
-          }}
         />
       )}
 
@@ -75,42 +111,3 @@ export const InputCamera: FC<{
     </div>
   )
 }
-
-const cn = createCns({
-  root: css`
-    flex-grow: 1;
-    min-height: var(--min-height, 10rem);
-    position: relative;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-  `,
-  video: css`
-    flex-grow: 1;
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: cover;
-    object-position: center;
-    display: var(--display-type);
-  `,
-  previewImg: css`
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-  `,
-  centerIcon: css`
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 1.5rem;
-  `,
-  button: css`
-    left: 50%;
-    bottom: 1rem;
-    position: absolute;
-    transform: translateX(-50%);
-    white-space: nowrap;
-  `,
-})

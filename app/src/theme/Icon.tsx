@@ -1,44 +1,41 @@
 import {css} from "@emotion/css"
-import {createCns} from "../utils/classNames"
+import {CSSProperties, FC} from "react"
+import {useCn} from "../utils/classNames"
 
-export type IconProps = {
+export const Icon: FC<{
   icon: string
-  animation?: string
   spinning?: boolean
-}
+  className?: string
+  style?: CSSProperties
+}> = ({icon, spinning, className, style}) => {
+  const cn = useCn("icon", {
+    root: css`
+      user-select: none;
+      align-items: center;
+      justify-content: end;
+      text-align: center;
+      height: calc(var(--line-height) * 1em);
+    `,
+    svg: css`
+      width: 1.2em;
+      height: 1.2em;
+      fill: currentcolor;
+      stroke: transparent;
+      animation: ${spinning ? `500ms linear infinite rotate360` : "none"};
+    `,
+  })
 
-export const Icon = ({icon, animation, spinning}: IconProps) => {
   return (
-    <div className={cn.icon}>
+    <div
+      style={style}
+      className={[cn.root, className].filter(Boolean).join(" ")}>
       <svg
         role="img"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
-        className={cn.svg}
-        style={{
-          "--animation": spinning
-            ? "500ms linear infinite rotate360"
-            : animation,
-        }}>
+        className={cn.svg}>
         <path d={icon} />
       </svg>
     </div>
   )
 }
-
-export const cn = createCns({
-  icon: css`
-    user-select: none;
-    text-align: center;
-    align-items: center;
-    justify-content: center;
-    height: calc(var(--line-height) * 1em);
-  `,
-  svg: css`
-    width: 1em;
-    height: 1em;
-    fill: currentcolor;
-    stroke: transparent;
-    animation: var(--animation);
-  `,
-})

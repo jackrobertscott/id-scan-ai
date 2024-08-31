@@ -1,9 +1,9 @@
 import {css} from "@emotion/css"
 import {mdiClose} from "@mdi/js"
 import {FC, useEffect, useState} from "react"
-import {DATETIME_DAYS, DATETIME_MONTHS} from "../constants/DATETIME"
-import {useCn} from "../hooks/useCn"
+import {DATETIME_DAYS, DATETIME_MONTHS} from "../consts/DATETIME"
 import {toCapitalCase} from "../utils/changeCase"
+import {useCn} from "../utils/classNames"
 import {Button} from "./Button"
 import {Field} from "./Field"
 import {InputButton} from "./InputButton"
@@ -194,7 +194,7 @@ export const InputDate: FC<{
               </Field>
             )}
 
-            <Button variant="blue" label="Done" onClick={() => doHide()} />
+            <Button label="Done" onClick={() => doHide()} />
           </Spacer>
         </PopupContainer>
       )}

@@ -1,9 +1,21 @@
-import {UseNumStrProps, useNumStr} from "../utils/useNumStr"
-import {Input, InputProps} from "./Input"
+import {ComponentProps, FC} from "react"
+import {MergeObjects} from "../utils/sharedTypes"
+import {useNumStr} from "../utils/useNumStr"
+import {InputString} from "./InputString"
 
-export type InputNumberProps = UseNumStrProps<InputProps> & {}
+export const InputNumber: FC<
+  MergeObjects<
+    ComponentProps<typeof InputString>,
+    {
+      value?: number | null
+      onValue?: (value: number | null) => void
+      decimals?: number
+      min?: number
+      max?: number
+    }
+  >
+> = ({...data}) => {
+  const props = useNumStr(data)
 
-export const InputNumber = ({...props}: InputNumberProps) => {
-  const inputStrProps = useNumStr(props)
-  return <Input {...inputStrProps} />
+  return <InputString {...props} />
 }

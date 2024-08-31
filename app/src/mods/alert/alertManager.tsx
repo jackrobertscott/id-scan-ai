@@ -8,7 +8,7 @@ export type Alert = {
 
 export const AlertManagerContext = createContext<{
   alerts: Alert[]
-  create: (message: string, variant: Alert["variant"]) => void
+  create: (message: string, variant?: Alert["variant"]) => void
   close: (id: string) => void
 }>({
   alerts: [],

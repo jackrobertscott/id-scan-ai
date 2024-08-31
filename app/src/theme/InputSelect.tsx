@@ -1,12 +1,11 @@
 import {css} from "@emotion/css"
 import {mdiCheck, mdiClose, mdiLoading} from "@mdi/js"
 import {MutableRefObject} from "react"
-import {useCn} from "../hooks/useCn"
-import {createCns} from "../utils/classNames"
 import {Icon} from "./Icon"
 import {InputButton} from "./InputButton"
 import {InputStatic} from "./InputStatic"
 import {Popup, PopupContainer} from "./Popup"
+import {useCn} from "../utils/classNames"
 
 export type InputSelectOption<T = string> = {
   value: T
@@ -126,8 +125,29 @@ export const InputSelectLabel = <T = string,>({
   required,
   loading,
 }: InputSelectLabelProps<T>) => {
+  const cn = useCn("input-select-label", {
+    root: css`
+      flex-grow: 1;
+      flex-direction: row;
+      overflow: auto;
+    `,
+    trigger: css`
+      flex-grow: 1;
+      cursor: default;
+      overflow: hidden;
+      user-select: none;
+      white-space: pre-line;
+      gap: var(--gap-regular);
+      padding: var(--padding-regular);
+      transition: var(--hover-timing);
+      :hover:not(:active) {
+        background-color: hsl(0, 0%, 100%, 0.05);
+      }
+    `,
+  })
+
   return (
-    <div className={cn.selectLabel}>
+    <div className={cn.root}>
       <div
         ref={triggerRef}
         onClick={onClick}
@@ -150,24 +170,3 @@ export const InputSelectLabel = <T = string,>({
     </div>
   )
 }
-
-const cn = createCns({
-  selectLabel: css`
-    flex-grow: 1;
-    flex-direction: row;
-    overflow: auto;
-  `,
-  trigger: css`
-    flex-grow: 1;
-    cursor: default;
-    overflow: hidden;
-    user-select: none;
-    white-space: pre-line;
-    gap: var(--gap-regular);
-    padding: var(--padding-regular);
-    transition: var(--hover-timing);
-    :hover:not(:active) {
-      background-color: hsl(0, 0%, 100%, 0.05);
-    }
-  `,
-})

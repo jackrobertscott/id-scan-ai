@@ -1,10 +1,9 @@
 import {css} from "@emotion/css"
 import {FC, MutableRefObject, ReactNode, useEffect, useRef} from "react"
-import {createCns} from "../utils/classNames"
+import {useCn} from "../utils/classNames"
 import {useBoundingBox} from "../utils/useBoundingBox"
 import {useLayerStack} from "../utils/useLayerStack"
 import {Portal} from "./Portal"
-import {gcn} from "./gcn.css"
 
 export const Popup: FC<{
   renderTrigger: (
@@ -29,6 +28,28 @@ export const Popup: FC<{
     }
   }, [boundingBox.box])
 
+  const cn = useCn("popup", {
+    overlay: css`
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 1000;
+      overflow: auto;
+      position: absolute;
+      height: 100%;
+      width: 100%;
+    `,
+    container: css`
+      position: absolute;
+      translate: 0.5rem calc(100% - 0.5rem);
+    `,
+    content: css`
+      margin: -20px;
+      padding: 20px;
+    `,
+  })
+
   return (
     <>
       {renderTrigger(
@@ -39,7 +60,7 @@ export const Popup: FC<{
       {!hidePopup && boundingBox.box && (
         <Portal>
           <div
-            className={cn.popup}
+            className={cn.overlay}
             onClick={({target, currentTarget}) => {
               if (!layerStack.isCurrent()) return
               if (target !== currentTarget) return
@@ -69,44 +90,27 @@ export const PopupContainer: FC<{
   bigRadius?: boolean
   children: ReactNode
 }> = ({minWidth, maxHeight = "100vh", bigRadius, children}) => {
+  const cn = useCn("popup-container", {
+    root: css`
+      flex-shrink: 0;
+      overflow: auto;
+      max-height: ${maxHeight};
+      min-width: ${minWidth ?? "auto"};
+      background-color: var(--bg-color-container);
+      border: var(--border-regular);
+      border-radius: ${bigRadius
+        ? "var(--radius-large)"
+        : "var(--radius-regular)"};
+      box-shadow: 0 0 1rem 0 hsla(0, 0%, 0%, 0.15);
+    `,
+    overflow: css`
+      overflow: auto;
+    `,
+  })
+
   return (
-    <div
-      className={cn.popupContainer}
-      style={{
-        "--min-width": minWidth,
-        "--max-height": maxHeight,
-      }}>
-      <div className={gcn.overflow_auto}>{children}</div>
+    <div className={cn.root}>
+      <div className={cn.overflow}>{children}</div>
     </div>
   )
 }
-
-const cn = createCns({
-  popup: css`
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 1000;
-    overflow: auto;
-    position: absolute;
-    height: 100%;
-    width: 100%;
-  `,
-  container: css`
-    position: absolute;
-    translate: 0.5rem calc(100% - 0.5rem);
-  `,
-  content: css`
-    margin: -20px;
-    padding: 20px;
-  `,
-  popupContainer: css`
-    overflow: auto;
-    flex-shrink: 0;
-    max-height: var(--min-height);
-    min-width: var(--min-width, auto);
-    background-color: var(--bg-color-container);
-    box-shadow: 0 0 1rem 0 hsla(0, 0%, 0%, 0.15);
-  `,
-})

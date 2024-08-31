@@ -1,6 +1,6 @@
 import {css} from "@emotion/css"
 import {FC} from "react"
-import {createCns} from "../utils/classNames"
+import {useCn} from "../utils/classNames"
 
 export const GridGallery: FC<{
   minRowHeight?: string
@@ -15,9 +15,23 @@ export const GridGallery: FC<{
   minColumnWidth = `${(data?.[0]?.imagePreviewUrls.length ?? 1) * 8}rem`
   minRowHeight = `calc(${minColumnWidth} * (3/4))`
 
+  const cn = useCn("grid-gallery", {
+    root: css`
+      flex-grow: 1;
+      overflow: auto;
+    `,
+    grid: css`
+      display: grid;
+      overflow: auto;
+      flex-shrink: 0;
+      gap: var(--border-regular-width);
+      grid-template-columns: repeat(auto-fill, minmax(${minColumnWidth}, 1fr));
+    `,
+  })
+
   return (
-    <div className={cn.gridGalleryWrap}>
-      <div className={cn.grid} style={{"--column-width": minColumnWidth}}>
+    <div className={cn.root}>
+      <div className={cn.grid}>
         {data?.map((item, index) => (
           <GalleryItem
             key={item.key ?? index}
@@ -41,13 +55,39 @@ const GalleryItem: FC<{
 }> = ({item, minRowHeight}) => {
   const previewUrls = item.imagePreviewUrls.filter(Boolean)
 
+  const cn = useCn("gallery-item", {
+    root: css`
+      user-select: none;
+      position: relative;
+      min-height: ${minRowHeight};
+      box-shadow: 0 0 0 var(--border-regular-width) var(--border-regular-color);
+    `,
+    imageRow: css`
+      flex-grow: 1;
+      display: grid;
+      grid-template-columns: repeat(${previewUrls.length}, 1fr);
+    `,
+    image: css`
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    `,
+    caption: css`
+      gap: 0.5rem;
+      padding: 0.25rem;
+      background-color: hsl(0, 0%, 0%, 0.5);
+      font-size: var(--font-size-small);
+      position: absolute;
+      text-align: center;
+      bottom: 0;
+      right: 0;
+      left: 0;
+    `,
+  })
+
   return (
-    <div
-      key={item.key}
-      onClick={item.onClick}
-      className={cn.item}
-      style={{"--min-height": minRowHeight}}>
-      <div className={cn.imageRow} style={{"--num-images": previewUrls.length}}>
+    <div key={item.key} onClick={item.onClick} className={cn.root}>
+      <div className={cn.imageRow}>
         {previewUrls.map((imageUrl) => (
           <img key={imageUrl} src={imageUrl} className={cn.image} />
         ))}
@@ -56,44 +96,3 @@ const GalleryItem: FC<{
     </div>
   )
 }
-
-const cn = createCns({
-  gridGalleryWrap: css`
-    flex-grow: 1;
-    overflow: auto;
-  `,
-  grid: css`
-    display: grid;
-    overflow: auto;
-    flex-shrink: 0;
-    gap: var(--border-regular-width);
-    grid-template-columns: repeat(auto-fill, minmax(var(--column-width), 1fr));
-  `,
-  item: css`
-    user-select: none;
-    position: relative;
-    min-height: var(--min-height);
-    box-shadow: 0 0 0 var(--border-regular-width) var(--border-regular-color);
-  `,
-  imageRow: css`
-    flex-grow: 1;
-    display: grid;
-    grid-template-columns: repeat(var(--num-images), 1fr);
-  `,
-  image: css`
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  `,
-  caption: css`
-    gap: 0.5rem;
-    padding: 0.25rem;
-    background-color: hsl(0, 0%, 0%, 0.5);
-    font-size: var(--font-size-small);
-    position: absolute;
-    text-align: center;
-    bottom: 0;
-    right: 0;
-    left: 0;
-  `,
-})
