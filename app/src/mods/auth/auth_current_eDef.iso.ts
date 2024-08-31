@@ -3,7 +3,7 @@ import {createEdgeGroupDef} from "../../utils/server/createEdgeDef"
 import {AuthDataSchema} from "./auth_schemas"
 
 export const auth_current_eDef = createEdgeGroupDef("auth_current", {
-  getCurrent: {
+  get: {
     output: z.object({
       payload: z.optional(
         z.object({
@@ -14,7 +14,7 @@ export const auth_current_eDef = createEdgeGroupDef("auth_current", {
     }),
   },
 
-  logoutCurrent: {
+  logout: {
     // empty
   },
 })

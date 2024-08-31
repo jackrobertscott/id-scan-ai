@@ -12,7 +12,7 @@ export default createEdgeGroup(auth_current_eDef, {
   /**
    * Get the current user's auth payload.
    */
-  getCurrent: async ({request}) => {
+  get: async ({request}) => {
     const auth = await ensureUser(request, {isDeviceEnabled: true})
 
     let venue: VenueType | undefined | null
@@ -50,7 +50,7 @@ export default createEdgeGroup(auth_current_eDef, {
   /**
    * Logout the current user.
    */
-  logoutCurrent: async ({request}) => {
+  logout: async ({request}) => {
     const auth = await ensureUser(request, {isDeviceEnabled: true})
 
     // Deactivate the session to prevent future requests

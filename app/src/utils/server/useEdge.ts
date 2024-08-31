@@ -1,6 +1,6 @@
 import {useEffect, useRef, useState} from "react"
 import {ZodError} from "zod"
-import {useAlertManager} from "../../mods/alert/alertManager"
+import {useAlertManager} from "../../mods/alert/alert_manager"
 import {useAuthManager} from "../../mods/auth/auth_manager"
 import {useDebounce} from "../useDebounce"
 import {ZodFormValue, useZodForm} from "../useZodForm"
