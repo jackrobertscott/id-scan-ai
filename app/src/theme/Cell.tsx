@@ -1,8 +1,8 @@
 import {css} from "@emotion/css"
 import {mdiLoading} from "@mdi/js"
+import {cn_jn, createCns} from "../utils/classNames"
 import {Icon} from "./Icon"
 import {gcn} from "./gcn.css"
-import {cn_jn, createCns} from "../utils/classNames"
 
 export type CellProps = {
   icon?: string
@@ -31,7 +31,7 @@ export const Cell = ({
         onClick && !disabled && !loading && cn.cellClick,
       ])}>
       {loading ? (
-        <Icon icon={mdiLoading} animation="500ms linear infinite rotate360" />
+        <Icon icon={mdiLoading} spinning />
       ) : (
         <>
           {icon && <Icon icon={icon} />}

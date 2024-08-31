@@ -4,9 +4,10 @@ import {createCns} from "../utils/classNames"
 export type IconProps = {
   icon: string
   animation?: string
+  spinning?: boolean
 }
 
-export const Icon = ({icon, animation}: IconProps) => {
+export const Icon = ({icon, animation, spinning}: IconProps) => {
   return (
     <div className={cn.icon}>
       <svg
@@ -15,7 +16,9 @@ export const Icon = ({icon, animation}: IconProps) => {
         xmlns="http://www.w3.org/2000/svg"
         className={cn.svg}
         style={{
-          "--animation": animation,
+          "--animation": spinning
+            ? "500ms linear infinite rotate360"
+            : animation,
         }}>
         <path d={icon} />
       </svg>

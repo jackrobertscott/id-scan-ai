@@ -23,11 +23,7 @@ export const EmptyListWrap = <T extends any[]>({
 
   return (
     <div className={cn.emptyListWrap} data-nested={nested}>
-      {ready ? (
-        label
-      ) : (
-        <Icon icon={mdiLoading} animation="500ms linear infinite rotate360" />
-      )}
+      {ready ? label : <Icon icon={mdiLoading} spinning />}
     </div>
   )
 }
