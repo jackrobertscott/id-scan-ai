@@ -1,7 +1,8 @@
 import {css} from "@emotion/css"
 import {mdiLoading} from "@mdi/js"
 import {FC} from "react"
-import {useCnStatic} from "../utils/classNames"
+import {gcn} from "../gcn"
+import {createCns, jn_cns} from "../utils/classNames"
 import {Icon} from "./Icon"
 
 export const InputButton: FC<{
@@ -13,26 +14,16 @@ export const InputButton: FC<{
   disabled?: boolean
   onClick?: () => void
 }> = ({grow, icon, label, className, disabled, loading, onClick}) => {
-  const cn = useCnStatic("input-button", () => ({
-    container: css`
-      flex-shrink: 0;
-      flex-grow: ${grow ? 1 : 0};
-      flex-basis: ${grow ? 0 : "auto"};
-      user-select: none;
-      flex-direction: row;
-      justify-content: center;
-      text-align: center;
-      gap: var(--gap-regular);
-      padding: var(--padding-regular);
-      transition: var(--hover-timing);
-      color: hsl(0, 0%, 100%, ${disabled ? 0.5 : 1});
-    `,
-  }))
-
   return (
     <button
       onClick={disabled || loading ? undefined : onClick}
-      className={[cn.container, className].filter(Boolean).join(" ")}>
+      className={jn_cns([
+        className,
+        cn_ib.container,
+        grow && gcn.grow,
+        grow && gcn.zeroBasis,
+      ])}
+      style={{"--text-opacity": disabled ? 0.5 : 1}}>
       {loading ? (
         <>
           <div>Loading</div>
@@ -47,3 +38,17 @@ export const InputButton: FC<{
     </button>
   )
 }
+
+const cn_ib = createCns("InputButton", {
+  container: css`
+    flex-shrink: 0;
+    user-select: none;
+    flex-direction: row;
+    justify-content: center;
+    text-align: center;
+    gap: var(--gap-regular);
+    padding: var(--padding-regular);
+    transition: var(--hover-timing);
+    color: hsl(0, 0%, 100%, var(--text-opacity));
+  `,
+})

@@ -1,7 +1,7 @@
 import {css} from "@emotion/css"
 import {useState} from "react"
 import {Fragment} from "react/jsx-runtime"
-import {useCnStatic} from "../utils/classNames"
+import {createCns} from "../utils/classNames"
 import {Button} from "./Button"
 import {Icon} from "./Icon"
 import {Modal} from "./Modal"
@@ -24,36 +24,6 @@ export const TitleBar = ({title, options = []}: TitleBarProps) => {
   const [intercept, setIntercept] = useState<
     TitleBarOption["intercept"] & {onClick: () => void}
   >()
-
-  const cn = useCnStatic("title-bar", () => ({
-    root: css`
-      padding: 0 0.25rem;
-      flex-direction: row;
-      color: hsl(0, 0%, 100%, 0.5);
-    `,
-    title: css`
-      flex-grow: 1;
-      color: hsl(0, 0%, 100%, 0.75);
-      padding: var(--padding-small);
-    `,
-    options: css`
-      flex-direction: row;
-      gap: var(--gap-regular);
-    `,
-    option: css`
-      user-select: none;
-      flex-direction: row;
-      gap: var(--gap-regular);
-      padding: var(--padding-small);
-      transition: var(--hover-timing);
-      border-radius: var(--radius-regular);
-      :hover:not(:active) {
-        color: hsl(0, 0%, 100%);
-        background-color: hsl(0, 0%, 100%, 0.1);
-      }
-    `,
-  }))
-
   return (
     <Fragment>
       {intercept && (
@@ -66,16 +36,16 @@ export const TitleBar = ({title, options = []}: TitleBarProps) => {
         </Modal>
       )}
 
-      <div className={cn.root}>
-        <div className={cn.title}>{title}</div>
+      <div className={cn_tb.root}>
+        <div className={cn_tb.title}>{title}</div>
         {options.length > 0 && (
-          <div className={cn.options}>
+          <div className={cn_tb.options}>
             {options.map((option, i) => {
               if (!option) return null
               return (
                 <div
                   key={i}
-                  className={cn.option}
+                  className={cn_tb.option}
                   onClick={() => {
                     if (option.intercept)
                       setIntercept({
@@ -95,3 +65,32 @@ export const TitleBar = ({title, options = []}: TitleBarProps) => {
     </Fragment>
   )
 }
+
+const cn_tb = createCns("TitleBar", {
+  root: css`
+    padding: 0 0.25rem;
+    flex-direction: row;
+    color: hsl(0, 0%, 100%, 0.5);
+  `,
+  title: css`
+    flex-grow: 1;
+    color: hsl(0, 0%, 100%, 0.75);
+    padding: var(--padding-small);
+  `,
+  options: css`
+    flex-direction: row;
+    gap: var(--gap-regular);
+  `,
+  option: css`
+    user-select: none;
+    flex-direction: row;
+    gap: var(--gap-regular);
+    padding: var(--padding-small);
+    transition: var(--hover-timing);
+    border-radius: var(--radius-regular);
+    :hover:not(:active) {
+      color: hsl(0, 0%, 100%);
+      background-color: hsl(0, 0%, 100%, 0.1);
+    }
+  `,
+})

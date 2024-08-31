@@ -2,7 +2,7 @@ import {css} from "@emotion/css"
 import {mdiChevronDown, mdiChevronUp} from "@mdi/js"
 import {FC, Fragment, ReactNode, useState} from "react"
 import {toKebabCase} from "../utils/changeCase"
-import {useCnStatic} from "../utils/classNames"
+import {createCns} from "../utils/classNames"
 import {Icon} from "./Icon"
 import {InputButton} from "./InputButton"
 import {Spacer} from "./Spacer"
@@ -14,46 +14,14 @@ export const FieldGroup: FC<{
 }> = ({label, children, init = true}) => {
   const [open, setOpen] = useState(init)
 
-  const cn = useCnStatic("field-group", () => ({
-    root: css`
-      flex-shrink: 0;
-      gap: calc(0.5rem - var(--padding-small-y));
-    `,
-    head: css`
-      flex-direction: row;
-      padding: 0 calc(1rem - var(--padding-small-x));
-      color: hsl(0, 0%, 100%, 0.5);
-    `,
-    label: css`
-      flex-grow: 1;
-      padding: var(--padding-small);
-    `,
-    action: css`
-      user-select: none;
-      flex-direction: row;
-      gap: var(--gap-small);
-      padding: var(--padding-small);
-      border-radius: var(--radius-regular);
-      transition: var(--hover-timing);
-      :hover:not(:active) {
-        background-color: hsl(0, 0%, 100%, 0.05);
-      }
-    `,
-    body: css`
-      flex-shrink: 0;
-      overflow: hidden;
-      transition: var(--hover-timing);
-      border-radius: var(--radius-regular);
-      border: var(--border-regular);
-    `,
-  }))
-
   return (
-    <div className={cn.root} data-name={label ? toKebabCase(label) : undefined}>
+    <div
+      className={cn_fg.root}
+      data-name={label ? toKebabCase(label) : undefined}>
       {label && (
-        <div className={cn.head}>
-          <label className={cn.label}>{label}</label>
-          <div onClick={() => setOpen(!open)} className={cn.action}>
+        <div className={cn_fg.head}>
+          <label className={cn_fg.label}>{label}</label>
+          <div onClick={() => setOpen(!open)} className={cn_fg.action}>
             {open ? (
               <Fragment>
                 <div>Hide</div>
@@ -68,7 +36,7 @@ export const FieldGroup: FC<{
           </div>
         </div>
       )}
-      <div className={cn.body}>
+      <div className={cn_fg.body}>
         {open ? (
           <Spacer>{children}</Spacer>
         ) : (
@@ -78,3 +46,37 @@ export const FieldGroup: FC<{
     </div>
   )
 }
+
+const cn_fg = createCns("FieldGroup", {
+  root: css`
+    flex-shrink: 0;
+    gap: calc(0.5rem - var(--padding-small-y));
+  `,
+  head: css`
+    flex-direction: row;
+    padding: 0 calc(1rem - var(--padding-small-x));
+    color: hsl(0, 0%, 100%, 0.5);
+  `,
+  label: css`
+    flex-grow: 1;
+    padding: var(--padding-small);
+  `,
+  action: css`
+    user-select: none;
+    flex-direction: row;
+    gap: var(--gap-small);
+    padding: var(--padding-small);
+    border-radius: var(--radius-regular);
+    transition: var(--hover-timing);
+    :hover:not(:active) {
+      background-color: hsl(0, 0%, 100%, 0.05);
+    }
+  `,
+  body: css`
+    flex-shrink: 0;
+    overflow: hidden;
+    transition: var(--hover-timing);
+    border-radius: var(--radius-regular);
+    border: var(--border-regular);
+  `,
+})

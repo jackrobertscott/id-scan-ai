@@ -3,7 +3,7 @@ import {mdiClose} from "@mdi/js"
 import {FC, useEffect, useState} from "react"
 import {DATETIME_DAYS, DATETIME_MONTHS} from "../consts/DATETIME"
 import {toCapitalCase} from "../utils/changeCase"
-import {useCnStatic} from "../utils/classNames"
+import {createCns} from "../utils/classNames"
 import {Button} from "./Button"
 import {Field} from "./Field"
 import {InputButton} from "./InputButton"
@@ -49,32 +49,14 @@ export const InputDate: FC<{
     }
   }, [value])
 
-  const cn = useCnStatic("input-date", () => ({
-    root: css`
-      flex-grow: 1;
-      flex-direction: row;
-    `,
-    trigger: css`
-      flex-grow: 1;
-      cursor: default;
-      user-select: none;
-      gap: var(--gap-regular);
-      padding: var(--padding-regular);
-      transition: var(--hover-timing);
-      :hover:not(:active) {
-        background-color: hsl(0, 0%, 100%, 0.05);
-      }
-    `,
-  }))
-
   return (
     <Popup
       renderTrigger={(triggerRef, doShow) => (
-        <div className={cn.root}>
+        <div className={cn_id.root}>
           <div
             ref={triggerRef}
             onClick={() => doShow()}
-            className={cn.trigger}
+            className={cn_id.trigger}
             style={{
               color: currentDate
                 ? "hsl(0, 0%, 100%)"
@@ -202,33 +184,34 @@ export const InputDate: FC<{
   )
 }
 
+const cn_id = createCns("InputDate", {
+  root: css`
+    flex-grow: 1;
+    flex-direction: row;
+  `,
+  trigger: css`
+    flex-grow: 1;
+    cursor: default;
+    user-select: none;
+    gap: var(--gap-regular);
+    padding: var(--padding-regular);
+    transition: var(--hover-timing);
+    :hover:not(:active) {
+      background-color: hsl(0, 0%, 100%, 0.05);
+    }
+  `,
+})
+
 const DayGrid: FC<{
   contextDate: Date
   currentDate?: Date
   today: Date
   onValue: (d: Date) => void
 }> = ({contextDate, currentDate, today, onValue}) => {
-  const cn = useCnStatic("day-grid", () => ({
-    root: css`
-      flex-grow: 1;
-      display: grid;
-      overflow: hidden;
-      user-select: none;
-      text-align: center;
-      grid-template-columns: repeat(7, 1fr);
-      gap: var(--border-regular-width);
-    `,
-    dayName: css`
-      padding: 10px;
-      text-align: center;
-      justify-content: center;
-    `,
-  }))
-
   return (
-    <div className={cn.root}>
+    <div className={cn_dg.root}>
       {DATETIME_DAYS.map((day) => (
-        <div key={day} className={cn.dayName}>
+        <div key={day} className={cn_dg.dayName}>
           {toCapitalCase(day).slice(0, 2)}
         </div>
       ))}
@@ -266,6 +249,23 @@ const DayGrid: FC<{
   )
 }
 
+const cn_dg = createCns("DayGrid", {
+  root: css`
+    flex-grow: 1;
+    display: grid;
+    overflow: hidden;
+    user-select: none;
+    text-align: center;
+    grid-template-columns: repeat(7, 1fr);
+    gap: var(--border-regular-width);
+  `,
+  dayName: css`
+    padding: 10px;
+    text-align: center;
+    justify-content: center;
+  `,
+})
+
 const DateCell: FC<{
   day: Date
   currentDate?: Date
@@ -274,23 +274,9 @@ const DateCell: FC<{
   inMonth: boolean
   onValue: (d: Date) => void
 }> = ({day, currentDate, isToday, isCur, inMonth, onValue}) => {
-  const cn = useCnStatic("date-cell", () => ({
-    root: css`
-      user-select: none;
-      text-align: center;
-      justify-content: center;
-      padding: var(--padding-regular-y) 0;
-      transition: var(--hover-timing);
-      border-radius: var(--radius-regular);
-      :hover:not(:active) {
-        background-color: hsl(0, 0%, 100%, 0.05);
-      }
-    `,
-  }))
-
   return (
     <div
-      className={cn.root}
+      className={cn_dc.root}
       style={{
         color: isCur
           ? "white"
@@ -312,6 +298,20 @@ const DateCell: FC<{
     </div>
   )
 }
+
+const cn_dc = createCns("DateCell", {
+  root: css`
+    user-select: none;
+    text-align: center;
+    justify-content: center;
+    padding: var(--padding-regular-y) 0;
+    transition: var(--hover-timing);
+    border-radius: var(--radius-regular);
+    :hover:not(:active) {
+      background-color: hsl(0, 0%, 100%, 0.05);
+    }
+  `,
+})
 
 const getStartOfDate = (d1: Date) => {
   const d2 = new Date(d1)

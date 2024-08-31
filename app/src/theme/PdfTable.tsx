@@ -1,6 +1,6 @@
 import {css} from "@emotion/css"
 import {isValidElement, ReactNode} from "react"
-import {useCnStatic} from "../utils/classNames"
+import {createCns} from "../utils/classNames"
 
 export type PdfTableProps = {
   nested?: boolean
@@ -10,18 +10,9 @@ export type PdfTableProps = {
 }
 
 export const PdfTable = ({nested, headings, footings, rows}: PdfTableProps) => {
-  const cn = useCnStatic("pdf-table", () => ({
-    root: css`
-      border: ${nested ? undefined : "var(--border-pdf)"};
-    `,
-    table: css`
-      flex-shrink: 0;
-    `,
-  }))
-
   return (
-    <div className={cn.root}>
-      <table className={cn.table}>
+    <div className={cn_pt.root}>
+      <table className={cn_pt.table}>
         {headings && (
           <thead>
             <tr>
@@ -52,32 +43,39 @@ export const PdfTable = ({nested, headings, footings, rows}: PdfTableProps) => {
   )
 }
 
+const cn_pt = createCns("PdfTable", {
+  root: css``,
+  table: css`
+    flex-shrink: 0;
+  `,
+})
+
 export type PdfTableHeadProps = {
   label: string
 }
 
 const PdfTableHead = ({label}: PdfTableHeadProps) => {
-  const cn = useCnStatic("pdf-table-head", () => ({
-    root: css`
-      border-bottom: var(--border-pdf);
-      :not(:last-child) {
-        border-right: var(--border-pdf);
-      }
-    `,
-    label: css`
-      flex-direction: row;
-      justify-content: space-between;
-      padding: var(--padding-small);
-      gap: var(--gap-small);
-    `,
-  }))
-
   return (
-    <th className={cn.root}>
-      <div className={cn.label}>{label}</div>
+    <th className={cn_pth.root}>
+      <div className={cn_pth.label}>{label}</div>
     </th>
   )
 }
+
+const cn_pth = createCns("PdfTableHead", {
+  root: css`
+    border-bottom: var(--border-pdf);
+    :not(:last-child) {
+      border-right: var(--border-pdf);
+    }
+  `,
+  label: css`
+    flex-direction: row;
+    justify-content: space-between;
+    padding: var(--padding-small);
+    gap: var(--gap-small);
+  `,
+})
 
 export type PdfTableRowProps = {
   key: string
@@ -86,40 +84,14 @@ export type PdfTableRowProps = {
 }
 
 const PdfTableRow = ({columns, nested}: PdfTableRowProps) => {
-  const cn = useCnStatic("pdf-table-row", () => ({
-    root: css`
-      page-break-inside: avoid;
-      :nth-child(2n) {
-        background-color: hsl(0, 0%, 0%, 0.1);
-      }
-      :not(:last-child) > td {
-        border-bottom: var(--border-pdf);
-      }
-    `,
-    data: css`
-      vertical-align: top;
-      color: var(--font-color-secondary);
-      :not(:last-child) {
-        border-right: var(--border-pdf);
-      }
-    `,
-    text: css`
-      white-space: pre-line;
-      flex-direction: row;
-      padding: var(--padding-small);
-      gap: var(--gap-small);
-      white-space: pre-line;
-    `,
-  }))
-
   return (
-    <tr className={cn.root}>
+    <tr className={cn_ptr.root}>
       {columns.map((column, index) => (
-        <td key={index} className={cn.data}>
+        <td key={index} className={cn_ptr.data}>
           {isValidElement(column.children) ? (
             column.children
           ) : (
-            <div className={cn.text}>{column.children}</div>
+            <div className={cn_ptr.text}>{column.children}</div>
           )}
         </td>
       ))}
@@ -127,28 +99,54 @@ const PdfTableRow = ({columns, nested}: PdfTableRowProps) => {
   )
 }
 
+const cn_ptr = createCns("PdfTableRow", {
+  root: css`
+    page-break-inside: avoid;
+    :nth-child(2n) {
+      background-color: hsl(0, 0%, 0%, 0.1);
+    }
+    :not(:last-child) > td {
+      border-bottom: var(--border-pdf);
+    }
+  `,
+  data: css`
+    vertical-align: top;
+    color: var(--font-color-secondary);
+    :not(:last-child) {
+      border-right: var(--border-pdf);
+    }
+  `,
+  text: css`
+    white-space: pre-line;
+    flex-direction: row;
+    padding: var(--padding-small);
+    gap: var(--gap-small);
+    white-space: pre-line;
+  `,
+})
+
 export type PdfTableFootProps = {
   label: string
 }
 
 const PdfTableFoot = ({label}: PdfTableFootProps) => {
-  const cn = useCnStatic("pdf-table-foot", () => ({
-    root: css`
-      border-top: var(--border-pdf);
-      :not(:last-child) {
-        border-right: var(--border-pdf);
-      }
-    `,
-    label: css`
-      flex-direction: row;
-      padding: var(--padding-small);
-      gap: var(--gap-small);
-    `,
-  }))
-
   return (
-    <td className={cn.root}>
-      <div className={cn.label}>{label}</div>
+    <td className={cn_ptf.root}>
+      <div className={cn_ptf.label}>{label}</div>
     </td>
   )
 }
+
+const cn_ptf = createCns("PdfTableFoot", {
+  root: css`
+    border-top: var(--border-pdf);
+    :not(:last-child) {
+      border-right: var(--border-pdf);
+    }
+  `,
+  label: css`
+    flex-direction: row;
+    padding: var(--padding-small);
+    gap: var(--gap-small);
+  `,
+})

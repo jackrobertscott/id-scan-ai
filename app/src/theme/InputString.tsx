@@ -1,5 +1,5 @@
 import {css} from "@emotion/css"
-import {useCnStatic} from "../utils/classNames"
+import {createCns} from "../utils/classNames"
 
 export type InputStringProps = {
   disabled?: boolean
@@ -16,24 +16,12 @@ export const InputString = ({
   disabled,
   maxLength,
 }: InputStringProps) => {
-  const cn = useCnStatic("input-string", () => ({
-    root: css`
-      width: 0; // don't use "100%" or "auto"
-      min-width: 0;
-      flex-grow: 1;
-      padding: var(--padding-regular);
-      ::placeholder {
-        color: hsl(0, 0%, 100%, 0.25);
-      }
-    `,
-  }))
-
   return (
     <input
       value={value || ""}
       disabled={disabled}
       placeholder={placeholder}
-      className={cn.root}
+      className={cn_is.root}
       onChange={({currentTarget}) => {
         if (disabled) return
         if (maxLength && currentTarget.value.length > maxLength) return
@@ -42,3 +30,15 @@ export const InputString = ({
     />
   )
 }
+
+const cn_is = createCns("InputString", {
+  root: css`
+    width: 0; // don't use "100%" or "auto"
+    min-width: 0;
+    flex-grow: 1;
+    padding: var(--padding-regular);
+    ::placeholder {
+      color: hsl(0, 0%, 100%, 0.25);
+    }
+  `,
+})

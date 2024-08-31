@@ -1,7 +1,7 @@
 import {css} from "@emotion/css"
 import {mdiCheck, mdiClose, mdiLoading} from "@mdi/js"
 import {MutableRefObject} from "react"
-import {useCnStatic} from "../utils/classNames"
+import {createCns} from "../utils/classNames"
 import {Icon} from "./Icon"
 import {InputButton} from "./InputButton"
 import {InputStatic} from "./InputStatic"
@@ -72,28 +72,9 @@ export const InputSelectOption = <R extends boolean, T = string>({
   onValue,
   doHide,
 }: InputSelectOptionProps<R, T>) => {
-  const cn = useCnStatic("input-select-option", () => ({
-    root: css`
-      flex-shrink: 0;
-      user-select: none;
-      flex-direction: row;
-      white-space: pre-line;
-      justify-content: space-between;
-      transition: var(--hover-timing);
-      padding: var(--padding-regular);
-      gap: var(--gap-regular);
-      :not(:last-child) {
-        border-bottom: var(--border-regular);
-      }
-      :hover:not(:active) {
-        background-color: hsl(0, 0%, 100%, 0.05);
-      }
-    `,
-  }))
-
   return (
     <div
-      className={cn.root}
+      className={cn_iso.root}
       onClick={() => {
         onValue?.(option.value)
         doHide()
@@ -105,6 +86,25 @@ export const InputSelectOption = <R extends boolean, T = string>({
     </div>
   )
 }
+
+const cn_iso = createCns("InputSelectOption", {
+  root: css`
+    flex-shrink: 0;
+    user-select: none;
+    flex-direction: row;
+    white-space: pre-line;
+    justify-content: space-between;
+    transition: var(--hover-timing);
+    padding: var(--padding-regular);
+    gap: var(--gap-regular);
+    :not(:last-child) {
+      border-bottom: var(--border-regular);
+    }
+    :hover:not(:active) {
+      background-color: hsl(0, 0%, 100%, 0.05);
+    }
+  `,
+})
 
 export type InputSelectLabelProps<T = string> = {
   triggerRef?: MutableRefObject<HTMLDivElement>
@@ -125,33 +125,12 @@ export const InputSelectLabel = <T = string,>({
   required,
   loading,
 }: InputSelectLabelProps<T>) => {
-  const cn = useCnStatic("input-select-label", () => ({
-    root: css`
-      flex-grow: 1;
-      flex-direction: row;
-      overflow: auto;
-    `,
-    trigger: css`
-      flex-grow: 1;
-      cursor: default;
-      overflow: hidden;
-      user-select: none;
-      white-space: pre-line;
-      gap: var(--gap-regular);
-      padding: var(--padding-regular);
-      transition: var(--hover-timing);
-      :hover:not(:active) {
-        background-color: hsl(0, 0%, 100%, 0.05);
-      }
-    `,
-  }))
-
   return (
-    <div className={cn.root}>
+    <div className={cn_isl.root}>
       <div
         ref={triggerRef}
         onClick={onClick}
-        className={cn.trigger}
+        className={cn_isl.trigger}
         style={{
           color: currentOption ? "hsl(0, 0%, 100%)" : "hsl(0, 0%, 100%, 0.25)",
         }}>
@@ -170,3 +149,24 @@ export const InputSelectLabel = <T = string,>({
     </div>
   )
 }
+
+const cn_isl = createCns("InputSelectLabel", {
+  root: css`
+    flex-grow: 1;
+    flex-direction: row;
+    overflow: auto;
+  `,
+  trigger: css`
+    flex-grow: 1;
+    cursor: default;
+    overflow: hidden;
+    user-select: none;
+    white-space: pre-line;
+    gap: var(--gap-regular);
+    padding: var(--padding-regular);
+    transition: var(--hover-timing);
+    :hover:not(:active) {
+      background-color: hsl(0, 0%, 100%, 0.05);
+    }
+  `,
+})

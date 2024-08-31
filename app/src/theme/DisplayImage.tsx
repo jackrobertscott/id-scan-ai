@@ -1,6 +1,6 @@
 import {css} from "@emotion/css"
 import {ReactNode} from "react"
-import {useCnStatic} from "../utils/classNames"
+import {createCns} from "../utils/classNames"
 
 export type DisplayImageProps = {
   source?: string
@@ -15,19 +15,6 @@ export const DisplayImage = ({
   width,
   aspectRatio,
 }: DisplayImageProps): ReactNode => {
-  const cn = useCnStatic("display-image", () => ({
-    root: css`
-      flex-grow: 1;
-      flex-shrink: 0;
-      width: 100%;
-      max-width: var(--max-width);
-      max-height: 100%;
-      height: auto;
-      object-fit: cover;
-      object-position: center;
-    `,
-  }))
-
   return (
     <img
       src={source}
@@ -37,7 +24,20 @@ export const DisplayImage = ({
         aspectRatio,
         "--max-width": width ?? "100%",
       }}
-      className={cn.root}
+      className={cn_di.root}
     />
   )
 }
+
+const cn_di = createCns("DisplayImage", {
+  root: css`
+    flex-grow: 1;
+    flex-shrink: 0;
+    width: 100%;
+    max-width: var(--max-width);
+    max-height: 100%;
+    height: auto;
+    object-fit: cover;
+    object-position: center;
+  `,
+})

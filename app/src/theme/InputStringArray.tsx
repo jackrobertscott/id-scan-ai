@@ -2,7 +2,7 @@ import {css} from "@emotion/css"
 import {mdiClose, mdiPlus} from "@mdi/js"
 import {useState} from "react"
 import {z} from "zod"
-import {useCnStatic} from "../utils/classNames"
+import {createCns} from "../utils/classNames"
 import {EmptyListWrap} from "./EmptyListWrap"
 import {InputButton} from "./InputButton"
 import {InputString} from "./InputString"
@@ -29,18 +29,9 @@ export const InputStringArray = ({
   const validationResult = validate?.schema.safeParse(inputValue)
   const inputValid = validationResult?.success ?? inputValue?.trim()?.length
 
-  const cn = useCnStatic("input-string-array", () => ({
-    root: css`
-      flex-grow: 1;
-    `,
-    head: css`
-      flex-direction: row;
-    `,
-  }))
-
   return (
-    <div className={cn.root}>
-      <div className={cn.head}>
+    <div className={cn_isa.root}>
+      <div className={cn_isa.head}>
         <InputString
           value={inputValue}
           onValue={setInputValue}
@@ -83,3 +74,12 @@ export const InputStringArray = ({
     </div>
   )
 }
+
+const cn_isa = createCns("InputStringArray", {
+  root: css`
+    flex-grow: 1;
+  `,
+  head: css`
+    flex-direction: row;
+  `,
+})

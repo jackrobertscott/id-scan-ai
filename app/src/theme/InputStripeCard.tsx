@@ -1,7 +1,7 @@
 import {css} from "@emotion/css"
 import {StripeCardElement, Token} from "@stripe/stripe-js"
 import {FC, MutableRefObject, useEffect, useRef} from "react"
-import {useCnStatic} from "../utils/classNames"
+import {createCns} from "../utils/classNames"
 
 export const InputStripeCard: FC<{
   getTokenCbRef: MutableRefObject<
@@ -56,19 +56,19 @@ export const InputStripeCard: FC<{
     // })
   }, [])
 
-  const cn = useCnStatic("input-stripe-card", () => ({
-    root: css`
-      flex-grow: 1;
-      padding: var(--padding-regular);
-    `,
-    placeholder: css`
-      height: calc(var(--line-height) * 1rem);
-    `,
-  }))
-
   return (
-    <div ref={cardDivRef} className={cn.root}>
-      <div className={cn.placeholder} />
+    <div ref={cardDivRef} className={cn_isc.root}>
+      <div className={cn_isc.placeholder} />
     </div>
   )
 }
+
+const cn_isc = createCns("InputStripeCard", {
+  root: css`
+    flex-grow: 1;
+    padding: var(--padding-regular);
+  `,
+  placeholder: css`
+    height: calc(var(--line-height) * 1rem);
+  `,
+})

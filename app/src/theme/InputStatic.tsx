@@ -2,7 +2,7 @@ import {css} from "@emotion/css"
 import {mdiContentCopy} from "@mdi/js"
 import {ReactNode} from "react"
 import {useAlertManager} from "../mods/alert/alertManager"
-import {useCnStatic} from "../utils/classNames"
+import {createCns} from "../utils/classNames"
 import {Icon} from "./Icon"
 import {InputButton} from "./InputButton"
 
@@ -21,30 +21,13 @@ export const InputStatic = ({
 }: InputStaticProps): ReactNode => {
   const alertManager = useAlertManager()
 
-  const cn = useCnStatic("input-static", () => ({
-    root: css`
-      flex-grow: 1;
-      overflow: auto;
-    `,
-    body: css`
-      flex-grow: 1;
-      overflow: auto;
-      flex-direction: row;
-      gap: var(--gap-regular);
-      padding: var(--padding-regular);
-    `,
-    label: css`
-      min-height: calc(var(--line-height) * 1rem);
-    `,
-  }))
-
   return (
-    <div className={cn.root}>
-      <div className={cn.body}>
+    <div className={cn_is.root}>
+      <div className={cn_is.body}>
         {children}
         {icon && <Icon icon={icon} />}
         {label !== undefined && (
-          <div className={cn.label}>
+          <div className={cn_is.label}>
             {label instanceof Date
               ? label.toLocaleString("en-au", {
                   dateStyle: "medium",
@@ -70,3 +53,20 @@ export const InputStatic = ({
     </div>
   )
 }
+
+const cn_is = createCns("InputStatic", {
+  root: css`
+    flex-grow: 1;
+    overflow: auto;
+  `,
+  body: css`
+    flex-grow: 1;
+    overflow: auto;
+    flex-direction: row;
+    gap: var(--gap-regular);
+    padding: var(--padding-regular);
+  `,
+  label: css`
+    min-height: calc(var(--line-height) * 1rem);
+  `,
+})

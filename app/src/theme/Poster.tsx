@@ -1,5 +1,6 @@
 import {css} from "@emotion/css"
-import {useCnStatic} from "../utils/classNames"
+import {gcn} from "../gcn"
+import {createCns, jn_cns} from "../utils/classNames"
 import {Icon} from "./Icon"
 
 export type PosterProps = {
@@ -10,33 +11,32 @@ export type PosterProps = {
 }
 
 export const Poster = ({icon, title, description, grow}: PosterProps) => {
-  const cn = useCnStatic("poster", () => ({
-    root: css`
-      padding: 1rem;
-      flex-grow: ${grow ? 1 : 0};
-      border-radius: var(--radius-regular);
-      border: var(--border-regular);
-      text-align: center;
-    `,
-    icon: css`
-      font-size: 2rem;
-      margin-bottom: 0.25rem;
-    `,
-    title: css`
-      color: hsl(0, 0%, 100%);
-      font-size: 1.25rem;
-    `,
-    description: css`
-      color: hsl(0, 0%, 100%, 0.5);
-      font-size: var(--font-size-small);
-    `,
-  }))
-
   return (
-    <div className={cn.root}>
-      <Icon icon={icon} className={cn.icon} />
+    <div className={jn_cns([cn_p.root, grow && gcn.grow])}>
+      <Icon icon={icon} className={cn_p.icon} />
       <div className={title}>{title}</div>
-      <div className={cn.description}>{description}</div>
+      <div className={cn_p.description}>{description}</div>
     </div>
   )
 }
+
+const cn_p = createCns("Poster", {
+  root: css`
+    padding: 1rem;
+    border-radius: var(--radius-regular);
+    border: var(--border-regular);
+    text-align: center;
+  `,
+  icon: css`
+    font-size: 2rem;
+    margin-bottom: 0.25rem;
+  `,
+  title: css`
+    color: hsl(0, 0%, 100%);
+    font-size: 1.25rem;
+  `,
+  description: css`
+    color: hsl(0, 0%, 100%, 0.5);
+    font-size: var(--font-size-small);
+  `,
+})
