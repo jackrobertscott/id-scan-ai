@@ -12,7 +12,7 @@ import {
 } from "../../utils/s3BucketUtils"
 import {s3FileSchema} from "../../utils/s3SchemaUtils"
 import {createEdgeGroup} from "../../utils/server/createEdge"
-import {ensureMemberOfVenue} from "../auth/authUtils"
+import {ensureMemberOfVenue} from "../auth/auth_jwt"
 import {LogEventStore} from "../logEvent/logEvent_store"
 import {
   LOG_EVENT_CATEGORY_OBJ,

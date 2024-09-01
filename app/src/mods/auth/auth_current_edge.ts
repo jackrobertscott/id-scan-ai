@@ -6,7 +6,7 @@ import {SessionStore} from "../session/session_store"
 import {VenueStore} from "../venue/venue_store"
 import {VenueType} from "../venue/venue_storeDef.iso"
 import {auth_current_eDef} from "./auth_current_eDef.iso"
-import {createAuthToken, ensureUser} from "./authUtils"
+import {createAuthToken, ensureUser} from "./auth_jwt"
 
 export default createEdgeGroup(auth_current_eDef, {
   /**

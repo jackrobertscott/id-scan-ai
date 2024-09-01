@@ -2,7 +2,7 @@ import {createListOptions} from "../../utils/mongo/listOptionUtils"
 import {createListSearchQuery} from "../../utils/mongo/listSearchQueryUtils"
 import {createEdgeGroup} from "../../utils/server/createEdge"
 import {upsertStripeCustomerOfVenue} from "../../utils/stripeCustomerUtils"
-import {ensureAdmin} from "../auth/authUtils"
+import {ensureAdmin} from "../auth/auth_jwt"
 import {LogEventStore} from "../logEvent/logEvent_store"
 import {
   LOG_EVENT_CATEGORY_OBJ,

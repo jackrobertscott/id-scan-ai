@@ -7,7 +7,7 @@ import {InputString} from "../../theme/InputString"
 import {InputStringArray} from "../../theme/InputStringArray"
 import {InputToggle} from "../../theme/InputToggle"
 import {ZodFormValue, useZodForm} from "../../utils/useZodForm"
-import {ScanFilterForm} from "../scan/ScanFilterForm"
+import {ScanFilterForm} from "../scan/scan_formFilter"
 import {AlbumFormSchema, getAlbumFormSchema} from "./album_storeDef.iso"
 
 export type AlbumFormProps = {

@@ -37,13 +37,13 @@ export const AlertManagerProvider = ({children}: AlertManagerProviderProps) => {
       }}>
       {children}
       <Portal>
-        <div className={cn.root}>
+        <div className={cn_am.root}>
           {alerts.map((alert) => {
             // const bg = getThemeColor({variant: alert.variant})
             return (
               <div
                 key={alert.id}
-                className={cn.alert}
+                className={cn_am.alert}
                 style={
                   {
                     // "--bg-color": bg.regular,
@@ -64,7 +64,7 @@ export const AlertManagerProvider = ({children}: AlertManagerProviderProps) => {
   )
 }
 
-const cn = createCns("AlertManager", {
+const cn_am = createCns("AlertManager", {
   root: css`
     gap: 0.5rem;
     right: 1rem;

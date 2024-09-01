@@ -10,7 +10,7 @@ import {SessionStore} from "../session/session_store"
 import {UserStore} from "../user/user_store"
 import {VenueStore} from "../venue/venue_store"
 import {auth_email_eDef} from "./auth_email_eDef.iso"
-import {createAuthToken} from "./authUtils"
+import {createAuthToken} from "./auth_jwt"
 
 export default createEdgeGroup(auth_email_eDef, {
   /**

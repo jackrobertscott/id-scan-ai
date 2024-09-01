@@ -11,7 +11,7 @@ import {
 } from "../../utils/s3BucketUtils"
 import {s3ImageSchema} from "../../utils/s3SchemaUtils"
 import {createEdgeGroup} from "../../utils/server/createEdge"
-import {ensureMemberOfVenue} from "../auth/authUtils"
+import {ensureMemberOfVenue} from "../auth/auth_jwt"
 import {DocPhotoStore} from "../docPhoto/docPhoto_store"
 import {LivePhotoStore} from "../livePhoto/livePhoto_store"
 import {LogEventStore} from "../logEvent/logEvent_store"

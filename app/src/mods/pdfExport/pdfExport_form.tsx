@@ -5,7 +5,7 @@ import {FieldGroup} from "../../theme/FieldGroup"
 import {InputString} from "../../theme/InputString"
 import {Poster} from "../../theme/Poster"
 import {useZodForm, ZodFormValue} from "../../utils/useZodForm"
-import {ScanFilterForm} from "../scan/ScanFilterForm"
+import {ScanFilterForm} from "../scan/scan_formFilter"
 import {
   getPdfExportFormSchema,
   PdfExportFormSchema,
