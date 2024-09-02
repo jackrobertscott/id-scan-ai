@@ -2,6 +2,7 @@ import {mdiClose, mdiHistory, mdiTag, mdiTrashCan} from "@mdi/js"
 import {useState} from "react"
 import {Fragment} from "react/jsx-runtime"
 import {Button} from "../../theme/Button"
+import {ComingSoon} from "../../theme/ComingSoon"
 import {DisplayImage} from "../../theme/DisplayImage"
 import {Divider} from "../../theme/Divider"
 import {Field} from "../../theme/Field"
@@ -31,7 +32,7 @@ export const ReadScanByMemberView = ({
 }: ReadScanByMemberViewProps) => {
   const [showTagId, setShowTagId] = useState<string | null>()
   const [showTagCreate, setShowTagCreate] = useState(false)
-  const [liveFaceSearchId, setLiveFaceSearchId] = useState<string | null>()
+  const [patronFaceSearchId, setPatronFaceSearchId] = useState<string | null>()
 
   const $getScan = useEdge(scan_byMember_eDef.get, {
     pushValue: {scanId},
@@ -40,11 +41,11 @@ export const ReadScanByMemberView = ({
 
   return (
     <Fragment>
-      {liveFaceSearchId && (
+      {patronFaceSearchId && (
         <Modal>
           <ListSimilarPatronByMemberView
-            livePhotoId={liveFaceSearchId}
-            onClose={() => setLiveFaceSearchId(null)}
+            livePhotoId={patronFaceSearchId}
+            onClose={() => setPatronFaceSearchId(null)}
           />
         </Modal>
       )}
@@ -121,18 +122,16 @@ export const ReadScanByMemberView = ({
                   />
 
                   <Field
-                    label="Face ID Comparison"
                     // bg={scan.faceSimilarity >= 80 ? "green" : "red"}
-                  >
+                    label="Face ID Comparison">
                     <InputStatic
                       label={`${Math.round(scan.faceSimilarity)}% Similary`}
                     />
                   </Field>
 
                   <Field
-                    label="Age"
                     // bg={dobDiff && dobDiff[0] > 18 ? "green" : "red"}
-                  >
+                    label="Age">
                     <InputStatic
                       label={
                         dobDiff
@@ -145,14 +144,14 @@ export const ReadScanByMemberView = ({
                   <Field label="Patron Photo">
                     <DisplayImage
                       alt="Patron Photo"
-                      source={scan.patronPhotoUrl}
+                      source={scan.livePhotoUrl}
                     />
                   </Field>
 
                   <Field label="Document Photo">
                     <DisplayImage
                       alt="Document Photo"
-                      source={scan.documentPhotoUrl}
+                      source={scan.docPhotoUrl}
                     />
                   </Field>
 
@@ -175,14 +174,18 @@ export const ReadScanByMemberView = ({
                     // variant="blue"
                     label="View patron's history"
                     icon={mdiHistory}
-                    onClick={() => setLiveFaceSearchId(scan.livePhotoId)}
+                    onClick={() => setPatronFaceSearchId(scan.livePhotoId)}
                   />
 
-                  <Button
-                    // variant="red"
-                    label="Delete scan"
-                    icon={mdiTrashCan}
-                    onClick={() => console.log("todo")}
+                  <ComingSoon
+                    render={(doShow) => (
+                      <Button
+                        // variant="red"
+                        label="Delete scan"
+                        icon={mdiTrashCan}
+                        onClick={() => doShow()}
+                      />
+                    )}
                   />
                 </Fragment>
               )

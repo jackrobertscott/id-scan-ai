@@ -1,11 +1,29 @@
 import {z} from "zod"
+import {listOptionsSchema} from "../../utils/mongo/listOptionUtils"
 import {createEdgeGroupDef} from "../../utils/server/createEdgeDef"
 import {DocPhotoDef} from "../docPhoto/docPhoto_storeDef.iso"
 import {FaceTagDef} from "../faceTag/faceTag_storeDef.iso"
 import {LivePhotoDef} from "../livePhoto/livePhoto_storeDef.iso"
-import {ScanDef} from "./scan_storeDef.iso"
+import {getScanFilterFormSchema, ScanDef} from "./scan_storeDef.iso"
 
 export const scan_byMember_eDef = createEdgeGroupDef("scan_byMember", {
+  list: {
+    input: listOptionsSchema().extend(getScanFilterFormSchema().shape),
+    output: z.object({
+      total: z.number(),
+      scans: z.array(
+        z.object({
+          ...ScanDef.schema.pick({
+            id: true,
+            createdDate: true,
+          }).shape,
+          livePhotoUrl: z.string().url().optional(),
+          docPhotoUrl: z.string().url().optional(),
+        })
+      ),
+    }),
+  },
+
   get: {
     input: z.object({
       scanId: ScanDef.schema.shape.id,
@@ -21,8 +39,8 @@ export const scan_byMember_eDef = createEdgeGroupDef("scan_byMember", {
           docMeta: true,
           detectedText: true,
         }).shape,
-        patronPhotoUrl: z.string().url(),
-        documentPhotoUrl: z.string().url(),
+        livePhotoUrl: z.string().url(),
+        docPhotoUrl: z.string().url(),
       }),
       tags: z.array(
         FaceTagDef.schema.pick({
@@ -55,7 +73,7 @@ export const scan_byMember_eDef = createEdgeGroupDef("scan_byMember", {
     }),
   },
 
-  createFromPreviousDocPhoto: {
+  createFromOldDocPhoto: {
     input: z.object({
       livePhotoId: LivePhotoDef.schema.shape.id,
       docPhotoId: DocPhotoDef.schema.shape.id,
@@ -80,6 +98,12 @@ export const scan_byMember_eDef = createEdgeGroupDef("scan_byMember", {
           photoUrl: z.string().url(),
         })
       ),
+    }),
+  },
+
+  delete: {
+    input: z.object({
+      scanId: ScanDef.schema.shape.id,
     }),
   },
 })

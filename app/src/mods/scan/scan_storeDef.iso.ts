@@ -33,8 +33,9 @@ export const ScanDef = createStoreDef({
 })
 
 export type ScanLargeFilterFormSchema = ReturnType<
-  typeof getScanFilterFormSchema
+  typeof getScanLargeFilterFormSchema
 >
+export type ScanLargeFilterFormValue = z.infer<ScanLargeFilterFormSchema>
 
 export const getScanLargeFilterFormSchema = () => {
   return z.object({
@@ -55,6 +56,7 @@ export const getScanLargeFilterFormSchema = () => {
 }
 
 export type ScanFilterFormSchema = ReturnType<typeof getScanFilterFormSchema>
+export type ScanFilterFormValue = z.infer<ScanFilterFormSchema>
 
 export const getScanFilterFormSchema = () =>
   getScanLargeFilterFormSchema().pick({

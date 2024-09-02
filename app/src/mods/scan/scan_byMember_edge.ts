@@ -1,5 +1,11 @@
 import {AWS_REKOG_COLNAMES} from "../../consts/AWS_REKOG_COLNAMES"
 import {BUCKET_FOLDERS} from "../../consts/BUCKET_FOLDERS"
+import {
+  createScanFilterQuery,
+  populatePhotosOnScans,
+} from "../../utils/listScanQueryUtils"
+import {createListOptions} from "../../utils/mongo/listOptionUtils"
+import {createListSearchQuery} from "../../utils/mongo/listSearchQueryUtils"
 import {extractFaceIdsFromSearchResults} from "../../utils/rekogFaceUtils"
 import {
   compareFaces,
@@ -24,8 +30,42 @@ import {
 import {MEMBER_PERMISSIONS_OBJ} from "../member/member_storeDef.iso"
 import {scan_byMember_eDef} from "./scan_byMember_eDef.iso"
 import {ScanStore} from "./scan_store"
+import {ScanType} from "./scan_storeDef.iso"
 
 export default createEdgeGroup(scan_byMember_eDef, {
+  list: async ({request, body}) => {
+    const auth = await ensureMemberOfVenue(request, [], {isDeviceEnabled: true})
+
+    const query = createListSearchQuery<ScanType>({
+      ...body,
+      searchKeys: ["detectedText"],
+      filter: {
+        ...createScanFilterQuery(body),
+        venueId: auth.venue.id,
+      },
+    })
+
+    // Set a minimum date of 90 days ago
+    if (!auth.member.fullAccess) {
+      const minDate = new Date()
+      minDate.setDate(minDate.getDate() - 90)
+      query.$and.push({createdDate: {$gte: minDate}})
+    }
+
+    const [total, scans] = await Promise.all([
+      ScanStore.count(query),
+      ScanStore.getMany(query, createListOptions(body)),
+    ])
+
+    // Get the photo images from the scans
+    const scansAndPhotos = await populatePhotosOnScans(scans)
+
+    return {
+      total,
+      scans: scansAndPhotos,
+    }
+  },
+
   get: async ({request, body}) => {
     const auth = await ensureMemberOfVenue(request, [], {isDeviceEnabled: true})
 
@@ -36,7 +76,7 @@ export default createEdgeGroup(scan_byMember_eDef, {
     })
 
     // Get the photo images from the scan
-    const [patronPhoto, documentPhoto] = await Promise.all([
+    const [livePhoto, docPhoto] = await Promise.all([
       LivePhotoStore.getOne({
         venueId: auth.venue.id,
         id: scan.livePhotoId,
@@ -49,7 +89,7 @@ export default createEdgeGroup(scan_byMember_eDef, {
 
     // Find the faces in the tags database
     const tagFaceResults = await searchFacesByImage(
-      patronPhoto.s3FaceImage,
+      livePhoto.s3FaceImage,
       AWS_REKOG_COLNAMES.TAG
     )
     const tagAwsFaceIds = tagFaceResults.FaceMatches?.map(({Face}) => {
@@ -64,17 +104,17 @@ export default createEdgeGroup(scan_byMember_eDef, {
       : []
 
     // Get signed URLs for the photos
-    const [patronPhotoUrl, documentPhotoUrl] = await Promise.all([
-      getSignedUrlOfBucketObject(patronPhoto.s3FaceImage),
-      getSignedUrlOfBucketObject(documentPhoto.s3FaceImage),
+    const [livePhotoUrl, docPhotoUrl] = await Promise.all([
+      getSignedUrlOfBucketObject(livePhoto.s3FaceImage),
+      getSignedUrlOfBucketObject(docPhoto.s3FaceImage),
     ])
 
     // Return the scan and tags
     return {
       scan: {
         ...scan,
-        patronPhotoUrl,
-        documentPhotoUrl,
+        livePhotoUrl,
+        docPhotoUrl,
       },
       tags,
     }
@@ -192,7 +232,7 @@ export default createEdgeGroup(scan_byMember_eDef, {
     return scan
   },
 
-  createFromPreviousDocPhoto: async ({request, body}) => {
+  createFromOldDocPhoto: async ({request, body}) => {
     const auth = await ensureMemberOfVenue(
       request,
       [MEMBER_PERMISSIONS_OBJ.SCAN_CREATE],

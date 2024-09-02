@@ -1,14 +1,14 @@
 import {z} from "zod"
 import {StoreValueType, createStoreDef} from "../../utils/mongo/baseStore"
 import {shortStrSchema} from "../../utils/zodSchema"
+import {getScanFilterFormSchema} from "../scan/scan_storeDef.iso"
 import {UserDef} from "../user/user_storeDef.iso"
 import {VenueDef} from "../venue/venue_storeDef.iso"
-import {getScanFilterFormSchema} from "../scan/scan_storeDef.iso"
 
 export type AlbumType = StoreValueType<typeof AlbumDef>
 
 export const AlbumDef = createStoreDef({
-  prefix: "abm",
+  prefix: "alb",
   colname: "album",
   indexes: ["id", "createdDate", "venueId"],
   schema: {
