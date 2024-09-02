@@ -4,7 +4,7 @@ import {createEdgeGroupDef} from "../../utils/server/createEdgeDef"
 import {UserDef} from "../user/user_storeDef.iso"
 import {getVenueFormSchema, VenueDef} from "./venue_storeDef.iso"
 
-export const venue_byAdmin_eDef = createEdgeGroupDef("venue_byAdmin", {
+export const venue_byAdm_eDef = createEdgeGroupDef("venue_byAdmin", {
   create: {
     input: z.object({
       ...getVenueFormSchema().shape,

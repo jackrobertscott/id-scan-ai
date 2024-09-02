@@ -3,7 +3,7 @@ import {listOptionsSchema} from "../../utils/mongo/listOptionUtils"
 import {createEdgeGroupDef} from "../../utils/server/createEdgeDef"
 import {UserDef, getUserByAdminFormSchema} from "./user_storeDef.iso"
 
-export const user_byAdmin_eDef = createEdgeGroupDef("user_byAdmin", {
+export const usr_byAdm_eDef = createEdgeGroupDef("user_byAdmin", {
   create: {
     input: UserDef.schema.pick({
       email: true,

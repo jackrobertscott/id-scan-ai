@@ -10,11 +10,11 @@ import {
 } from "../logEvent/logEvent_storeDef.iso"
 import {MemberStore} from "../member/member_store"
 import {UserStore} from "../user/user_store"
-import {venue_byAdmin_eDef} from "./venue_byAdmin_eDef.iso"
+import {venue_byAdm_eDef} from "./venue_byAdm_eDef.iso"
 import {VenueStore} from "./venue_store"
 import {VenueType} from "./venue_storeDef.iso"
 
-export default createEdgeGroup(venue_byAdmin_eDef, {
+export default createEdgeGroup(venue_byAdm_eDef, {
   create: async ({request, body: {ownerUserId, ...body}}) => {
     const auth = await ensureAdmin(request)
 

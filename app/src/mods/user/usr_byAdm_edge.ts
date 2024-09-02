@@ -2,11 +2,11 @@ import {createListOptions} from "../../utils/mongo/listOptionUtils"
 import {createListSearchQuery} from "../../utils/mongo/listSearchQueryUtils"
 import {createEdgeGroup} from "../../utils/server/createEdge"
 import {ensureAdmin} from "../auth/auth_jwt"
-import {user_byAdmin_eDef} from "./user_byAdmin_eDef.iso"
 import {UserStore} from "./user_store"
 import {UserType} from "./user_storeDef.iso"
+import {usr_byAdm_eDef} from "./usr_byAdm_eDef.iso"
 
-export default createEdgeGroup(user_byAdmin_eDef, {
+export default createEdgeGroup(usr_byAdm_eDef, {
   create: async ({request, body}) => {
     await ensureAdmin(request)
 

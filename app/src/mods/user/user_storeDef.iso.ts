@@ -4,6 +4,16 @@ import {StoreValueType, createStoreDef} from "../../utils/mongo/baseStore"
 import {s3ImageSchema} from "../../utils/s3SchemaUtils"
 import {numberStringSchema} from "../../utils/zodSchema"
 
+export const getUserFaceAuthSchema = () => {
+  return z.object({
+    s3FullImage: s3ImageSchema(),
+    s3FaceImage: s3ImageSchema(),
+    faceMeta: faceMetaSchema(),
+    awsFaceId: z.string().min(1),
+    passcode: numberStringSchema(6),
+  })
+}
+
 export type UserType = StoreValueType<typeof UserDef>
 
 export const UserDef = createStoreDef({
@@ -22,15 +32,7 @@ export const UserDef = createStoreDef({
         updatedDate: z.coerce.date(),
       })
       .nullish(),
-    faceAuth: z
-      .object({
-        s3FullImage: s3ImageSchema(),
-        s3FaceImage: s3ImageSchema(),
-        faceMeta: faceMetaSchema(),
-        awsFaceId: z.string().min(1),
-        passcode: numberStringSchema(6),
-      })
-      .nullish(),
+    faceAuth: getUserFaceAuthSchema().nullish(),
   },
 })
 
