@@ -6,9 +6,9 @@ import {BrowserRouter} from "react-router-dom"
 import {AlertManagerProvider} from "./mods/alert/alert_manager_provider"
 import {AuthManagerProvider} from "./mods/auth/auth_manager_provider"
 import {DeviceManagerProvider} from "./mods/device/device_manager"
-import {Root} from "./mods/root/Root"
 import {MediaProvider} from "./theme/MediaProvider"
 import {formatZodErrors} from "./utils/formatZodErrors"
+import {Root} from "./mods/root/Root"
 
 formatZodErrors()
 
