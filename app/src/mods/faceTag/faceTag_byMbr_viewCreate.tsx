@@ -4,7 +4,7 @@ import {Spacer} from "../../theme/Spacer"
 import {TitleBar, createPageOptions} from "../../theme/TitleBar"
 import {useEdge} from "../../utils/server/useEdge"
 import {faceTag_byMember_eDef} from "./faceTag_byMember_eDef.iso"
-import {FaceTagForm} from "./FaceTagForm"
+import {FaceTagForm} from "./faceTag_form"
 
 export type CreateTagByMemberViewProps = {
   scanId: string

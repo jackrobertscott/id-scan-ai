@@ -85,7 +85,7 @@ export default createEdgeGroup(payCard_byMember_eDef, {
       category: LOG_EVENT_CATEGORY_OBJ.UPDATE,
       table: LOG_EVENT_TABLES_OBJ.STRIPE_CARD,
       meta: {stripeCardId: card.id},
-      description: "Set as default",
+      desc: "Set as default",
     })
   },
 

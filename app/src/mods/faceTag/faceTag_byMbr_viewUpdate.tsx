@@ -10,7 +10,7 @@ import {useEdge} from "../../utils/server/useEdge"
 import {ListSimilarPatronByMemberView} from "../livePhoto/livePhoto_byMbr_viewListSimilar"
 import {DeleteTagByMemberView} from "./faceTag_byMbr_viewDelete"
 import {faceTag_byMember_eDef} from "./faceTag_byMember_eDef.iso"
-import {FaceTagForm} from "./FaceTagForm"
+import {FaceTagForm} from "./faceTag_form"
 
 export type UpdateTagByMemberViewProps = {
   tagId: string

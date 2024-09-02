@@ -44,7 +44,7 @@ export const LogEventDef = createStoreDef({
     category: enumStrSchema(LOG_EVENT_CATEGORY_ARRAY),
     table: enumStrSchema(LOG_EVENT_TABLE_ARRAY),
     dataId: idSchema().nullish(), // id of model effected
-    description: z.string().min(1).nullish(),
+    desc: z.string().min(1).nullish(),
     meta: z.record(z.unknown()).nullish(),
   },
 })
