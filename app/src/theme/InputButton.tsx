@@ -22,6 +22,7 @@ export const InputButton: FC<{
         cn_ib.container,
         grow && gcn.grow,
         grow && gcn.zeroBasis,
+        gcn.elevate,
       ])}
       style={{"--text-opacity": disabled ? 0.5 : 1}}>
       {loading ? (

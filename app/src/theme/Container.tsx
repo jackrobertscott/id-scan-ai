@@ -1,7 +1,8 @@
 import {css} from "@emotion/css"
 import {FC, ReactNode} from "react"
 import {MEDIA_WIDTH_MOBILE} from "../consts/MEDIA_SIZES"
-import {createCns} from "../utils/classNames"
+import {gcn} from "../gcn"
+import {createCns, jn_cns} from "../utils/classNames"
 
 export const Container: FC<{
   overlay?: boolean
@@ -9,7 +10,9 @@ export const Container: FC<{
   width?: string
 }> = ({children, width = "20rem", overlay}) => {
   return (
-    <div className={cn_c.root} style={{"--width": width}}>
+    <div
+      className={jn_cns([cn_c.root, gcn.elevate])}
+      style={{"--width": width}}>
       <div className={cn_c.hideScrollbarOverflow}>{children}</div>
     </div>
   )
@@ -19,8 +22,8 @@ const cn_c = createCns("Container", {
   root: css`
     overflow: auto;
     width: var(--width);
-    border: var(--border-regular);
-    border-radius: var(--radius-large);
+    /* border: var(--border-regular); */
+    /* border-radius: var(--radius-large); */
     background-color: hsl(0, 0%, 100%, 0.1);
     @media (width < ${MEDIA_WIDTH_MOBILE}px) {
       width: 100%;
