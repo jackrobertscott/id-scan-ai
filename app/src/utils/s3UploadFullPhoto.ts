@@ -1,6 +1,6 @@
 import {loadImage} from "canvas"
 import {join} from "path"
-import {serverConfig} from "../serverConfig"
+import {srvConf} from "../srvConf"
 import {
   createBufferFromImageData,
   createImageDataFromBuffer,
@@ -17,8 +17,8 @@ export async function s3UploadFullPhoto(bodyBuffer: Buffer, folder: string) {
   const fullBuffer = createBufferFromImageData(bodyImage)
   const fullImage = await loadImage(fullBuffer)
   const s3FullImage = s3ImageSchema().parse({
-    region: serverConfig.AWS_DEFAULT_REGION,
-    bucket: serverConfig.AWS_S3_BUCKET,
+    region: srvConf.AWS_DEFAULT_REGION,
+    bucket: srvConf.AWS_S3_BUCKET,
     key: join(folder, createRandomString(24).concat(".jpeg")),
     bytes: fullBuffer.length,
     width: fullImage.width,

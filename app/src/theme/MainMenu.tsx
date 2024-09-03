@@ -23,7 +23,7 @@ import {
 import {FC} from "react"
 import {useNavigate} from "react-router-dom"
 import {auth_eDef} from "../mods/auth/auth_eDef.iso"
-import {useAuthManager, useAuthManager} from "../mods/auth/auth_manager"
+import {useAuthManager} from "../mods/auth/auth_manager"
 import {useEdge} from "../utils/server/useEdge"
 import {Button} from "./Button"
 import {Field} from "./Field"

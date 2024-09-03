@@ -6,12 +6,14 @@ export const createCns = <T extends Record<string, string>>(
   prefix: string,
   data: T
 ) => {
-  return Object.entries(data).reduce((all, [key, value]) => {
-    if (!value.startsWith("css-")) throw new Error("Invalid css value")
+  if (false) {
     const cn_prefix = toKebabCase(prefix)
     if (__cn_set__.has(cn_prefix))
       throw new Error(`Duplicate prefix: ${cn_prefix}`)
     __cn_set__.add(cn_prefix)
+  }
+  return Object.entries(data).reduce((all, [key, value]) => {
+    if (!value.startsWith("css-")) throw new Error("Invalid css value")
     return {
       ...all,
       [key]: [toKebabCase([prefix, key].join("-")), value].join(" "),

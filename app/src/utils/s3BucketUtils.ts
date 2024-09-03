@@ -9,10 +9,10 @@ import {
 import {getSignedUrl} from "@aws-sdk/s3-request-presigner"
 import {join} from "path"
 import {Readable} from "stream"
-import {serverConfig} from "../serverConfig"
+import {srvConf} from "../srvConf"
 
 const s3Client = new S3Client({
-  region: serverConfig.AWS_DEFAULT_REGION,
+  region: srvConf.AWS_DEFAULT_REGION,
 })
 
 export async function uploadBucketObject({
