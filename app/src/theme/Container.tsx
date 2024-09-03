@@ -24,7 +24,7 @@ const cn_c = createCns("Container", {
     width: var(--width);
     /* border: var(--border-regular); */
     /* border-radius: var(--radius-large); */
-    background-color: hsl(0, 0%, 100%, 0.1);
+    background-color: hsl(0, 0%, 30%, 1);
     @media (width < ${MEDIA_WIDTH_MOBILE}px) {
       width: 100%;
       border: none;

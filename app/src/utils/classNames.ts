@@ -21,8 +21,10 @@ export const createCns = <T extends Record<string, string>>(
   }, {} as T)
 }
 
-export const jn_cns = (
-  classNames: Array<string | undefined | null | false>
-) => {
-  return classNames.filter(Boolean).join(" ")
+export type Cns = string | undefined | null | false | Cns[]
+export function jn_cns(...classNames: Cns[]): string {
+  return classNames
+    .map((i) => (Array.isArray(i) ? jn_cns(...i) : i))
+    .filter(Boolean)
+    .join(" ")
 }
