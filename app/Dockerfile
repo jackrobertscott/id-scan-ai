@@ -25,7 +25,6 @@ COPY package.json .
 RUN npm install
 # RUN npm install -g pm2
 
-
 # Copy the rest of the application code
 COPY . .
 
@@ -35,4 +34,4 @@ COPY . .
 EXPOSE 8080
 
 # CMD ["pm2-runtime", "start", "npm", "--", "run", "srv:start"]
-CMD ["npm", "run", "srv:start"]
+CMD ["npm", "run", "s:start"]
