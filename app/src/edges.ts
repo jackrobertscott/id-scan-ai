@@ -1,7 +1,7 @@
 // This file is generated automatically. Do not modify it.
 
 import album_edge from "./mods/album/album_byMember_edge"
-import auth_current_edge from "./mods/auth/auth_current_edge"
+import auth_current_edge from "./mods/auth/auth_byUsr_edge"
 import auth_email_edge from "./mods/auth/auth_email_edge"
 import device_edge from "./mods/device/device_byMember_edge"
 import member_edge from "./mods/member/member_byMember_edge"

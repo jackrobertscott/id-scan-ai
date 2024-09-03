@@ -35,3 +35,32 @@ export const AuthGate: FC<{redirect: string}> = ({redirect}) => {
   // If the user is logged in, show the children
   return <Outlet />
 }
+
+export const AdminGate: FC<{
+  redirect: string
+}> = ({redirect}) => {
+  const navigate = useNavigate()
+  const authManager = useAuthManager(true)
+
+  if (!authManager.getPayload()?.data.isAdmin) {
+    return (
+      <Modal>
+        <Spacer>
+          <Poster
+            icon={mdiAlertRhombus}
+            title="Access Denied"
+            description="You must be an admin to access this page"
+            // variant="red"
+          />
+          <Button
+            label="Ok"
+            // variant="grey"
+            onClick={() => navigate(redirect)}
+          />
+        </Spacer>
+      </Modal>
+    )
+  }
+
+  return <Outlet />
+}

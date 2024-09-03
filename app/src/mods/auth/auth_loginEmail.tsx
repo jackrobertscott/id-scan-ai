@@ -8,7 +8,7 @@ import {InputString} from "../../theme/InputString"
 import {Poster} from "../../theme/Poster"
 import {Spacer} from "../../theme/Spacer"
 import {useEdge} from "../../utils/server/useEdge"
-import {auth_email_eDef} from "./auth_email_eDef.iso"
+import {auth_eDef} from "./auth_eDef.iso"
 import {useAuthManager} from "./auth_manager"
 
 export const AuthEmailByUserView: FC<{}> = () => {
@@ -16,8 +16,8 @@ export const AuthEmailByUserView: FC<{}> = () => {
   const authManager = useAuthManager()
   const [email, setEmail] = useState<null | string>(null)
 
-  const $sendCode = useEdge(auth_email_eDef.sendAuthCode)
-  const $verifyCode = useEdge(auth_email_eDef.verifyAuthCode, {
+  const $sendCode = useEdge(auth_eDef.sendAuthCode)
+  const $verifyCode = useEdge(auth_eDef.verifyAuthCode, {
     pushValue: {
       email,
       userAgent: navigator.userAgent,

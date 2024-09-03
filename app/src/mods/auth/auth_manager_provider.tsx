@@ -12,8 +12,8 @@ import {Spacer} from "../../theme/Spacer"
 import {StatusCodeError} from "../../utils/server/errorClasses"
 import {fetchEdge} from "../../utils/server/fetchEdge.brw"
 import {useLocalState} from "../../utils/useLocalState"
-import {auth_current_eDef} from "./auth_current_eDef.iso"
 import {AuthManagerContext, AuthPayloadType} from "./auth_manager"
+import {auth_eDef} from "./auth_eDef.iso"
 
 export const AuthManagerProvider: FC<{
   children: ReactNode
@@ -32,7 +32,7 @@ export const AuthManagerProvider: FC<{
 
   const refresh = async () => {
     if (!payloadRef.current?.token) return
-    fetchEdge({def: auth_current_eDef.get, token: payloadRef.current.token})
+    fetchEdge({def: auth_eDef.get, token: payloadRef.current.token})
       .then(({payload}) => setPayload(payload ?? null))
       .catch((error) => {
         if (error instanceof StatusCodeError && error.statusCode === 401) {
