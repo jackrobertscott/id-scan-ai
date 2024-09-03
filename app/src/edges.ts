@@ -15,6 +15,7 @@ import scan_byMember_edge from './mods/scan/scan_byMember_edge';
 import scan_byPdf_edge from './mods/scan/scan_byPdf_edge';
 import session_byUser_edge from './mods/session/session_byUser_edge';
 import usr_byAdm_edge from './mods/user/usr_byAdm_edge';
+import usr_bySlf_edge from './mods/user/usr_bySlf_edge';
 import ven_byMbr_edge from './mods/venue/ven_byMbr_edge';
 import ven_byUsr_edge from './mods/venue/ven_byUsr_edge';
 import venue_byAdm_edge from './mods/venue/venue_byAdm_edge';
@@ -35,6 +36,7 @@ export {
   scan_byPdf_edge,
   session_byUser_edge,
   usr_byAdm_edge,
+  usr_bySlf_edge,
   ven_byMbr_edge,
   ven_byUsr_edge,
   venue_byAdm_edge,
