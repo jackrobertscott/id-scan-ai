@@ -116,8 +116,8 @@ const cn_tb = prettyCns("TitleBar", {
     padding: var(--pad-s);
   `,
   options: css`
-    flex-direction: row;
     gap: var(--gap-r);
+    flex-direction: row;
   `,
   option: css`
     ${gcn.hoverClick}

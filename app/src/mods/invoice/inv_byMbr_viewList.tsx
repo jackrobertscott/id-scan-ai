@@ -36,10 +36,10 @@ export const ListInvoiceByMemberView = () => {
                 label: invoice.createdDate.toLocaleString("en-au", {
                   dateStyle: "medium",
                 }),
-                description: `${(invoice.amountDue / 100).toLocaleString(
-                  "en-au",
-                  {style: "currency", currency: invoice.currency}
-                )} AUD`,
+                desc: `${(invoice.amountDue / 100).toLocaleString("en-au", {
+                  style: "currency",
+                  currency: invoice.currency,
+                })} AUD`,
                 onClick: () => crud.onOpenRead(invoice.id),
               }))}
             />

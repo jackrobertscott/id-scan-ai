@@ -53,7 +53,6 @@ export const InputStringArray = ({
 
       <EmptyListWrap
         ready={true}
-        nested={true}
         label="No Values Yet"
         data={value}
         render={() => (

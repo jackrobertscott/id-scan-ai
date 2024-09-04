@@ -66,7 +66,7 @@ export const ListDeviceByMemberView = () => {
               options={devices.map((device) => ({
                 key: device.id,
                 label: device.name,
-                description:
+                desc:
                   device.desc ??
                   device.createdDate.toLocaleString("en-au", {
                     dateStyle: "medium",

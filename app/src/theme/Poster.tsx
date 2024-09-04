@@ -25,6 +25,7 @@ const cn_p = prettyCns("Poster", {
     ${gcn.elevate}
     padding: 1rem;
     text-align: center;
+    gap: var(--pad-s-y);
   `,
   icon: css`
     font-size: 2rem;

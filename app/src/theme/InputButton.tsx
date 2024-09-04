@@ -14,13 +14,15 @@ export const InputButton: FC<{
   bgColor?: string
   onClick?: () => void
 }> = ({grow, icon, label, disabled, loading, bgColor, onClick}) => {
+  const canClick = !(disabled || loading)
   return (
     <button
-      onClick={disabled || loading ? undefined : onClick}
+      onClick={canClick ? onClick : undefined}
       className={jn_cn([
         cn_ib.container,
         grow && gcn.grow,
         grow && gcn.zeroBasis,
+        canClick && gcn.hoverClick,
       ])}
       style={{
         "--bg-color": bgColor,
@@ -43,7 +45,6 @@ export const InputButton: FC<{
 
 const cn_ib = prettyCns("InputButton", {
   container: css`
-    ${gcn.hoverClick}
     flex-shrink: 0;
     user-select: none;
     flex-direction: row;

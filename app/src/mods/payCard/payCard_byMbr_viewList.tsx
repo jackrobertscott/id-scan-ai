@@ -45,7 +45,7 @@ export const ListPayCardByMemberView = () => {
               options={payCards.map((payCard) => ({
                 key: payCard.id,
                 label: `**** **** **** ${payCard.last4}`,
-                description: `${payCard.brand} ${payCard.expMonth}/${payCard.expYear}`,
+                desc: `${payCard.brand} ${payCard.expMonth}/${payCard.expYear}`,
                 onClick: () => crud.onOpenRead(payCard.id),
               }))}
             />

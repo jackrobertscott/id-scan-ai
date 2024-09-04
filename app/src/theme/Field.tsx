@@ -40,7 +40,7 @@ export const Field: FC<{
       )}
       <div
         className={jn_cn([
-          cn_f.input,
+          cn_f.inputWrap,
           grow && gcn.grow,
           direction === "row" ? gcn.row : gcn.column,
         ])}>
@@ -53,23 +53,23 @@ export const Field: FC<{
 
 const cn_f = prettyCns("Field", {
   root: css`
-    gap: 0.25rem;
+    gap: var(--gap-r);
   `,
   head: css`
     flex-direction: row;
-    color: var(--fnt-clr-3rd);
     padding: 0 var(--pad-r-x);
   `,
   label: css`
     flex-grow: 1;
   `,
-  input: css`
+  inputWrap: css`
     overflow: auto;
     transition: var(--hover-timing);
+    gap: var(--gap-r);
   `,
   foot: css`
     padding: 0 1rem;
-    color: var(--fnt-clr-3rd);
+    color: var(--fnt-clr-2nd);
     font-size: var(--fnt-s);
     text-align: center;
   `,

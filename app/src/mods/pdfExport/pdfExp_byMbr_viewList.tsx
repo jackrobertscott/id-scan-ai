@@ -59,7 +59,7 @@ export const ListPdfExportByMemberView = () => {
               options={pdfExports.map((pdfExport) => ({
                 key: pdfExport.id,
                 label: pdfExport.name,
-                description: pdfExport.createdDate.toLocaleString("en-au", {
+                desc: pdfExport.createdDate.toLocaleString("en-au", {
                   dateStyle: "medium",
                   timeStyle: "medium",
                 }),

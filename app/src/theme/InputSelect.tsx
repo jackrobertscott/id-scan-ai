@@ -2,7 +2,7 @@ import {css} from "@emotion/css"
 import {mdiCheck, mdiClose, mdiLoading} from "@mdi/js"
 import {MutableRefObject} from "react"
 import {gcn} from "../gcn"
-import {jn_cn, prettyCns} from "../utils/classNames"
+import {prettyCns} from "../utils/classNames"
 import {Icon} from "./Icon"
 import {InputButton} from "./InputButton"
 import {InputStatic} from "./InputStatic"
@@ -124,13 +124,13 @@ export const InputSelectLabel = <T = string,>({
   loading,
 }: InputSelectLabelProps<T>) => {
   return (
-    <div className={jn_cn(cn_isl.root, gcn.elevate)}>
+    <div className={cn_isl.root}>
       <div
         ref={triggerRef}
         onClick={onClick}
         className={cn_isl.trigger}
         style={{
-          color: currentOption ? "hsl(0, 0%, 100%)" : "hsl(0, 0%, 100%, 0.25)",
+          color: currentOption ? "hsl(0, 0%, 100%)" : "var(--fnt-clr-plc)",
         }}>
         {currentOption
           ? currentOption.label ?? String(currentOption.value)
@@ -155,6 +155,7 @@ const cn_isl = prettyCns("InputSelectLabel", {
     overflow: auto;
   `,
   trigger: css`
+    ${gcn.elevate}
     flex-grow: 1;
     cursor: default;
     overflow: hidden;

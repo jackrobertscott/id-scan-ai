@@ -6,8 +6,8 @@ import {prettyCns} from "../utils/classNames"
 import {Center} from "./Center"
 import {Container} from "./Container"
 import {IconBar} from "./IconBar"
-import {MainMenu} from "./MainMenu"
 import {useMedia} from "./MediaProvider"
+import {MainMenu} from "../mods/root/root_mainMenu"
 
 export const DashboardLayout: FC = () => {
   const media = useMedia()

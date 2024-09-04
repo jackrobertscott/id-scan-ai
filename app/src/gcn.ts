@@ -8,25 +8,25 @@ export const gcn = {
   column: css({flexDirection: "column"}),
   overAuto: css({overflow: "auto"}),
   elevate: css`
-    --s1: 0.1rem;
+    --s1: var(--shdw-thck);
     --s2: calc(var(--s1) * -1);
     background-color: var(--lgt-clr);
-    box-shadow: inset var(--s1) var(--s1) 0 0 hsl(0, 0%, 100%, 0.25),
+    box-shadow: inset var(--s1) var(--s1) 0 0 var(--fnt-clr-plc),
       inset var(--s2) var(--s2) 0 0 hsl(0, 0%, 0%, 0.5);
   `,
   depress: css`
-    --s1: 0.1rem;
+    --s1: var(--shdw-thck);
     --s2: calc(var(--s1) * -1);
     background-color: var(--drk-clr);
     box-shadow: inset var(--s1) var(--s1) 0 0 hsl(0, 0%, 0%, 0.5),
       inset var(--s2) var(--s2) 0 0 hsl(0, 0%, 0%, 0.25);
   `,
-  greenShdw: css`
-    --s1: 0.1rem;
-    box-shadow: inset 0 0 0 var(--s1) hsl(120, 100%, 50%, 0.5);
+  fcsShdw: css`
+    --s1: var(--shdw-thck);
+    box-shadow: inset 0 0 0 var(--s1) hsl(var(--hsl-grn), 0.5);
   `,
   divider: css`
-    --s1: 0.1rem;
+    --s1: var(--shdw-thck);
     --s2: calc(var(--s1) * -1);
     height: calc(var(--s1) * 2);
     box-shadow: inset var(--s1) var(--s1) 0 0 hsl(0, 0%, 0%, 0.35),

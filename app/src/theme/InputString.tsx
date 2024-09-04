@@ -40,10 +40,10 @@ const cn_is = prettyCns("InputString", {
     padding: var(--pad-r);
     background-color: var(--drk-clr);
     &::placeholder {
-      color: hsl(0, 0%, 100%, 0.25);
+      color: var(--fnt-clr-plc);
     }
     &:focus {
-      ${gcn.greenShdw}
+      ${gcn.fcsShdw}
     }
   `,
 })

@@ -43,9 +43,21 @@ export const MainMenu: FC<{
   const isDevice = !!authManager.getPayload()?.data.deviceId
   const isAdmin = !!authManager.getPayload()?.data.isAdmin
 
-  const onRouteSelect = (i: {path: string}) => () => {
-    navigate(i.path)
-    onSelect?.()
+  const formatRoute = <T extends {icon: string; path: string}>(
+    i: T | false
+  ) => {
+    if (typeof i === "object") {
+      return {
+        ...i,
+        icons: [{icon: i.icon}],
+        onClick: () => {
+          navigate(i.path)
+          onSelect?.()
+        },
+      }
+    } else {
+      return i
+    }
   }
 
   if (!hasUser) {
@@ -63,6 +75,7 @@ export const MainMenu: FC<{
                 icon: mdiCamera,
                 label: "New Scan",
                 path: "/new-scan",
+                desc: "Scan a new patron",
               },
               {
                 icon: mdiHistory,
@@ -79,7 +92,7 @@ export const MainMenu: FC<{
                 label: "Find By Face",
                 path: "/find-by-face",
               },
-            ].map((i) => ({...i, onClick: onRouteSelect(i)}))}
+            ].map(formatRoute)}
           />
         </Field>
       )}
@@ -117,7 +130,7 @@ export const MainMenu: FC<{
                 label: "Event History",
                 path: "/event-history",
               },
-            ].map((i) => ({...i, onClick: onRouteSelect(i)}))}
+            ].map(formatRoute)}
           />
         </Field>
       )}
@@ -135,7 +148,7 @@ export const MainMenu: FC<{
                 label: "Pay Cards",
                 path: "/pay-cards",
               },
-            ].map((i) => ({...i, onClick: onRouteSelect(i)}))}
+            ].map(formatRoute)}
           />
         </Field>
       )}
@@ -168,7 +181,7 @@ export const MainMenu: FC<{
                 label: "Switch Venue",
                 path: "/select-venue",
               },
-            ].map((i) => (i ? {...i, onClick: onRouteSelect(i)} : i))}
+            ].map(formatRoute)}
           />
         </Field>
       )}
@@ -186,7 +199,7 @@ export const MainMenu: FC<{
                 label: "All Venues",
                 path: "/all-venues",
               },
-            ].map((i) => ({...i, onClick: onRouteSelect(i)}))}
+            ].map(formatRoute)}
           />
         </Field>
       )}

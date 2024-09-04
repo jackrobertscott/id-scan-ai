@@ -1,17 +1,20 @@
 :root {
   --rem-size: 20px;
-  --line-height: 1.3;
+  --line-height: 1.2;
   --fnt-regular: "Times New Roman", "Optima", sans-serif;
   --hover-timing: 150ms;
   --border-pdf: 1px solid hsl(0, 0%, 0%);
-  --lgt-clr: hsl(0, 0%, 100%, 0.1);
+  --lgt-clr: hsl(0, 0%, 100%, 0.05);
   --drk-clr: hsl(0, 0%, 0%, 0.1);
   --fnt-clr-2nd: hsl(0, 0%, 100%, 0.75);
   --fnt-clr-3rd: hsl(0, 0%, 100%, 0.5);
+  --fnt-clr-plc: hsl(0, 0%, 100%, 0.5);
+  --shdw-thck: 0.1rem;
 
   --bg-clr: hsl(0, 0%, 25%);
   --bg-fnt: hsl(0, 0%, 100%);
-  --bg-blu: hsl(220, 100%, 40%);
+  --hsl-blu: 220, 100%, 40%;
+  --hsl-grn: 120, 100%, 50%;
 
   --gap-r: 0.5rem;
   --pad-r-x: 0.75rem;

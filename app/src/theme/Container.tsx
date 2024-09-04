@@ -21,9 +21,9 @@ export const Container: FC<{
 
 const cn_c = prettyCns("Container", {
   root: css`
-    ${gcn.elevate}
     overflow: auto;
     width: var(--width);
+    background-color: var(--bg-clr);
     @media (width < ${MEDIA_WIDTH_MOBILE}px) {
       width: 100%;
       &[data-overlay="true"] {
@@ -37,6 +37,7 @@ const cn_c = prettyCns("Container", {
     }
   `,
   hideScrollbarOverflow: css`
+    ${gcn.elevate}
     flex-grow: 1;
     overflow: auto;
     @media (width < ${MEDIA_WIDTH_MOBILE}px) {

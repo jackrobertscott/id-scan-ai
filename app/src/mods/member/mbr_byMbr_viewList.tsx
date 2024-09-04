@@ -78,7 +78,7 @@ export const ListMemberByMemberView = () => {
               options={members.map((member) => ({
                 key: member.id,
                 label: member.userFullName,
-                description: member.userEmail,
+                desc: member.userEmail,
                 onClick: () => crud.onOpenRead(member.id),
               }))}
             />

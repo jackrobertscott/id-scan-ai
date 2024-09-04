@@ -66,7 +66,7 @@ export const ListAlbumByMemberView = () => {
               options={albums.map((album) => ({
                 key: album.id,
                 label: album.name,
-                description: album.createdDate.toLocaleString("en-au", {
+                desc: album.createdDate.toLocaleString("en-au", {
                   dateStyle: "medium",
                   timeStyle: "medium",
                 }),

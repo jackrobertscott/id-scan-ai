@@ -65,7 +65,7 @@ export const ListLoggedEventByMemberView = () => {
                 return {
                   key: loggedEvent.id,
                   label: label,
-                  description: loggedEvent.createdDate.toLocaleString("en-au", {
+                  desc: loggedEvent.createdDate.toLocaleString("en-au", {
                     dateStyle: "medium",
                     timeStyle: "medium",
                   }),

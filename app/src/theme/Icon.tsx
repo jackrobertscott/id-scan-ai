@@ -30,16 +30,16 @@ export const Icon: FC<{
 const cn_i = prettyCns("Icon", {
   root: css`
     user-select: none;
+    text-align: center;
     align-items: center;
     justify-content: end;
-    text-align: center;
     height: calc(var(--line-height) * 1em);
   `,
   svg: css`
-    width: 1.2em;
-    height: 1.2em;
     fill: currentcolor;
     stroke: transparent;
     animation: var(--anim);
+    width: calc(var(--line-height) * 1em);
+    height: calc(var(--line-height) * 1em);
   `,
 })

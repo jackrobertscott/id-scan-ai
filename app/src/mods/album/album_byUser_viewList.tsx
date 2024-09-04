@@ -53,7 +53,7 @@ export const ListAlbumByUserView = () => {
               options={albums.map((album) => ({
                 key: album.id,
                 label: album.name,
-                description: album.venue.name,
+                desc: album.venue.name,
                 onClick: () => navigate(`/album/${album.id.slice(4)}`),
               }))}
             />

@@ -11,8 +11,8 @@ import {Fragment, useState} from "react"
 import {useNavigate} from "react-router-dom"
 import {prettyCns} from "../utils/classNames"
 import {Icon} from "./Icon"
-import {MainMenu} from "./MainMenu"
 import {Modal} from "./Modal"
+import {MainMenu} from "../mods/root/root_mainMenu"
 
 export type IconBarProps = {}
 

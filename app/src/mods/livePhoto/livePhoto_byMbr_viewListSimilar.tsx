@@ -86,8 +86,8 @@ export const ListSimilarPatronByMemberView = ({
             <ComingSoon
               render={(doShow) => (
                 <Button
-                  label="Upload A File"
                   // variant="grey"
+                  label="Upload A File"
                   onClick={doShow}
                 />
               )}

@@ -2,6 +2,7 @@ import {css} from "@emotion/css"
 import {mdiClose} from "@mdi/js"
 import {FC, useEffect, useState} from "react"
 import {DATETIME_DAYS, DATETIME_MONTHS} from "../consts/DATETIME"
+import {gcn} from "../gcn"
 import {toCapitalCase} from "../utils/changeCase"
 import {prettyCns} from "../utils/classNames"
 import {Button} from "./Button"
@@ -58,9 +59,7 @@ export const InputDate: FC<{
             onClick={() => doShow()}
             className={cn_id.trigger}
             style={{
-              color: currentDate
-                ? "hsl(0, 0%, 100%)"
-                : "hsl(0, 0%, 100%, 0.25)",
+              color: currentDate ? "hsl(0, 0%, 100%)" : "var(--fnt-clr-plc)",
             }}>
             {currentDate
               ? formatSimpleDate(currentDate, includeTime)
@@ -190,6 +189,7 @@ const cn_id = prettyCns("InputDate", {
     flex-direction: row;
   `,
   trigger: css`
+    ${gcn.elevate}
     flex-grow: 1;
     cursor: default;
     user-select: none;
@@ -251,13 +251,13 @@ const DayGrid: FC<{
 
 const cn_dg = prettyCns("DayGrid", {
   root: css`
+    gap: 1rem;
     flex-grow: 1;
     display: grid;
     overflow: hidden;
     user-select: none;
     text-align: center;
     grid-template-columns: repeat(7, 1fr);
-    gap: 1rem;
   `,
   dayName: css`
     padding: 10px;
@@ -284,7 +284,7 @@ const DateCell: FC<{
           ? "hsl(0, 100%, 50%)"
           : inMonth
           ? "hsl(0, 0%, 100%)"
-          : "hsl(0, 0%, 100%, 0.25)",
+          : "var(--fnt-clr-plc)",
         backgroundColor: isCur ? "hsl(270, 100%, 50%, 0.5)" : undefined,
       }}
       onClick={() => {
