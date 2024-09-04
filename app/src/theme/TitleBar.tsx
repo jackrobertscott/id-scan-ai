@@ -127,7 +127,6 @@ const cn_tb = prettyCns("TitleBar", {
     gap: var(--gap-regular);
     padding: var(--padding-small);
     transition: var(--hover-timing);
-    border-radius: var(--radius-regular);
     :hover:not(:active) {
       color: hsl(0, 0%, 100%);
       background-color: hsl(0, 0%, 100%, 0.1);

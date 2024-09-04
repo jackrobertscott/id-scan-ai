@@ -98,9 +98,6 @@ const cn_iso = prettyCns("InputSelectOption", {
     transition: var(--hover-timing);
     padding: var(--padding-regular);
     gap: var(--gap-regular);
-    :not(:last-child) {
-      border-bottom: var(--border-regular);
-    }
     :hover:not(:active) {
       background-color: hsl(0, 0%, 100%, 0.05);
     }

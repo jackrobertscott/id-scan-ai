@@ -2,7 +2,7 @@ import {css} from "@emotion/css"
 import {FC, ReactNode} from "react"
 import {MEDIA_WIDTH_MOBILE} from "../consts/MEDIA_SIZES"
 import {gcn} from "../gcn"
-import {jn_cn, prettyCns} from "../utils/classNames"
+import {prettyCns} from "../utils/classNames"
 
 export const Container: FC<{
   overlay?: boolean
@@ -10,7 +10,10 @@ export const Container: FC<{
   width?: string
 }> = ({children, width = "20rem", overlay}) => {
   return (
-    <div className={jn_cn([cn_c.root, gcn.elevate])} style={{"--width": width}}>
+    <div
+      className={cn_c.root}
+      style={{"--width": width}}
+      data-overlay={overlay}>
       <div className={cn_c.hideScrollbarOverflow}>{children}</div>
     </div>
   )
@@ -18,28 +21,17 @@ export const Container: FC<{
 
 const cn_c = prettyCns("Container", {
   root: css`
+    ${gcn.elevate}
     overflow: auto;
     width: var(--width);
-    /* border: var(--border-regular); */
-    /* border-radius: var(--radius-large); */
     background-color: hsl(0, 0%, 30%, 1);
     @media (width < ${MEDIA_WIDTH_MOBILE}px) {
       width: 100%;
-      border: none;
-      border-radius: 0;
-    }
-    &[data-overlay] {
-      background-color: var(--bg-color-container);
-      box-shadow: 0 0 1rem 0 hsla(0, 0%, 0%, 0.15);
-      @media (width < ${MEDIA_WIDTH_MOBILE}px) {
+      &[data-overlay="true"] {
         margin-top: 5rem;
-        border-top: var(--border-regular);
-        border-top-left-radius: var(--radius-large);
-        border-top-right-radius: var(--radius-large);
-        /* animation: slideUpAnimation 150ms ease-out; */
       }
     }
-    &:not([data-overlay]) {
+    &:not([data-overlay="true"]) {
       @media (width < ${MEDIA_WIDTH_MOBILE}px) {
         flex-grow: 1;
       }

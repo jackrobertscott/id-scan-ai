@@ -23,8 +23,6 @@ export const Poster = ({icon, title, description, grow}: PosterProps) => {
 const cn_p = prettyCns("Poster", {
   root: css`
     padding: 1rem;
-    border-radius: var(--radius-regular);
-    border: var(--border-regular);
     text-align: center;
   `,
   icon: css`

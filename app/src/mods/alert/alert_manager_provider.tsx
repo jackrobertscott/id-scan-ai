@@ -41,15 +41,7 @@ export const AlertManagerProvider = ({children}: AlertManagerProviderProps) => {
           {alerts.map((alert) => {
             // const bg = getThemeColor({variant: alert.variant})
             return (
-              <div
-                key={alert.id}
-                className={cn_am.alert}
-                style={
-                  {
-                    // "--bg-color": bg.regular,
-                    // "--border": bg.border,
-                  }
-                }>
+              <div key={alert.id} className={cn_am.alert}>
                 <InputStatic label={alert.message} />
                 <InputButton
                   icon={mdiClose}
@@ -80,9 +72,7 @@ const cn_am = prettyCns("AlertManager", {
     display: flex;
     overflow: hidden;
     flex-direction: row;
-    border: var(--border);
     background-color: var(--bg-color);
-    border-radius: var(--radius-regular);
     box-shadow: 0 0 1rem 0 hsla(0, 0%, 0%, 0.25);
     /* animation: fadeInAndDownAnimation 250ms ease-out; */
   `,

@@ -257,7 +257,7 @@ const cn_dg = prettyCns("DayGrid", {
     user-select: none;
     text-align: center;
     grid-template-columns: repeat(7, 1fr);
-    gap: var(--border-regular-width);
+    gap: 1rem;
   `,
   dayName: css`
     padding: 10px;
@@ -306,7 +306,6 @@ const cn_dc = prettyCns("DateCell", {
     justify-content: center;
     padding: var(--padding-regular-y) 0;
     transition: var(--hover-timing);
-    border-radius: var(--radius-regular);
     :hover:not(:active) {
       background-color: hsl(0, 0%, 100%, 0.05);
     }

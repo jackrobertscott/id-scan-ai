@@ -36,10 +36,10 @@ const cn_gg = prettyCns("GridGallery", {
     overflow: auto;
   `,
   grid: css`
+    gap: 1rem;
     display: grid;
     overflow: auto;
     flex-shrink: 0;
-    gap: var(--border-regular-width);
     grid-template-columns: repeat(auto-fill, minmax(var(--min-width), 1fr));
   `,
 })
@@ -78,7 +78,6 @@ const cn_gi = prettyCns("gallery-item", {
     user-select: none;
     position: relative;
     min-height: var(--min-height);
-    box-shadow: 0 0 0 var(--border-regular-width) var(--border-regular-color);
   `,
   imageRow: css`
     flex-grow: 1;

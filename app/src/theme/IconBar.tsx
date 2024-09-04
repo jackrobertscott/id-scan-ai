@@ -67,7 +67,6 @@ const cn_ib = prettyCns("IconBar", {
   root: css`
     padding: 0.5rem;
     flex-direction: row;
-    border-top: var(--border-regular);
   `,
 })
 
@@ -99,7 +98,6 @@ const cn_ibo = prettyCns("IconBarOption", {
     color: hsl(0, 0%, 100%, 0.75);
     padding: var(--padding-small-y) 0;
     font-size: var(--font-size-small);
-    border-radius: var(--radius-small);
     :hover:not(:active) {
       color: hsl(0, 0%, 100%);
       background-color: hsl(0, 0%, 100%, 0.05);

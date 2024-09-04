@@ -56,7 +56,6 @@ const cn_it = prettyCns("InputToggle", {
     transition: var(--hover-timing);
     width: calc(var(--line-height) * 1rem);
     height: calc(var(--line-height) * 1rem);
-    border-radius: var(--radius-regular);
     justify-content: center;
     align-items: center;
     font-size: 0.75rem;

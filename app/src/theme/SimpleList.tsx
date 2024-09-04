@@ -38,9 +38,6 @@ const cn_sl = prettyCns("SimpleList", {
     flex-shrink: 0;
     max-width: 100%;
     overflow: auto;
-    & > *:not(:last-child) {
-      border-bottom: var(--border-regular);
-    }
   `,
 })
 
@@ -114,7 +111,6 @@ const cn = prettyCns("ListItem", {
     color: hsl(0, 0%, 100%, 0.5);
     width: calc(var(--line-height) * 1rem);
     height: calc(var(--line-height) * 1rem);
-    border-radius: var(--radius-regular);
     font-size: var(--font-size-small);
     transition: var(--hover-timing);
     :hover:not(:active) {
