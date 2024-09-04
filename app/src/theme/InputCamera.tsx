@@ -85,6 +85,8 @@ const cn_ic = prettyCns("InputCamera", {
     overflow: hidden;
   `,
   video: css`
+    width: 100%;
+    flex-basis: 0;
     flex-grow: 1;
     max-width: 100%;
     max-height: 100%;

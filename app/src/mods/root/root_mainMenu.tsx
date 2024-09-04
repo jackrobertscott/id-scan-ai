@@ -75,7 +75,6 @@ export const MainMenu: FC<{
                 icon: mdiCamera,
                 label: "New Scan",
                 path: "/new-scan",
-                desc: "Scan a new patron",
               },
               {
                 icon: mdiHistory,

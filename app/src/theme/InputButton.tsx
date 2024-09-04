@@ -18,6 +18,7 @@ export const InputButton: FC<{
   return (
     <button
       onClick={canClick ? onClick : undefined}
+      data-can-click={canClick}
       className={jn_cn([
         cn_ib.container,
         grow && gcn.grow,
@@ -54,6 +55,11 @@ const cn_ib = prettyCns("InputButton", {
     padding: var(--pad-r);
     transition: var(--hover-timing);
     color: hsl(0, 0%, 100%, var(--text-opacity));
-    background-color: var(--bg-color, var(--lgt-clr));
+    &[data-can-click="true"] {
+      background-color: var(--bg-color, var(--lgt-clr));
+    }
+    &:not([data-can-click="true"]) {
+      background-color: hsl(0, 0%, 0%, 0.5);
+    }
   `,
 })

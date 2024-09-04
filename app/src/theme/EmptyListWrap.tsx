@@ -29,7 +29,7 @@ export const EmptyListWrap = <T extends any[]>({
 
 const cn_elw = prettyCns("EmptyListWrap", {
   root: css`
-    ${gcn.elevate}
+    /* ${gcn.elevate} */
     text-align: center;
     padding: var(--pad-r);
     color: var(--fnt-clr-3rd);

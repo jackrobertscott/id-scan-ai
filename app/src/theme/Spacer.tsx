@@ -1,14 +1,18 @@
 import {css} from "@emotion/css"
 import {FC, ReactNode} from "react"
-import {prettyCns} from "../utils/classNames"
+import {jn_cn, prettyCns} from "../utils/classNames"
 
 export const Spacer: FC<{
   children?: ReactNode
   direction?: "row" | "column"
   nested?: boolean
-}> = ({children, direction, nested}) => {
+  className?: string
+}> = ({children, direction, nested, className}) => {
   return (
-    <div data-nested={nested} data-direction={direction} className={cn_s.root}>
+    <div
+      data-nested={nested}
+      data-direction={direction}
+      className={jn_cn(cn_s.root, className)}>
       {children}
     </div>
   )

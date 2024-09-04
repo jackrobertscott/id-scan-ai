@@ -71,25 +71,25 @@ const cn_p = prettyCns("Popup", {
     z-index: 1000;
     overflow: auto;
     position: absolute;
+    background-color: hsla(0, 0%, 0%, 0.5);
     height: 100%;
     width: 100%;
   `,
   container: css`
     position: absolute;
-    translate: 0.5rem calc(100% - 0.5rem);
+    translate: 0 calc(100%);
   `,
   content: css`
-    margin: -20px;
-    padding: 20px;
+    margin: -1rem;
+    padding: 1rem;
   `,
 })
 
 export const PopupContainer: FC<{
   minWidth?: string | null
   maxHeight?: string | null
-  bigRadius?: boolean
   children: ReactNode
-}> = ({minWidth, maxHeight = "100vh", bigRadius, children}) => {
+}> = ({minWidth, maxHeight = "100vh", children}) => {
   return (
     <div
       className={cn_pc.root}
@@ -104,11 +104,11 @@ export const PopupContainer: FC<{
 
 const cn_pc = prettyCns("PopupContainer", {
   root: css`
-    flex-shrink: 0;
     overflow: auto;
+    flex-shrink: 0;
     min-width: var(--min-width, auto);
     min-height: var(--min-height);
-    background-color: var(--bg-color-container);
+    background-color: var(--bg-clr);
     box-shadow: 0 0 1rem 0 hsla(0, 0%, 0%, 0.15);
   `,
   overflow: css`

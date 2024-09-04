@@ -27,7 +27,7 @@ export const InputSelect = <R extends boolean, T = string>({
   onValue,
   options,
   placeholder = "Select",
-  minWidth = "15rem",
+  minWidth = "5rem",
   required,
 }: InputSelectProps<R, T>) => {
   const currentOption = options.find((i) => i.value === value)
@@ -90,6 +90,7 @@ export const InputSelectOption = <R extends boolean, T = string>({
 
 const cn_iso = prettyCns("InputSelectOption", {
   root: css`
+    ${gcn.hoverClick}
     flex-shrink: 0;
     user-select: none;
     flex-direction: row;
@@ -114,7 +115,7 @@ export type InputSelectLabelProps<T = string> = {
   loading?: boolean
 }
 
-export const InputSelectLabel = <T = string,>({
+export const InputSelectLabel = <T extends any = string>({
   triggerRef,
   onClick,
   currentOption,

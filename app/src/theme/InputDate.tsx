@@ -75,8 +75,8 @@ export const InputDate: FC<{
         </div>
       )}
       renderPopupContent={(doHide) => (
-        <PopupContainer minWidth="20rem" maxHeight={null} bigRadius>
-          <Spacer>
+        <PopupContainer minWidth="20rem" maxHeight={null}>
+          <Spacer className={gcn.elevate}>
             <Spacer direction="row" nested>
               <Field grow label="Month">
                 <InputSelect
@@ -251,7 +251,6 @@ const DayGrid: FC<{
 
 const cn_dg = prettyCns("DayGrid", {
   root: css`
-    gap: 1rem;
     flex-grow: 1;
     display: grid;
     overflow: hidden;
@@ -260,9 +259,10 @@ const cn_dg = prettyCns("DayGrid", {
     grid-template-columns: repeat(7, 1fr);
   `,
   dayName: css`
-    padding: 10px;
+    ${gcn.elevate}
     text-align: center;
     justify-content: center;
+    padding: var(--pad-r-y) 0;
   `,
 })
 
@@ -301,6 +301,7 @@ const DateCell: FC<{
 
 const cn_dc = prettyCns("DateCell", {
   root: css`
+    ${gcn.hoverClick}
     user-select: none;
     text-align: center;
     justify-content: center;

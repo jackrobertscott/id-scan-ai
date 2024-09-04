@@ -2,32 +2,29 @@ import {css} from "@emotion/css"
 import {FC} from "react"
 import {Outlet} from "react-router-dom"
 import {MEDIA_WIDTH_MOBILE} from "../consts/MEDIA_SIZES"
+import {MainMenu} from "../mods/root/root_mainMenu"
 import {prettyCns} from "../utils/classNames"
-import {Center} from "./Center"
 import {Container} from "./Container"
 import {IconBar} from "./IconBar"
 import {useMedia} from "./MediaProvider"
-import {MainMenu} from "../mods/root/root_mainMenu"
 
 export const DashboardLayout: FC = () => {
   const media = useMedia()
 
   return (
-    <Center>
-      <div className={cn_dl.root}>
-        {!media.isMobile() && (
-          <Container>
-            <MainMenu />
-          </Container>
-        )}
-        <Container>
-          <div className={cn_dl.body}>
-            <Outlet />
-          </div>
-          {media.isMobile() && <IconBar />}
+    <div className={cn_dl.root}>
+      {!media.isMobile() && (
+        <Container width="20rem">
+          <MainMenu />
         </Container>
-      </div>
-    </Center>
+      )}
+      <Container fullWidth={true}>
+        <div className={cn_dl.body}>
+          <Outlet />
+        </div>
+        {media.isMobile() && <IconBar />}
+      </Container>
+    </div>
   )
 }
 
@@ -35,8 +32,8 @@ const cn_dl = prettyCns("DashboardLayout", {
   root: css`
     gap: 1rem;
     padding: 1rem;
-    height: 40rem;
-    max-height: 100vh;
+    /* height: 40rem; */
+    /* max-height: 100vh; */
     flex-direction: row;
     overflow: auto;
     @media (width < ${MEDIA_WIDTH_MOBILE}px) {

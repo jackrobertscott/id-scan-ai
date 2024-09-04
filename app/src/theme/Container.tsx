@@ -7,13 +7,15 @@ import {prettyCns} from "../utils/classNames"
 export const Container: FC<{
   overlay?: boolean
   children?: ReactNode
+  fullWidth?: boolean
   width?: string
-}> = ({children, width = "20rem", overlay}) => {
+}> = ({overlay, children, fullWidth, width = "40rem"}) => {
   return (
     <div
       className={cn_c.root}
-      style={{"--width": width}}
-      data-overlay={overlay}>
+      style={{"--width": fullWidth ? "auto" : width}}
+      data-overlay={overlay}
+      data-full={fullWidth}>
       <div className={cn_c.hideScrollbarOverflow}>{children}</div>
     </div>
   )
@@ -34,6 +36,9 @@ const cn_c = prettyCns("Container", {
       @media (width < ${MEDIA_WIDTH_MOBILE}px) {
         flex-grow: 1;
       }
+    }
+    &[data-full="true"] {
+      flex-grow: 1;
     }
   `,
   hideScrollbarOverflow: css`
