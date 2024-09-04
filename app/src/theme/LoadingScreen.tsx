@@ -26,7 +26,7 @@ const cn_ls = prettyCns("LoadingScreen", {
   root: css`
     flex-grow: 1;
     font-size: 2rem;
-    color: hsl(0, 0%, 100%, 0.5);
+    color: var(--fnt-clr-3rd);
     justify-content: center;
     align-items: center;
     text-align: center;

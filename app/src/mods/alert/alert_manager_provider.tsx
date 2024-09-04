@@ -37,9 +37,8 @@ export const AlertManagerProvider = ({children}: AlertManagerProviderProps) => {
       }}>
       {children}
       <Portal>
-        <div className={cn_am.root}>
+        <div className={cn_am.group}>
           {alerts.map((alert) => {
-            // const bg = getThemeColor({variant: alert.variant})
             return (
               <div key={alert.id} className={cn_am.alert}>
                 <InputStatic label={alert.message} />
@@ -57,7 +56,7 @@ export const AlertManagerProvider = ({children}: AlertManagerProviderProps) => {
 }
 
 const cn_am = prettyCns("AlertManager", {
-  root: css`
+  group: css`
     gap: 0.5rem;
     right: 1rem;
     bottom: 1rem;
@@ -72,8 +71,7 @@ const cn_am = prettyCns("AlertManager", {
     display: flex;
     overflow: hidden;
     flex-direction: row;
-    background-color: var(--bg-color);
+    background-color: var(--bg-clr);
     box-shadow: 0 0 1rem 0 hsla(0, 0%, 0%, 0.25);
-    /* animation: fadeInAndDownAnimation 250ms ease-out; */
   `,
 })

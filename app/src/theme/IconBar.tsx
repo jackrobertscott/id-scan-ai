@@ -95,12 +95,12 @@ const cn_ibo = prettyCns("IconBarOption", {
     text-align: center;
     justify-content: center;
     align-items: center;
-    color: hsl(0, 0%, 100%, 0.75);
+    color: var(--fnt-clr-2nd);
     padding: var(--pad-s-y) 0;
-    font-size: var(--font-s);
-    :hover:not(:active) {
-      color: hsl(0, 0%, 100%);
-      background-color: hsl(0, 0%, 100%, 0.05);
+    font-size: var(--fnt-s);
+    &:hover:not(:active) {
+      color: var(--bg-fnt);
+      background-color: var(--lgt-clr);
     }
   `,
 })

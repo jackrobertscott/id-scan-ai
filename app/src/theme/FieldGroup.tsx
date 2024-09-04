@@ -56,7 +56,7 @@ const cn_fg = prettyCns("FieldGroup", {
   head: css`
     flex-direction: row;
     padding: 0 calc(1rem - var(--pad-s-x));
-    color: hsl(0, 0%, 100%, 0.5);
+    color: var(--fnt-clr-3rd);
   `,
   label: css`
     flex-grow: 1;
@@ -68,8 +68,8 @@ const cn_fg = prettyCns("FieldGroup", {
     gap: var(--gap-s);
     padding: var(--pad-s);
     transition: var(--hover-timing);
-    :hover:not(:active) {
-      background-color: hsl(0, 0%, 100%, 0.05);
+    &:hover:not(:active) {
+      background-color: var(--lgt-clr);
     }
   `,
   body: css`

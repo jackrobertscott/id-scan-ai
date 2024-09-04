@@ -31,13 +31,13 @@ export const EmptyListWrap = <T extends any[]>({
 const cn_elw = prettyCns("EmptyListWrap", {
   root: css`
     text-align: center;
-    color: hsl(0, 0%, 100%, 0.5);
+    color: var(--fnt-clr-3rd);
     padding: var(--pad-r);
     &[data-nested] {
       flex-grow: 1;
     }
     &:not([data-nested]) {
-      background-color: hsl(0, 0%, 100%, 0.05);
+      background-color: var(--lgt-clr);
     }
   `,
 })

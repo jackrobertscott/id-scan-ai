@@ -1,6 +1,7 @@
 import {css} from "@emotion/css"
 import {mdiClose, mdiContentSave, mdiPlus} from "@mdi/js"
 import {Fragment, useState} from "react"
+import {gcn} from "../gcn"
 import {prettyCns} from "../utils/classNames"
 import {Button} from "./Button"
 import {Icon} from "./Icon"
@@ -108,13 +109,10 @@ export const TitleBar = ({title, options = []}: TitleBarProps) => {
 
 const cn_tb = prettyCns("TitleBar", {
   root: css`
-    padding: 0 0.25rem;
     flex-direction: row;
-    color: hsl(0, 0%, 100%, 0.5);
   `,
   title: css`
     flex-grow: 1;
-    color: hsl(0, 0%, 100%, 0.75);
     padding: var(--pad-s);
   `,
   options: css`
@@ -122,12 +120,13 @@ const cn_tb = prettyCns("TitleBar", {
     gap: var(--gap-r);
   `,
   option: css`
+    ${gcn.hoverClick}
     user-select: none;
     flex-direction: row;
-    gap: var(--gap-r);
+    gap: var(--gap-s);
     padding: var(--pad-s);
     transition: var(--hover-timing);
-    :hover:not(:active) {
+    &:hover:not(:active) {
       color: hsl(0, 0%, 100%);
       background-color: hsl(0, 0%, 100%, 0.1);
     }

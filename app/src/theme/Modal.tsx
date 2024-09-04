@@ -47,8 +47,8 @@ const cn_m = prettyCns("Modal", {
     position: fixed;
     align-items: safe center;
     justify-content: safe center;
+    background-color: var(--bg-clr);
     z-index: var(--z);
-    background-color: hsl(0, 0%, 0%, 0.5);
     padding: 1rem;
     @media (width < ${MEDIA_WIDTH_MOBILE}px) {
       padding: 0;

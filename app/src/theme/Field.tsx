@@ -57,7 +57,7 @@ const cn_f = prettyCns("Field", {
   `,
   head: css`
     flex-direction: row;
-    color: hsl(0, 0%, 100%, 0.5);
+    color: var(--fnt-clr-3rd);
     padding: 0 var(--pad-r-x);
   `,
   label: css`
@@ -66,17 +66,11 @@ const cn_f = prettyCns("Field", {
   input: css`
     overflow: auto;
     transition: var(--hover-timing);
-    :focus-within {
-      border-color: hsl(220, 100%, 50%);
-      > * {
-        border-color: hsl(220, 100%, 50%);
-      }
-    }
   `,
   foot: css`
     padding: 0 1rem;
-    color: hsl(0, 0%, 100%, 0.5);
-    font-size: var(--font-s);
+    color: var(--fnt-clr-3rd);
+    font-size: var(--fnt-s);
     text-align: center;
   `,
 })

@@ -9,22 +9,23 @@ export const InputButton: FC<{
   grow?: boolean
   icon?: string
   label?: string
-  className?: string
   loading?: boolean
   disabled?: boolean
+  bgColor?: string
   onClick?: () => void
-}> = ({grow, icon, label, className, disabled, loading, onClick}) => {
+}> = ({grow, icon, label, disabled, loading, bgColor, onClick}) => {
   return (
     <button
       onClick={disabled || loading ? undefined : onClick}
       className={jn_cn([
-        className,
         cn_ib.container,
         grow && gcn.grow,
         grow && gcn.zeroBasis,
-        gcn.elevate,
       ])}
-      style={{"--text-opacity": disabled ? 0.5 : 1}}>
+      style={{
+        "--bg-color": bgColor,
+        "--text-opacity": disabled ? 0.5 : 1,
+      }}>
       {loading ? (
         <>
           <div>Loading</div>
@@ -42,6 +43,7 @@ export const InputButton: FC<{
 
 const cn_ib = prettyCns("InputButton", {
   container: css`
+    ${gcn.hoverClick}
     flex-shrink: 0;
     user-select: none;
     flex-direction: row;
@@ -51,5 +53,6 @@ const cn_ib = prettyCns("InputButton", {
     padding: var(--pad-r);
     transition: var(--hover-timing);
     color: hsl(0, 0%, 100%, var(--text-opacity));
+    background-color: var(--bg-color, var(--lgt-clr));
   `,
 })

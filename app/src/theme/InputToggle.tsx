@@ -26,7 +26,7 @@ export const InputToggle = ({
       <div
         className={cn_it.label}
         style={{
-          "--color-text": value ? "hsl(0, 0%, 100%)" : "hsl(0, 0%, 100%, 0.5)",
+          "--color-text": value ? "hsl(0, 0%, 100%)" : "var(--fnt-clr-3rd)",
         }}>
         {getLabel?.(!!value) ?? (value ? "On" : "Off")}
       </div>
@@ -45,7 +45,7 @@ const cn_it = prettyCns("InputToggle", {
     &:not([data-disabled]) {
       transition: var(--hover-timing);
       &:hover:not(:active) {
-        background-color: hsl(0, 0%, 100%, 0.05);
+        background-color: var(--lgt-clr);
         .input-toggle-checkbox {
           background-color: blue;
         }

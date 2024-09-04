@@ -92,8 +92,8 @@ const cn = prettyCns("ListItem", {
     &[data-can-click="true"] {
       user-select: none;
       transition: var(--hover-timing);
-      :hover:not(:active) {
-        background-color: hsl(0, 0%, 100%, 0.05);
+      &:hover:not(:active) {
+        background-color: var(--lgt-clr);
       }
     }
   `,
@@ -108,21 +108,21 @@ const cn = prettyCns("ListItem", {
     user-select: none;
     align-items: center;
     justify-content: center;
-    color: hsl(0, 0%, 100%, 0.5);
+    color: var(--fnt-clr-3rd);
     width: calc(var(--line-height) * 1rem);
     height: calc(var(--line-height) * 1rem);
-    font-size: var(--font-s);
+    font-size: var(--fnt-s);
     transition: var(--hover-timing);
-    :hover:not(:active) {
+    &:hover:not(:active) {
       color: hsl(0, 0%, 100%);
       background-color: hsl(0, 0%, 100%, 0.1);
     }
-    > * {
+    & > * {
       pointer-events: none; // required for click to pass through
     }
   `,
   description: css`
-    color: hsl(0, 0%, 100%, 0.5);
-    font-size: var(--font-s);
+    color: var(--fnt-clr-3rd);
+    font-size: var(--fnt-s);
   `,
 })

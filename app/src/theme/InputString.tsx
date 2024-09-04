@@ -38,8 +38,12 @@ const cn_is = prettyCns("InputString", {
     min-width: 0;
     flex-grow: 1;
     padding: var(--pad-r);
-    ::placeholder {
+    background-color: var(--drk-clr);
+    &::placeholder {
       color: hsl(0, 0%, 100%, 0.25);
+    }
+    &:focus {
+      ${gcn.greenShdw}
     }
   `,
 })

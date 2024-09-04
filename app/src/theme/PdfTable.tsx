@@ -102,17 +102,17 @@ const PdfTableRow = ({columns, nested}: PdfTableRowProps) => {
 const cn_ptr = prettyCns("PdfTableRow", {
   root: css`
     page-break-inside: avoid;
-    :nth-child(2n) {
-      background-color: hsl(0, 0%, 0%, 0.1);
+    &:nth-child(2n) {
+      background-color: var(--drk-clr);
     }
-    :not(:last-child) > td {
+    &:not(:last-child) > td {
       border-bottom: var(--border-pdf);
     }
   `,
   data: css`
     vertical-align: top;
     color: var(--font-color-secondary);
-    :not(:last-child) {
+    &:not(:last-child) {
       border-right: var(--border-pdf);
     }
   `,

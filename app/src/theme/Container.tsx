@@ -24,7 +24,6 @@ const cn_c = prettyCns("Container", {
     ${gcn.elevate}
     overflow: auto;
     width: var(--width);
-    background-color: hsl(0, 0%, 30%, 1);
     @media (width < ${MEDIA_WIDTH_MOBILE}px) {
       width: 100%;
       &[data-overlay="true"] {

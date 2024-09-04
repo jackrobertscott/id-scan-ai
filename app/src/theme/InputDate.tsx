@@ -196,8 +196,8 @@ const cn_id = prettyCns("InputDate", {
     gap: var(--gap-r);
     padding: var(--pad-r);
     transition: var(--hover-timing);
-    :hover:not(:active) {
-      background-color: hsl(0, 0%, 100%, 0.05);
+    &:hover:not(:active) {
+      background-color: var(--lgt-clr);
     }
   `,
 })
@@ -306,8 +306,8 @@ const cn_dc = prettyCns("DateCell", {
     justify-content: center;
     padding: var(--pad-r-y) 0;
     transition: var(--hover-timing);
-    :hover:not(:active) {
-      background-color: hsl(0, 0%, 100%, 0.05);
+    &:hover:not(:active) {
+      background-color: var(--lgt-clr);
     }
   `,
 })

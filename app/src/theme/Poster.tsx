@@ -22,6 +22,7 @@ export const Poster = ({icon, title, description, grow}: PosterProps) => {
 
 const cn_p = prettyCns("Poster", {
   root: css`
+    ${gcn.elevate}
     padding: 1rem;
     text-align: center;
   `,
@@ -34,7 +35,7 @@ const cn_p = prettyCns("Poster", {
     font-size: 1.25rem;
   `,
   description: css`
-    color: hsl(0, 0%, 100%, 0.5);
-    font-size: var(--font-s);
+    color: var(--fnt-clr-3rd);
+    font-size: var(--fnt-s);
   `,
 })

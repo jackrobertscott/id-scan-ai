@@ -67,6 +67,7 @@ export const InputCamera: FC<{
             label={value ? "Retake" : label ?? "Capture"}
             loading={loading || webcam.loading}
             onClick={handleCapture}
+            bgColor="var(--bg-blu)"
           />
         </div>
       )}
@@ -108,7 +109,8 @@ const cn_ic = prettyCns("InputCamera", {
     left: 50%;
     bottom: 1rem;
     position: absolute;
-    transform: translateX(-50%);
     white-space: nowrap;
+    transform: translateX(-50%);
+    background-color: var(--bg-clr);
   `,
 })

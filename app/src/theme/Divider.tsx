@@ -8,7 +8,7 @@ export const Divider = () => {
 
 const cn_d = prettyCns("Divider", {
   root: css`
-    ${gcn.divide}
+    ${gcn.divider}
     flex-shrink: 0;
   `,
 })

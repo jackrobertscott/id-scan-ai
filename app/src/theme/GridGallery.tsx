@@ -93,7 +93,7 @@ const cn_gi = prettyCns("gallery-item", {
     gap: 0.5rem;
     padding: 0.25rem;
     background-color: hsl(0, 0%, 0%, 0.5);
-    font-size: var(--font-s);
+    font-size: var(--fnt-s);
     position: absolute;
     text-align: center;
     bottom: 0;
