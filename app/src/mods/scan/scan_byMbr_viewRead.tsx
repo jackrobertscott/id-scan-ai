@@ -121,40 +121,43 @@ export const ReadScanByMemberView = ({
                     onClick={() => setShowTagCreate(true)}
                   />
 
-                  <Field
-                    // bg={scan.faceSimilarity >= 80 ? "green" : "red"}
-                    label="Face ID Comparison">
-                    <InputStatic
-                      label={`${Math.round(scan.faceSimilarity)}% Similary`}
-                    />
-                  </Field>
+                  <Spacer direction="row" nested={true} collapse={true}>
+                    <Field
+                      // bg={scan.faceSimilarity >= 80 ? "green" : "red"}
+                      label="Face ID Comparison">
+                      <InputStatic
+                        label={`${Math.round(scan.faceSimilarity)}% Similary`}
+                      />
+                    </Field>
 
-                  <Field
-                    // bg={dobDiff && dobDiff[0] > 18 ? "green" : "red"}
-                    label="Age">
-                    <InputStatic
-                      label={
-                        dobDiff
-                          ? `${dobDiff[0]} years ${dobDiff[1]} months ${dobDiff[2]} days`
-                          : "Unknown"
-                      }
-                    />
-                  </Field>
+                    <Field
+                      // bg={dobDiff && dobDiff[0] > 18 ? "green" : "red"}
+                      label="Age">
+                      <InputStatic
+                        label={
+                          dobDiff
+                            ? `${dobDiff[0]} years ${dobDiff[1]} months ${dobDiff[2]} days`
+                            : "Unknown"
+                        }
+                      />
+                    </Field>
+                  </Spacer>
 
-                  <Field label="Patron Photo">
-                    <DisplayImage
-                      alt="Patron Photo"
-                      source={scan.livePhotoUrl}
-                    />
-                  </Field>
+                  <Spacer direction="row" nested={true} collapse={true}>
+                    <Field label="Patron Photo">
+                      <DisplayImage
+                        alt="Patron Photo"
+                        source={scan.livePhotoUrl}
+                      />
+                    </Field>
 
-                  <Field label="Document Photo">
-                    <DisplayImage
-                      alt="Document Photo"
-                      source={scan.docPhotoUrl}
-                    />
-                  </Field>
-
+                    <Field label="Document Photo">
+                      <DisplayImage
+                        alt="Document Photo"
+                        source={scan.docPhotoUrl}
+                      />
+                    </Field>
+                  </Spacer>
                   <ReadScanFace faceMeta={scan.liveFaceMeta} />
 
                   <ReadScanDocument documentMeta={scan.docMeta} />

@@ -43,35 +43,45 @@ export const ReadSessionByUserView = ({
           render={({session}) => {
             return (
               <Fragment>
-                <Field label="Created date">
-                  <InputStatic label={session.createdDate} />
-                </Field>
+                <Spacer direction="row" nested={true} collapse={true}>
+                  <Spacer direction="column" nested={true}>
+                    <Field label="Created date">
+                      <InputStatic label={session.createdDate} />
+                    </Field>
 
-                <Field label="Ended date">
-                  <InputStatic label={session.endedDate} />
-                </Field>
+                    <Field label="Ended date">
+                      <InputStatic label={session.endedDate} />
+                    </Field>
 
-                <Field label="Device">
-                  <InputStatic label={session.device} />
-                </Field>
+                    <Field label="Device">
+                      <InputStatic label={session.device} />
+                    </Field>
+                  </Spacer>
 
-                <Field label="OS">
-                  <InputStatic
-                    label={[session.os, session.osVersion].join(" ")}
-                  />
-                </Field>
+                  <Spacer direction="column" nested={true}>
+                    <Field label="OS">
+                      <InputStatic
+                        label={[session.os, session.osVersion].join(" ")}
+                      />
+                    </Field>
 
-                <Field label="Browser">
-                  <InputStatic
-                    label={[session.browser, session.browserVersion].join(" ")}
-                  />
-                </Field>
+                    <Field label="Browser">
+                      <InputStatic
+                        label={[session.browser, session.browserVersion].join(
+                          " "
+                        )}
+                      />
+                    </Field>
 
-                <Field label="Engine">
-                  <InputStatic
-                    label={[session.engine, session.engineVersion].join(" ")}
-                  />
-                </Field>
+                    <Field label="Engine">
+                      <InputStatic
+                        label={[session.engine, session.engineVersion].join(
+                          " "
+                        )}
+                      />
+                    </Field>
+                  </Spacer>
+                </Spacer>
 
                 {!session.endedDate && (
                   <QuestionModal

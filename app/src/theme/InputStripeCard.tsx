@@ -1,6 +1,7 @@
 import {css} from "@emotion/css"
 import {StripeCardElement, Token} from "@stripe/stripe-js"
 import {FC, MutableRefObject, useEffect, useRef} from "react"
+import {gcn} from "../gcn"
 import {prettyCns} from "../utils/classNames"
 
 export const InputStripeCard: FC<{
@@ -67,6 +68,7 @@ const cn_isc = prettyCns("InputStripeCard", {
   root: css`
     flex-grow: 1;
     padding: var(--pad-r);
+    ${gcn.depress}
   `,
   placeholder: css`
     height: calc(var(--line-height) * 1rem);

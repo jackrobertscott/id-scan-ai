@@ -14,7 +14,7 @@ export const DashboardLayout: FC = () => {
   return (
     <div className={cn_dl.root}>
       {!media.isMobile() && (
-        <Container width="20rem">
+        <Container width="17rem" noShrink>
           <MainMenu />
         </Container>
       )}
@@ -32,6 +32,7 @@ const cn_dl = prettyCns("DashboardLayout", {
   root: css`
     gap: 1rem;
     padding: 1rem;
+    flex-grow: 1;
     /* height: 40rem; */
     /* max-height: 100vh; */
     flex-direction: row;
@@ -42,7 +43,6 @@ const cn_dl = prettyCns("DashboardLayout", {
       height: 100%;
       max-height: 100%;
       flex-direction: column;
-      flex-grow: 1;
     }
   `,
   body: css`

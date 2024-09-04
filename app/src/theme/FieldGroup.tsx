@@ -69,7 +69,7 @@ const cn_fg = prettyCns("FieldGroup", {
     padding: var(--pad-s);
     transition: var(--hover-timing);
     &:hover:not(:active) {
-      background-color: var(--lgt-clr);
+      color: var(--bg-fnt);
     }
   `,
   body: css`

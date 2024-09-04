@@ -27,18 +27,16 @@ export const InputStatic = ({
       <div className={cn_is.body}>
         {children}
         {icon && <Icon icon={icon} />}
-        {label !== undefined && (
-          <div className={cn_is.label}>
-            {label instanceof Date
-              ? label.toLocaleString("en-au", {
-                  dateStyle: "medium",
-                  timeStyle: "medium",
-                })
-              : label === null
-              ? ""
-              : label}
-          </div>
-        )}
+        <div className={cn_is.label}>
+          {label instanceof Date
+            ? label.toLocaleString("en-au", {
+                dateStyle: "medium",
+                timeStyle: "medium",
+              })
+            : label === null || label === undefined
+            ? ""
+            : label}
+        </div>
       </div>
       {label && canCopy && navigator.clipboard && (
         <InputButton
