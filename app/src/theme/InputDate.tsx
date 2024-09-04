@@ -193,8 +193,8 @@ const cn_id = prettyCns("InputDate", {
     flex-grow: 1;
     cursor: default;
     user-select: none;
-    gap: var(--gap-regular);
-    padding: var(--padding-regular);
+    gap: var(--gap-r);
+    padding: var(--pad-r);
     transition: var(--hover-timing);
     :hover:not(:active) {
       background-color: hsl(0, 0%, 100%, 0.05);
@@ -304,7 +304,7 @@ const cn_dc = prettyCns("DateCell", {
     user-select: none;
     text-align: center;
     justify-content: center;
-    padding: var(--padding-regular-y) 0;
+    padding: var(--pad-r-y) 0;
     transition: var(--hover-timing);
     :hover:not(:active) {
       background-color: hsl(0, 0%, 100%, 0.05);

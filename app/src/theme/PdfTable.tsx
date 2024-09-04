@@ -72,8 +72,8 @@ const cn_pth = prettyCns("PdfTableHead", {
   label: css`
     flex-direction: row;
     justify-content: space-between;
-    padding: var(--padding-small);
-    gap: var(--gap-small);
+    padding: var(--pad-s);
+    gap: var(--gap-s);
   `,
 })
 
@@ -119,8 +119,8 @@ const cn_ptr = prettyCns("PdfTableRow", {
   text: css`
     white-space: pre-line;
     flex-direction: row;
-    padding: var(--padding-small);
-    gap: var(--gap-small);
+    padding: var(--pad-s);
+    gap: var(--gap-s);
     white-space: pre-line;
   `,
 })
@@ -146,7 +146,7 @@ const cn_ptf = prettyCns("PdfTableFoot", {
   `,
   label: css`
     flex-direction: row;
-    padding: var(--padding-small);
-    gap: var(--gap-small);
+    padding: var(--pad-s);
+    gap: var(--gap-s);
   `,
 })

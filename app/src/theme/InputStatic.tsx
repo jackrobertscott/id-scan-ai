@@ -64,8 +64,8 @@ const cn_is = prettyCns("InputStatic", {
     flex-grow: 1;
     overflow: auto;
     flex-direction: row;
-    gap: var(--gap-regular);
-    padding: var(--padding-regular);
+    gap: var(--gap-r);
+    padding: var(--pad-r);
   `,
   label: css`
     min-height: calc(var(--line-height) * 1rem);

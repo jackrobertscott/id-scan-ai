@@ -58,7 +58,7 @@ const cn_f = prettyCns("Field", {
   head: css`
     flex-direction: row;
     color: hsl(0, 0%, 100%, 0.5);
-    padding: 0 var(--padding-regular-x);
+    padding: 0 var(--pad-r-x);
   `,
   label: css`
     flex-grow: 1;
@@ -76,7 +76,7 @@ const cn_f = prettyCns("Field", {
   foot: css`
     padding: 0 1rem;
     color: hsl(0, 0%, 100%, 0.5);
-    font-size: var(--font-size-small);
+    font-size: var(--font-s);
     text-align: center;
   `,
 })

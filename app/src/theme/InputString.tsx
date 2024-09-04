@@ -37,7 +37,7 @@ const cn_is = prettyCns("InputString", {
     width: 0; // don't use "100%" or "auto"
     min-width: 0;
     flex-grow: 1;
-    padding: var(--padding-regular);
+    padding: var(--pad-r);
     ::placeholder {
       color: hsl(0, 0%, 100%, 0.25);
     }

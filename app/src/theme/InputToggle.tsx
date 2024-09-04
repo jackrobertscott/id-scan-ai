@@ -38,9 +38,9 @@ const cn_it = prettyCns("InputToggle", {
   root: css`
     flex-grow: 1;
     flex-direction: row;
-    gap: var(--gap-regular);
-    padding: var(--padding-regular);
-    padding-left: var(--padding-regular-y);
+    gap: var(--gap-r);
+    padding: var(--pad-r);
+    padding-left: var(--pad-r-y);
     user-select: none;
     &:not([data-disabled]) {
       transition: var(--hover-timing);

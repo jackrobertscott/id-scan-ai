@@ -96,8 +96,8 @@ const cn_ibo = prettyCns("IconBarOption", {
     justify-content: center;
     align-items: center;
     color: hsl(0, 0%, 100%, 0.75);
-    padding: var(--padding-small-y) 0;
-    font-size: var(--font-size-small);
+    padding: var(--pad-s-y) 0;
+    font-size: var(--font-s);
     :hover:not(:active) {
       color: hsl(0, 0%, 100%);
       background-color: hsl(0, 0%, 100%, 0.05);

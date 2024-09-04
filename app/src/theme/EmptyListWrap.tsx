@@ -32,7 +32,7 @@ const cn_elw = prettyCns("EmptyListWrap", {
   root: css`
     text-align: center;
     color: hsl(0, 0%, 100%, 0.5);
-    padding: var(--padding-regular);
+    padding: var(--pad-r);
     &[data-nested] {
       flex-grow: 1;
     }

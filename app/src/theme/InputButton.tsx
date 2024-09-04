@@ -47,8 +47,8 @@ const cn_ib = prettyCns("InputButton", {
     flex-direction: row;
     justify-content: center;
     text-align: center;
-    gap: var(--gap-regular);
-    padding: var(--padding-regular);
+    gap: var(--gap-r);
+    padding: var(--pad-r);
     transition: var(--hover-timing);
     color: hsl(0, 0%, 100%, var(--text-opacity));
   `,

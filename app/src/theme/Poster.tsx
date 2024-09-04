@@ -35,6 +35,6 @@ const cn_p = prettyCns("Poster", {
   `,
   description: css`
     color: hsl(0, 0%, 100%, 0.5);
-    font-size: var(--font-size-small);
+    font-size: var(--font-s);
   `,
 })

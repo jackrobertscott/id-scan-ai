@@ -88,7 +88,7 @@ const cn = prettyCns("ListItem", {
   trigger: css`
     flex-grow: 1;
     cursor: default;
-    padding: var(--padding-regular);
+    padding: var(--pad-r);
     &[data-can-click="true"] {
       user-select: none;
       transition: var(--hover-timing);
@@ -111,7 +111,7 @@ const cn = prettyCns("ListItem", {
     color: hsl(0, 0%, 100%, 0.5);
     width: calc(var(--line-height) * 1rem);
     height: calc(var(--line-height) * 1rem);
-    font-size: var(--font-size-small);
+    font-size: var(--font-s);
     transition: var(--hover-timing);
     :hover:not(:active) {
       color: hsl(0, 0%, 100%);
@@ -123,6 +123,6 @@ const cn = prettyCns("ListItem", {
   `,
   description: css`
     color: hsl(0, 0%, 100%, 0.5);
-    font-size: var(--font-size-small);
+    font-size: var(--font-s);
   `,
 })

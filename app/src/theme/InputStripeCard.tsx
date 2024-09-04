@@ -66,7 +66,7 @@ export const InputStripeCard: FC<{
 const cn_isc = prettyCns("InputStripeCard", {
   root: css`
     flex-grow: 1;
-    padding: var(--padding-regular);
+    padding: var(--pad-r);
   `,
   placeholder: css`
     height: calc(var(--line-height) * 1rem);

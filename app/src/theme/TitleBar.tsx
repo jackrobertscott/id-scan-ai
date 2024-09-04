@@ -115,17 +115,17 @@ const cn_tb = prettyCns("TitleBar", {
   title: css`
     flex-grow: 1;
     color: hsl(0, 0%, 100%, 0.75);
-    padding: var(--padding-small);
+    padding: var(--pad-s);
   `,
   options: css`
     flex-direction: row;
-    gap: var(--gap-regular);
+    gap: var(--gap-r);
   `,
   option: css`
     user-select: none;
     flex-direction: row;
-    gap: var(--gap-regular);
-    padding: var(--padding-small);
+    gap: var(--gap-r);
+    padding: var(--pad-s);
     transition: var(--hover-timing);
     :hover:not(:active) {
       color: hsl(0, 0%, 100%);

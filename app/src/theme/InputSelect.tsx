@@ -96,8 +96,8 @@ const cn_iso = prettyCns("InputSelectOption", {
     white-space: pre-line;
     justify-content: space-between;
     transition: var(--hover-timing);
-    padding: var(--padding-regular);
-    gap: var(--gap-regular);
+    padding: var(--pad-r);
+    gap: var(--gap-r);
     :hover:not(:active) {
       background-color: hsl(0, 0%, 100%, 0.05);
     }
@@ -160,8 +160,8 @@ const cn_isl = prettyCns("InputSelectLabel", {
     overflow: hidden;
     user-select: none;
     white-space: pre-line;
-    gap: var(--gap-regular);
-    padding: var(--padding-regular);
+    gap: var(--gap-r);
+    padding: var(--pad-r);
     transition: var(--hover-timing);
     :hover:not(:active) {
       background-color: hsl(0, 0%, 100%, 0.05);
