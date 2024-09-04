@@ -1,6 +1,6 @@
 import {css} from "@emotion/css"
 import {gcn} from "../gcn"
-import {createCns, jn_cns} from "../utils/classNames"
+import {jn_cn, prettyCns} from "../utils/classNames"
 import {Icon} from "./Icon"
 
 export type PosterProps = {
@@ -12,7 +12,7 @@ export type PosterProps = {
 
 export const Poster = ({icon, title, description, grow}: PosterProps) => {
   return (
-    <div className={jn_cns([cn_p.root, grow && gcn.grow])}>
+    <div className={jn_cn([cn_p.root, grow && gcn.grow])}>
       <Icon icon={icon} className={cn_p.icon} />
       <div className={title}>{title}</div>
       <div className={cn_p.description}>{description}</div>
@@ -20,7 +20,7 @@ export const Poster = ({icon, title, description, grow}: PosterProps) => {
   )
 }
 
-const cn_p = createCns("Poster", {
+const cn_p = prettyCns("Poster", {
   root: css`
     padding: 1rem;
     border-radius: var(--radius-regular);

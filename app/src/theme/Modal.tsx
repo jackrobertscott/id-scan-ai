@@ -1,7 +1,7 @@
 import {css} from "@emotion/css"
 import {ReactNode, useEffect} from "react"
 import {MEDIA_WIDTH_MOBILE} from "../consts/MEDIA_SIZES"
-import {createCns} from "../utils/classNames"
+import {prettyCns} from "../utils/classNames"
 import {useLayerStack} from "../utils/useLayerStack"
 import {Container} from "./Container"
 import {Portal} from "./Portal"
@@ -39,7 +39,7 @@ export const Modal = ({show = true, children, width}: ModalProps) => {
   )
 }
 
-const cn_m = createCns("Modal", {
+const cn_m = prettyCns("Modal", {
   root: css`
     inset: 0;
     width: 100%;

@@ -1,7 +1,7 @@
 import {css} from "@emotion/css"
 import {mdiClose, mdiContentSave, mdiPlus} from "@mdi/js"
 import {Fragment, useState} from "react"
-import {createCns} from "../utils/classNames"
+import {prettyCns} from "../utils/classNames"
 import {Button} from "./Button"
 import {Icon} from "./Icon"
 import {Modal} from "./Modal"
@@ -106,7 +106,7 @@ export const TitleBar = ({title, options = []}: TitleBarProps) => {
   )
 }
 
-const cn_tb = createCns("TitleBar", {
+const cn_tb = prettyCns("TitleBar", {
   root: css`
     padding: 0 0.25rem;
     flex-direction: row;

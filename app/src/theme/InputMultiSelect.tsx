@@ -1,7 +1,7 @@
 import {css} from "@emotion/css"
 import {mdiClose} from "@mdi/js"
 import {toSentenceCase, toSpacedCase} from "../utils/changeCase"
-import {createCns} from "../utils/classNames"
+import {prettyCns} from "../utils/classNames"
 import {InputSelect, InputSelectOption} from "./InputSelect"
 import {SimpleList} from "./SimpleList"
 
@@ -47,7 +47,7 @@ export const InputMultiSelect = ({
   )
 }
 
-const cn_ims = createCns("InputMultiSelect", {
+const cn_ims = prettyCns("InputMultiSelect", {
   root: css`
     flex-grow: 1;
   `,

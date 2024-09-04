@@ -3,7 +3,7 @@ import {mdiClose} from "@mdi/js"
 import {FC, useEffect, useState} from "react"
 import {DATETIME_DAYS, DATETIME_MONTHS} from "../consts/DATETIME"
 import {toCapitalCase} from "../utils/changeCase"
-import {createCns} from "../utils/classNames"
+import {prettyCns} from "../utils/classNames"
 import {Button} from "./Button"
 import {Field} from "./Field"
 import {InputButton} from "./InputButton"
@@ -184,7 +184,7 @@ export const InputDate: FC<{
   )
 }
 
-const cn_id = createCns("InputDate", {
+const cn_id = prettyCns("InputDate", {
   root: css`
     flex-grow: 1;
     flex-direction: row;
@@ -249,7 +249,7 @@ const DayGrid: FC<{
   )
 }
 
-const cn_dg = createCns("DayGrid", {
+const cn_dg = prettyCns("DayGrid", {
   root: css`
     flex-grow: 1;
     display: grid;
@@ -299,7 +299,7 @@ const DateCell: FC<{
   )
 }
 
-const cn_dc = createCns("DateCell", {
+const cn_dc = prettyCns("DateCell", {
   root: css`
     user-select: none;
     text-align: center;

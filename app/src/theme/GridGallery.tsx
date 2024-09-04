@@ -1,6 +1,6 @@
 import {css} from "@emotion/css"
 import {FC} from "react"
-import {createCns} from "../utils/classNames"
+import {prettyCns} from "../utils/classNames"
 
 export const GridGallery: FC<{
   minRowHeight?: string
@@ -30,7 +30,7 @@ export const GridGallery: FC<{
   )
 }
 
-const cn_gg = createCns("GridGallery", {
+const cn_gg = prettyCns("GridGallery", {
   root: css`
     flex-grow: 1;
     overflow: auto;
@@ -73,7 +73,7 @@ const GalleryItem: FC<{
   )
 }
 
-const cn_gi = createCns("gallery-item", {
+const cn_gi = prettyCns("gallery-item", {
   root: css`
     user-select: none;
     position: relative;

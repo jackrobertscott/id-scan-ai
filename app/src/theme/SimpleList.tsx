@@ -1,7 +1,7 @@
 import {css} from "@emotion/css"
 import {FC} from "react"
 import {gcn} from "../gcn"
-import {createCns, jn_cns} from "../utils/classNames"
+import {jn_cn, prettyCns} from "../utils/classNames"
 import {Icon} from "./Icon"
 
 export type SimpleListOptionAction = {
@@ -32,7 +32,7 @@ export const SimpleList: FC<{
   )
 }
 
-const cn_sl = createCns("SimpleList", {
+const cn_sl = prettyCns("SimpleList", {
   root: css`
     flex-grow: 1;
     flex-shrink: 0;
@@ -48,7 +48,7 @@ const ListItem: FC<{
   option: SimpleListOption
 }> = ({option}) => {
   return (
-    <div className={jn_cns(cn.root, gcn.elevate)}>
+    <div className={jn_cn(cn.root, gcn.elevate)}>
       <div
         className={cn.trigger}
         data-can-click={!!option.onClick}
@@ -82,7 +82,7 @@ const ListItem: FC<{
   )
 }
 
-const cn = createCns("ListItem", {
+const cn = prettyCns("ListItem", {
   root: css`
     flex-shrink: 0;
     overflow: auto;

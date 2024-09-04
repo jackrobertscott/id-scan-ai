@@ -1,7 +1,7 @@
 import {css} from "@emotion/css"
 import {mdiCamera, mdiCameraOff, mdiLoading, mdiSync} from "@mdi/js"
 import {FC, useEffect, useState} from "react"
-import {createCns} from "../utils/classNames"
+import {prettyCns} from "../utils/classNames"
 import {useWebcam} from "../utils/useWebcam"
 import {Button} from "./Button"
 import {Icon} from "./Icon"
@@ -74,7 +74,7 @@ export const InputCamera: FC<{
   )
 }
 
-const cn_ic = createCns("InputCamera", {
+const cn_ic = prettyCns("InputCamera", {
   root: css`
     flex-grow: 1;
     min-height: var(--min-height, 10rem);

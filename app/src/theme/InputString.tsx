@@ -1,6 +1,6 @@
 import {css} from "@emotion/css"
 import {gcn} from "../gcn"
-import {createCns, jn_cns} from "../utils/classNames"
+import {jn_cn, prettyCns} from "../utils/classNames"
 
 export type InputStringProps = {
   disabled?: boolean
@@ -22,7 +22,7 @@ export const InputString = ({
       value={value || ""}
       disabled={disabled}
       placeholder={placeholder}
-      className={jn_cns([cn_is.root, gcn.depress])}
+      className={jn_cn([cn_is.root, gcn.depress])}
       onChange={({currentTarget}) => {
         if (disabled) return
         if (maxLength && currentTarget.value.length > maxLength) return
@@ -32,7 +32,7 @@ export const InputString = ({
   )
 }
 
-const cn_is = createCns("InputString", {
+const cn_is = prettyCns("InputString", {
   root: css`
     width: 0; // don't use "100%" or "auto"
     min-width: 0;

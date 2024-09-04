@@ -9,7 +9,7 @@ import {
 } from "@mdi/js"
 import {Fragment, useState} from "react"
 import {useNavigate} from "react-router-dom"
-import {createCns} from "../utils/classNames"
+import {prettyCns} from "../utils/classNames"
 import {Icon} from "./Icon"
 import {MainMenu} from "./MainMenu"
 import {Modal} from "./Modal"
@@ -63,7 +63,7 @@ export const IconBar = ({}: IconBarProps) => {
   )
 }
 
-const cn_ib = createCns("IconBar", {
+const cn_ib = prettyCns("IconBar", {
   root: css`
     padding: 0.5rem;
     flex-direction: row;
@@ -86,7 +86,7 @@ export const IconBarOption = ({icon, label, onClick}: IconBarOptionProps) => {
   )
 }
 
-const cn_ibo = createCns("IconBarOption", {
+const cn_ibo = prettyCns("IconBarOption", {
   root: css`
     gap: 0.25rem;
     flex-grow: 1;

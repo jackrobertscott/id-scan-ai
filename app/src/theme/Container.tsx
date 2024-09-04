@@ -2,7 +2,7 @@ import {css} from "@emotion/css"
 import {FC, ReactNode} from "react"
 import {MEDIA_WIDTH_MOBILE} from "../consts/MEDIA_SIZES"
 import {gcn} from "../gcn"
-import {createCns, jn_cns} from "../utils/classNames"
+import {jn_cn, prettyCns} from "../utils/classNames"
 
 export const Container: FC<{
   overlay?: boolean
@@ -10,15 +10,13 @@ export const Container: FC<{
   width?: string
 }> = ({children, width = "20rem", overlay}) => {
   return (
-    <div
-      className={jn_cns([cn_c.root, gcn.elevate])}
-      style={{"--width": width}}>
+    <div className={jn_cn([cn_c.root, gcn.elevate])} style={{"--width": width}}>
       <div className={cn_c.hideScrollbarOverflow}>{children}</div>
     </div>
   )
 }
 
-const cn_c = createCns("Container", {
+const cn_c = prettyCns("Container", {
   root: css`
     overflow: auto;
     width: var(--width);

@@ -1,7 +1,7 @@
 import {css} from "@emotion/css"
 import {mdiCheck} from "@mdi/js"
 import {ReactNode} from "react"
-import {createCns} from "../utils/classNames"
+import {prettyCns} from "../utils/classNames"
 import {Icon} from "./Icon"
 
 export type InputToggleProps = {
@@ -34,7 +34,7 @@ export const InputToggle = ({
   )
 }
 
-const cn_it = createCns("InputToggle", {
+const cn_it = prettyCns("InputToggle", {
   root: css`
     flex-grow: 1;
     flex-direction: row;

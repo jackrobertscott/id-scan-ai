@@ -1,6 +1,6 @@
 import {css} from "@emotion/css"
 import {FC, ReactNode} from "react"
-import {createCns} from "../utils/classNames"
+import {prettyCns} from "../utils/classNames"
 
 const A4_PDF_SIZES = {
   WIDTH: 794,
@@ -29,7 +29,7 @@ export const PdfPage: FC<{
   )
 }
 
-const cn_pp = createCns("PdfPage", {
+const cn_pp = prettyCns("PdfPage", {
   root: css`
     width: 100%;
     flex-grow: 1;

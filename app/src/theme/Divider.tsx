@@ -1,6 +1,6 @@
 import {css} from "@emotion/css"
 import {FC} from "react"
-import {createCns} from "../utils/classNames"
+import {prettyCns} from "../utils/classNames"
 
 export const Divider: FC<{
   thickness?: string
@@ -15,7 +15,7 @@ export const Divider: FC<{
   )
 }
 
-const cn_d = createCns("Divider", {
+const cn_d = prettyCns("Divider", {
   root: css`
     height: 1px;
     margin: 0 1rem;

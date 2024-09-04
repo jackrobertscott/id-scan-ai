@@ -2,7 +2,7 @@ import {toKebabCase} from "./changeCase"
 
 const __cn_set__ = new Set<string>()
 
-export const createCns = <T extends Record<string, string>>(
+export const prettyCns = <T extends Record<string, string>>(
   prefix: string,
   data: T
 ) => {
@@ -22,9 +22,9 @@ export const createCns = <T extends Record<string, string>>(
 }
 
 export type Cns = string | undefined | null | false | Cns[]
-export function jn_cns(...classNames: Cns[]): string {
+export function jn_cn(...classNames: Cns[]): string {
   return classNames
-    .map((i) => (Array.isArray(i) ? jn_cns(...i) : i))
+    .map((i) => (Array.isArray(i) ? jn_cn(...i) : i))
     .filter(Boolean)
     .join(" ")
 }

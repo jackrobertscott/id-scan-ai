@@ -1,7 +1,7 @@
 import {css} from "@emotion/css"
 import {StripeCardElement, Token} from "@stripe/stripe-js"
 import {FC, MutableRefObject, useEffect, useRef} from "react"
-import {createCns} from "../utils/classNames"
+import {prettyCns} from "../utils/classNames"
 
 export const InputStripeCard: FC<{
   getTokenCbRef: MutableRefObject<
@@ -63,7 +63,7 @@ export const InputStripeCard: FC<{
   )
 }
 
-const cn_isc = createCns("InputStripeCard", {
+const cn_isc = prettyCns("InputStripeCard", {
   root: css`
     flex-grow: 1;
     padding: var(--padding-regular);

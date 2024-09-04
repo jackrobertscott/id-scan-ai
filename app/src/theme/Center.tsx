@@ -1,7 +1,7 @@
 import {css} from "@emotion/css"
 import {FC, ReactNode} from "react"
 import {MEDIA_WIDTH_MOBILE} from "../consts/MEDIA_SIZES"
-import {createCns} from "../utils/classNames"
+import {prettyCns} from "../utils/classNames"
 
 export const Center: FC<{
   children: ReactNode
@@ -9,7 +9,7 @@ export const Center: FC<{
   return <div className={cn_c.root}>{children}</div>
 }
 
-const cn_c = createCns("Center", {
+const cn_c = prettyCns("Center", {
   root: css`
     flex-grow: 1;
     align-items: safe center;

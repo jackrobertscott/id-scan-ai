@@ -4,7 +4,7 @@ import {ReactNode, useState} from "react"
 import {InputButton} from "../../theme/InputButton"
 import {InputStatic} from "../../theme/InputStatic"
 import {Portal} from "../../theme/Portal"
-import {createCns} from "../../utils/classNames"
+import {prettyCns} from "../../utils/classNames"
 import {createRandomString} from "../../utils/randomString"
 import {Alert, AlertManagerContext} from "./alert_manager"
 
@@ -64,7 +64,7 @@ export const AlertManagerProvider = ({children}: AlertManagerProviderProps) => {
   )
 }
 
-const cn_am = createCns("AlertManager", {
+const cn_am = prettyCns("AlertManager", {
   root: css`
     gap: 0.5rem;
     right: 1rem;

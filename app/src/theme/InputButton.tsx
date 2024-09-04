@@ -2,7 +2,7 @@ import {css} from "@emotion/css"
 import {mdiLoading} from "@mdi/js"
 import {FC} from "react"
 import {gcn} from "../gcn"
-import {createCns, jn_cns} from "../utils/classNames"
+import {jn_cn, prettyCns} from "../utils/classNames"
 import {Icon} from "./Icon"
 
 export const InputButton: FC<{
@@ -17,7 +17,7 @@ export const InputButton: FC<{
   return (
     <button
       onClick={disabled || loading ? undefined : onClick}
-      className={jn_cns([
+      className={jn_cn([
         className,
         cn_ib.container,
         grow && gcn.grow,
@@ -40,7 +40,7 @@ export const InputButton: FC<{
   )
 }
 
-const cn_ib = createCns("InputButton", {
+const cn_ib = prettyCns("InputButton", {
   container: css`
     flex-shrink: 0;
     user-select: none;

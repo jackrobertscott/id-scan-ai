@@ -1,7 +1,6 @@
 import {css} from "@emotion/css"
-import {createCns} from "./utils/classNames"
 
-export const gcn = createCns("Global", {
+export const gcn = {
   grow: css({flexGrow: 1}),
   shrink: css({flexShrink: 1}),
   zeroBasis: css({flexBasis: 0}),
@@ -20,4 +19,4 @@ export const gcn = createCns("Global", {
     box-shadow: inset var(--s1) var(--s1) 0 0 hsl(0, 0%, 0%, 0.5),
       inset var(--s2) var(--s2) 0 0 hsl(0, 0%, 0%, 0.25);
   `,
-})
+}

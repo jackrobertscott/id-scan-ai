@@ -2,7 +2,7 @@ import {css} from "@emotion/css"
 import {FC, ReactNode} from "react"
 import {gcn} from "../gcn"
 import {toKebabCase} from "../utils/changeCase"
-import {createCns, jn_cns} from "../utils/classNames"
+import {jn_cn, prettyCns} from "../utils/classNames"
 
 export const Field: FC<{
   grow?: boolean
@@ -26,7 +26,7 @@ export const Field: FC<{
   return (
     <div
       data-name={label ? toKebabCase(label) : undefined}
-      className={jn_cns([
+      className={jn_cn([
         className,
         cn_f.root,
         grow && gcn.grow,
@@ -39,7 +39,7 @@ export const Field: FC<{
         </div>
       )}
       <div
-        className={jn_cns([
+        className={jn_cn([
           cn_f.input,
           grow && gcn.grow,
           direction === "row" ? gcn.row : gcn.column,
@@ -51,7 +51,7 @@ export const Field: FC<{
   )
 }
 
-const cn_f = createCns("Field", {
+const cn_f = prettyCns("Field", {
   root: css`
     gap: 0.25rem;
   `,

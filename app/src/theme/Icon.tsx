@@ -1,6 +1,6 @@
 import {css} from "@emotion/css"
 import {CSSProperties, FC} from "react"
-import {createCns} from "../utils/classNames"
+import {prettyCns} from "../utils/classNames"
 
 export const Icon: FC<{
   icon: string
@@ -27,7 +27,7 @@ export const Icon: FC<{
   )
 }
 
-const cn_i = createCns("Icon", {
+const cn_i = prettyCns("Icon", {
   root: css`
     user-select: none;
     align-items: center;

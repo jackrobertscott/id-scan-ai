@@ -3,7 +3,7 @@ import {mdiContentCopy} from "@mdi/js"
 import {ReactNode} from "react"
 import {gcn} from "../gcn"
 import {useAlertManager} from "../mods/alert/alert_manager"
-import {createCns, jn_cns} from "../utils/classNames"
+import {jn_cn, prettyCns} from "../utils/classNames"
 import {Icon} from "./Icon"
 import {InputButton} from "./InputButton"
 
@@ -23,7 +23,7 @@ export const InputStatic = ({
   const alertManager = useAlertManager()
 
   return (
-    <div className={jn_cns(cn_is.root, gcn.elevate)}>
+    <div className={jn_cn(cn_is.root, gcn.elevate)}>
       <div className={cn_is.body}>
         {children}
         {icon && <Icon icon={icon} />}
@@ -55,7 +55,7 @@ export const InputStatic = ({
   )
 }
 
-const cn_is = createCns("InputStatic", {
+const cn_is = prettyCns("InputStatic", {
   root: css`
     flex-grow: 1;
     overflow: auto;

@@ -3,7 +3,7 @@ import {mdiChevronDown, mdiChevronUp} from "@mdi/js"
 import {FC, Fragment, ReactNode, useState} from "react"
 import {gcn} from "../gcn"
 import {toKebabCase} from "../utils/changeCase"
-import {createCns, jn_cns} from "../utils/classNames"
+import {jn_cn, prettyCns} from "../utils/classNames"
 import {Icon} from "./Icon"
 import {InputButton} from "./InputButton"
 import {Spacer} from "./Spacer"
@@ -37,7 +37,7 @@ export const FieldGroup: FC<{
           </div>
         </div>
       )}
-      <div className={jn_cns(cn_fg.body, gcn.elevate)}>
+      <div className={jn_cn(cn_fg.body, gcn.elevate)}>
         {open ? (
           <Spacer>{children}</Spacer>
         ) : (
@@ -48,7 +48,7 @@ export const FieldGroup: FC<{
   )
 }
 
-const cn_fg = createCns("FieldGroup", {
+const cn_fg = prettyCns("FieldGroup", {
   root: css`
     flex-shrink: 0;
     gap: calc(0.5rem - var(--padding-small-y));

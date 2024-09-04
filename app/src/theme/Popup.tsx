@@ -1,6 +1,6 @@
 import {css} from "@emotion/css"
 import {FC, MutableRefObject, ReactNode, useEffect, useRef} from "react"
-import {createCns} from "../utils/classNames"
+import {prettyCns} from "../utils/classNames"
 import {useBoundingBox} from "../utils/useBoundingBox"
 import {useLayerStack} from "../utils/useLayerStack"
 import {Portal} from "./Portal"
@@ -62,7 +62,7 @@ export const Popup: FC<{
   )
 }
 
-const cn_p = createCns("Popup", {
+const cn_p = prettyCns("Popup", {
   overlay: css`
     top: 0;
     right: 0;
@@ -102,7 +102,7 @@ export const PopupContainer: FC<{
   )
 }
 
-const cn_pc = createCns("PopupContainer", {
+const cn_pc = prettyCns("PopupContainer", {
   root: css`
     flex-shrink: 0;
     overflow: auto;

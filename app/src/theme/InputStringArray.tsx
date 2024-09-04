@@ -2,7 +2,7 @@ import {css} from "@emotion/css"
 import {mdiClose, mdiPlus} from "@mdi/js"
 import {useState} from "react"
 import {z} from "zod"
-import {createCns} from "../utils/classNames"
+import {prettyCns} from "../utils/classNames"
 import {EmptyListWrap} from "./EmptyListWrap"
 import {InputButton} from "./InputButton"
 import {InputString} from "./InputString"
@@ -75,7 +75,7 @@ export const InputStringArray = ({
   )
 }
 
-const cn_isa = createCns("InputStringArray", {
+const cn_isa = prettyCns("InputStringArray", {
   root: css`
     flex-grow: 1;
   `,

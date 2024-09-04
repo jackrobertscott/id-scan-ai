@@ -1,6 +1,6 @@
 import {css} from "@emotion/css"
 import {ReactNode} from "react"
-import {createCns} from "../utils/classNames"
+import {prettyCns} from "../utils/classNames"
 
 export type DisplayImageProps = {
   source?: string
@@ -29,7 +29,7 @@ export const DisplayImage = ({
   )
 }
 
-const cn_di = createCns("DisplayImage", {
+const cn_di = prettyCns("DisplayImage", {
   root: css`
     flex-grow: 1;
     flex-shrink: 0;

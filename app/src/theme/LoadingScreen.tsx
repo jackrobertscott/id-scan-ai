@@ -1,7 +1,7 @@
 import {css} from "@emotion/css"
 import {mdiLoading} from "@mdi/js"
 import {ReactNode} from "react"
-import {createCns} from "../utils/classNames"
+import {prettyCns} from "../utils/classNames"
 import {Icon} from "./Icon"
 
 export const LoadingScreen = <T extends any>({
@@ -22,7 +22,7 @@ export const LoadingScreen = <T extends any>({
   )
 }
 
-const cn_ls = createCns("LoadingScreen", {
+const cn_ls = prettyCns("LoadingScreen", {
   root: css`
     flex-grow: 1;
     font-size: 2rem;

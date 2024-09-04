@@ -1,6 +1,6 @@
 import {css} from "@emotion/css"
 import {isValidElement, ReactNode} from "react"
-import {createCns} from "../utils/classNames"
+import {prettyCns} from "../utils/classNames"
 
 export type PdfTableProps = {
   nested?: boolean
@@ -43,7 +43,7 @@ export const PdfTable = ({nested, headings, footings, rows}: PdfTableProps) => {
   )
 }
 
-const cn_pt = createCns("PdfTable", {
+const cn_pt = prettyCns("PdfTable", {
   root: css``,
   table: css`
     flex-shrink: 0;
@@ -62,7 +62,7 @@ const PdfTableHead = ({label}: PdfTableHeadProps) => {
   )
 }
 
-const cn_pth = createCns("PdfTableHead", {
+const cn_pth = prettyCns("PdfTableHead", {
   root: css`
     border-bottom: var(--border-pdf);
     :not(:last-child) {
@@ -99,7 +99,7 @@ const PdfTableRow = ({columns, nested}: PdfTableRowProps) => {
   )
 }
 
-const cn_ptr = createCns("PdfTableRow", {
+const cn_ptr = prettyCns("PdfTableRow", {
   root: css`
     page-break-inside: avoid;
     :nth-child(2n) {
@@ -137,7 +137,7 @@ const PdfTableFoot = ({label}: PdfTableFootProps) => {
   )
 }
 
-const cn_ptf = createCns("PdfTableFoot", {
+const cn_ptf = prettyCns("PdfTableFoot", {
   root: css`
     border-top: var(--border-pdf);
     :not(:last-child) {

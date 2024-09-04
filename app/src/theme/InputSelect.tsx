@@ -2,7 +2,7 @@ import {css} from "@emotion/css"
 import {mdiCheck, mdiClose, mdiLoading} from "@mdi/js"
 import {MutableRefObject} from "react"
 import {gcn} from "../gcn"
-import {createCns, jn_cns} from "../utils/classNames"
+import {jn_cn, prettyCns} from "../utils/classNames"
 import {Icon} from "./Icon"
 import {InputButton} from "./InputButton"
 import {InputStatic} from "./InputStatic"
@@ -88,7 +88,7 @@ export const InputSelectOption = <R extends boolean, T = string>({
   )
 }
 
-const cn_iso = createCns("InputSelectOption", {
+const cn_iso = prettyCns("InputSelectOption", {
   root: css`
     flex-shrink: 0;
     user-select: none;
@@ -127,7 +127,7 @@ export const InputSelectLabel = <T = string,>({
   loading,
 }: InputSelectLabelProps<T>) => {
   return (
-    <div className={jn_cns(cn_isl.root, gcn.elevate)}>
+    <div className={jn_cn(cn_isl.root, gcn.elevate)}>
       <div
         ref={triggerRef}
         onClick={onClick}
@@ -151,7 +151,7 @@ export const InputSelectLabel = <T = string,>({
   )
 }
 
-const cn_isl = createCns("InputSelectLabel", {
+const cn_isl = prettyCns("InputSelectLabel", {
   root: css`
     flex-grow: 1;
     flex-direction: row;

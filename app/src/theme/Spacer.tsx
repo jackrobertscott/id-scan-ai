@@ -1,6 +1,6 @@
 import {css} from "@emotion/css"
 import {FC, ReactNode} from "react"
-import {createCns} from "../utils/classNames"
+import {prettyCns} from "../utils/classNames"
 
 export const Spacer: FC<{
   children?: ReactNode
@@ -14,7 +14,7 @@ export const Spacer: FC<{
   )
 }
 
-const cn_s = createCns("Spacer", {
+const cn_s = prettyCns("Spacer", {
   root: css`
     gap: 1rem;
     flex-grow: 1;

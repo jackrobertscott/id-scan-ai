@@ -1,7 +1,7 @@
 import {css} from "@emotion/css"
 import {mdiLoading} from "@mdi/js"
 import {ReactNode} from "react"
-import {createCns} from "../utils/classNames"
+import {prettyCns} from "../utils/classNames"
 import {Icon} from "./Icon"
 
 export const EmptyListWrap = <T extends any[]>({
@@ -28,7 +28,7 @@ export const EmptyListWrap = <T extends any[]>({
   )
 }
 
-const cn_elw = createCns("EmptyListWrap", {
+const cn_elw = prettyCns("EmptyListWrap", {
   root: css`
     text-align: center;
     color: hsl(0, 0%, 100%, 0.5);
