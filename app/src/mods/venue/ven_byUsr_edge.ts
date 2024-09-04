@@ -1,3 +1,4 @@
+import {srvConf} from "../../srvConf"
 import {createListOptions} from "../../utils/mongo/listOptionUtils"
 import {createListSearchQuery} from "../../utils/mongo/listSearchQueryUtils"
 import {createEdgeGroup} from "../../utils/server/createEdge"
@@ -42,6 +43,16 @@ export default createEdgeGroup(ven_byUsr_eDef, {
       createdByUserId: auth.user.id,
     })
 
+    if (srvConf.STRIPE_ENABLED) {
+      try {
+        // Create the stripe customer
+        await upsertStripeCustomerOfVenue(venue)
+      } catch (e) {
+        await VenueStore.deleteOneById(venue.id)
+        throw e
+      }
+    }
+
     // The user is the owner so give full access
     await MemberStore.createOne({
       userId: auth.user.id,
@@ -50,9 +61,6 @@ export default createEdgeGroup(ven_byUsr_eDef, {
       fullAccess: true,
       permissions: [],
     })
-
-    // Create the stripe customer
-    await upsertStripeCustomerOfVenue(venue)
 
     LogEventStore.createOne({
       venueId: venue.id,

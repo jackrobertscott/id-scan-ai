@@ -25,13 +25,13 @@ export const Field: FC<{
 }) => {
   return (
     <div
+      data-name={label ? toKebabCase(label) : undefined}
       className={jn_cns([
         className,
         cn_f.root,
         grow && gcn.grow,
         overflow && gcn.overAuto,
-      ])}
-      data-name={label ? toKebabCase(label) : undefined}>
+      ])}>
       {label && (
         <div className={cn_f.head}>
           <label className={cn_f.label}>{label}</label>
@@ -56,9 +56,9 @@ const cn_f = createCns("Field", {
     gap: 0.25rem;
   `,
   head: css`
-    padding: 0 1rem;
     flex-direction: row;
     color: hsl(0, 0%, 100%, 0.5);
+    padding: 0 var(--padding-regular-x);
   `,
   label: css`
     flex-grow: 1;

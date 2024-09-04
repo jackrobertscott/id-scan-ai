@@ -1,8 +1,9 @@
 import {css} from "@emotion/css"
 import {mdiContentCopy} from "@mdi/js"
 import {ReactNode} from "react"
+import {gcn} from "../gcn"
 import {useAlertManager} from "../mods/alert/alert_manager"
-import {createCns} from "../utils/classNames"
+import {createCns, jn_cns} from "../utils/classNames"
 import {Icon} from "./Icon"
 import {InputButton} from "./InputButton"
 
@@ -22,7 +23,7 @@ export const InputStatic = ({
   const alertManager = useAlertManager()
 
   return (
-    <div className={cn_is.root}>
+    <div className={jn_cns(cn_is.root, gcn.elevate)}>
       <div className={cn_is.body}>
         {children}
         {icon && <Icon icon={icon} />}

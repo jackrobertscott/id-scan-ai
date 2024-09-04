@@ -18,7 +18,7 @@ export const VenueForm = ({value, onValue}: VenueFormProps) => {
 
   return (
     <Fragment>
-      <Field label="Name" variant="required">
+      <Field label="Venue name" variant="required">
         <InputString {...form.getPropsOf("name")} />
       </Field>
 

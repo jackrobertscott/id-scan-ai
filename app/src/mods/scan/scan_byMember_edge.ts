@@ -300,7 +300,11 @@ export default createEdgeGroup(scan_byMember_eDef, {
 
     // Get the AWS face IDs
     const awsFaceIds = extractFaceIdsFromSearchResults(searchResults)
-    if (!awsFaceIds.length) throw new Error("Failed to recognize face")
+
+    // If no faces are found, return an empty array
+    if (!awsFaceIds.length) {
+      return {docPhotos: []}
+    }
 
     // Get the doc face photos
     const docPhotos = await DocPhotoStore.getMany({

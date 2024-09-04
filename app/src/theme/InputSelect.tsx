@@ -1,7 +1,8 @@
 import {css} from "@emotion/css"
 import {mdiCheck, mdiClose, mdiLoading} from "@mdi/js"
 import {MutableRefObject} from "react"
-import {createCns} from "../utils/classNames"
+import {gcn} from "../gcn"
+import {createCns, jn_cns} from "../utils/classNames"
 import {Icon} from "./Icon"
 import {InputButton} from "./InputButton"
 import {InputStatic} from "./InputStatic"
@@ -126,7 +127,7 @@ export const InputSelectLabel = <T = string,>({
   loading,
 }: InputSelectLabelProps<T>) => {
   return (
-    <div className={cn_isl.root}>
+    <div className={jn_cns(cn_isl.root, gcn.elevate)}>
       <div
         ref={triggerRef}
         onClick={onClick}
