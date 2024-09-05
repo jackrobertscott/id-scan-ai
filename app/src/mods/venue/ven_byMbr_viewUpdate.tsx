@@ -28,7 +28,7 @@ export const UpdateVenueByMemberView = ({
       <TitleBar title="Venue Settings" />
 
       <LoadingScreen
-        data={$updateVenue.ready}
+        data={$getVenue.ready}
         render={() => (
           <VenueForm
             value={$updateVenue.input.getData()}

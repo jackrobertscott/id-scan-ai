@@ -53,7 +53,7 @@ export const Field: FC<{
 
 const cn_f = prettyCns("Field", {
   root: css`
-    gap: var(--gap-r-y);
+    gap: var(--pad-r-y);
   `,
   head: css`
     flex-direction: row;

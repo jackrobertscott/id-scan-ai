@@ -33,7 +33,6 @@ export const DeleteModal = ({
             icon={mdiBell}
             title={`Delete ${noun}`}
             description={`Are you sure you wish to permanently delete this ${noun}?`}
-            bgColor="var(--bg-red)"
           />
           <Button
             label="Delete"
