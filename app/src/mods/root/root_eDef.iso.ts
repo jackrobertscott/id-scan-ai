@@ -10,4 +10,10 @@ export const root_eDef = createEdgeGroupDef("root", {
       timeAndOne: z.number(),
     }),
   },
+
+  getStripeCardIntent: {
+    output: z.object({
+      intent: z.string().min(1),
+    }),
+  },
 })
