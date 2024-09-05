@@ -12,6 +12,7 @@ import member_byMember_edge from './mods/member/member_byMember_edge';
 import payCard_byMember_edge from './mods/payCard/payCard_byMember_edge';
 import pdfExport_byMember_edge from './mods/pdfExport/pdfExport_byMember_edge';
 import root_edge from './mods/root/root_edge';
+import scan_byAlb_edge from './mods/scan/scan_byAlb_edge';
 import scan_byMember_edge from './mods/scan/scan_byMember_edge';
 import scan_byPdf_edge from './mods/scan/scan_byPdf_edge';
 import session_byUser_edge from './mods/session/session_byUser_edge';
@@ -34,6 +35,7 @@ export {
   payCard_byMember_edge,
   pdfExport_byMember_edge,
   root_edge,
+  scan_byAlb_edge,
   scan_byMember_edge,
   scan_byPdf_edge,
   session_byUser_edge,
