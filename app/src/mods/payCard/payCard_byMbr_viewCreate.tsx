@@ -53,7 +53,7 @@ export const CreatePayCardByMemberView = ({
 
         <Button
           bgColor="var(--bg-blu)"
-          label="Create PayCard"
+          label="Create Pay Card"
           {...$createPayCard.getSubmitProps()}
           onClick={handleSubmit}
         />
