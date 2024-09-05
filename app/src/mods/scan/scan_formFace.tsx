@@ -12,8 +12,8 @@ export type ReadScanFaceProps = {
 export const ReadScanFace = ({faceMeta}: ReadScanFaceProps) => {
   return (
     <FieldGroup label="Patron Details">
-      <Spacer direction="row" nested={true} collapse={true}>
-        <Spacer direction="column" nested={true}>
+      <Spacer direction="row" slim mobileCollapse>
+        <Spacer direction="column" slim>
           {faceMeta.gender && (
             <Field label="Gender">
               <InputStatic label={toSentenceCase(faceMeta.gender.value)} />
@@ -49,7 +49,7 @@ export const ReadScanFace = ({faceMeta}: ReadScanFaceProps) => {
           )}
         </Spacer>
 
-        <Spacer direction="column" nested={true}>
+        <Spacer direction="column" slim>
           {faceMeta.sunglasses && (
             <Field label="Sunglasses">
               <InputStatic label={faceMeta.sunglasses.value ? "Yes" : "No"} />

@@ -43,8 +43,8 @@ export const ReadSessionByUserView = ({
           render={({session}) => {
             return (
               <Fragment>
-                <Spacer direction="row" nested={true} collapse={true}>
-                  <Spacer direction="column" nested={true}>
+                <Spacer direction="row" slim mobileCollapse>
+                  <Spacer direction="column" slim>
                     <Field label="Created date">
                       <InputStatic label={session.createdDate} />
                     </Field>
@@ -58,7 +58,7 @@ export const ReadSessionByUserView = ({
                     </Field>
                   </Spacer>
 
-                  <Spacer direction="column" nested={true}>
+                  <Spacer direction="column" slim>
                     <Field label="OS">
                       <InputStatic
                         label={[session.os, session.osVersion].join(" ")}

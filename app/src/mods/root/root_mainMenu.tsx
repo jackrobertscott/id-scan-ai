@@ -4,7 +4,6 @@ import {
   mdiAccountLock,
   mdiCalendar,
   mdiCamera,
-  mdiChartBar,
   mdiCog,
   mdiCreditCard,
   mdiDevices,
@@ -96,14 +95,14 @@ export const MainMenu: FC<{
         </Field>
       )}
       {hasVenue && !isDevice && (
-        <Field label="Management">
+        <Field label="Manage">
           <SimpleList
             options={[
-              {
-                icon: mdiChartBar,
-                label: "Overview",
-                path: "/venue-stats",
-              },
+              // {
+              //   icon: mdiChartBar,
+              //   label: "Overview",
+              //   path: "/venue-stats",
+              // },
               {
                 icon: mdiAccountGroup,
                 label: "Members",
@@ -220,10 +219,13 @@ export const LogoutButton = ({}: LogoutButtonProps) => {
         title: "Logout",
         description: "Are you sure you want to logout of your account?",
       }}
-      render={(doShow) => <Button label="Logout" onClick={doShow} />}
+      render={(doShow) => (
+        <Button label="Logout" onClick={doShow} bgColor="var(--bg-red)" />
+      )}
       getButtons={(doClose) => [
         {
           label: "Logout",
+          bgColor: "var(--bg-red)",
           ...$logout.getSubmitProps(() => {
             authManager.setPayload(null)
             doClose()

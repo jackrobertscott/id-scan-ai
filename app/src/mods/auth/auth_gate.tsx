@@ -14,13 +14,12 @@ export const AuthGate: FC<{redirect: string}> = ({redirect}) => {
   // If the user is not logged in, show the login form
   if (!authManager.getPayload()) {
     return (
-      <Modal>
+      <Modal width="20rem">
         <Spacer>
           <Poster
             icon={mdiAlertRhombus}
             title="Access Denied"
             description="Please login to access this page"
-            bgColor="var(--bg-red)"
           />
           <Button label="Ok" onClick={() => navigate(redirect)} />
         </Spacer>
@@ -40,13 +39,12 @@ export const AdminGate: FC<{
 
   if (!authManager.getPayload()?.data.isAdmin) {
     return (
-      <Modal>
+      <Modal width="20rem">
         <Spacer>
           <Poster
             icon={mdiAlertRhombus}
             title="Access Denied"
             description="You must be an admin to access this page"
-            bgColor="var(--bg-red)"
           />
           <Button label="Ok" onClick={() => navigate(redirect)} />
         </Spacer>

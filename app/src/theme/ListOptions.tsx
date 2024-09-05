@@ -61,6 +61,16 @@ export const ListOptions = ({
           icon={mdiFilter}
           onClick={() => setShowOptions(true)}
         />
+        <InputButton
+          disabled={!hasPrev}
+          icon={mdiChevronLeft}
+          onClick={onPrev}
+        />
+        <InputButton
+          disabled={!hasNext}
+          icon={mdiChevronRight}
+          onClick={onNext}
+        />
       </Field>
 
       <Modal show={showOptions}>
@@ -80,44 +90,80 @@ export const ListOptions = ({
             <InputString {...form.getPropsOf("search")} />
           </Field>
 
-          <FieldGroup label="Pagination">
-            {typeof total === "number" && (
-              <Field
-                label="Showing"
-                // bg="disabled"
-                grow>
-                <InputStatic label={`${data?.length ?? "..."} of ${total}`} />
+          <Spacer slim mobileCollapse direction="row">
+            <FieldGroup label="Pagination">
+              {typeof total === "number" && (
+                <Field
+                  label="Showing"
+                  // bg="disabled"
+                  grow>
+                  <InputStatic label={`${data?.length ?? "..."} of ${total}`} />
+                </Field>
+              )}
+
+              <Field label="Page">
+                <InputButton
+                  disabled={!hasPrev}
+                  icon={mdiChevronLeft}
+                  onClick={onPrev}
+                />
+                <InputNumber
+                  {...form.getPropsOf("page")}
+                  min={0}
+                  max={maxPage}
+                />
+                <InputButton
+                  disabled={!hasNext}
+                  icon={mdiChevronRight}
+                  onClick={onNext}
+                />
               </Field>
-            )}
 
-            <Field label="Page">
-              <InputButton
-                disabled={!hasPrev}
-                icon={mdiChevronLeft}
-                onClick={onPrev}
-              />
-              <InputNumber {...form.getPropsOf("page")} min={0} max={maxPage} />
-              <InputButton
-                disabled={!hasNext}
-                icon={mdiChevronRight}
-                onClick={onNext}
-              />
-            </Field>
+              <Field label="Results per page" grow>
+                <InputSelect<true, number>
+                  {...form.getPropsOf("limit")}
+                  required
+                  options={[
+                    {value: 25},
+                    {value: 50},
+                    {value: 100},
+                    {value: 200},
+                  ].map((i) => ({...i, label: `${i.value}`}))}
+                />
+              </Field>
+            </FieldGroup>
 
-            <Field label="Results per page" grow>
-              <InputSelect<true, number>
-                {...form.getPropsOf("limit")}
-                required
-                options={[
-                  {value: 25},
-                  {value: 50},
-                  {value: 100},
-                  {value: 200},
-                ].map((i) => ({...i, label: `${i.value}`}))}
-              />
-            </Field>
-          </FieldGroup>
+            <FieldGroup label="Sorting">
+              <Field label="Property">
+                <InputSelect
+                  {...form.getPropsOf("sortKey")}
+                  required
+                  options={[
+                    {label: "Created Date", value: "createdDate"},
+                    ...(sortKeys || []).map((i) =>
+                      typeof i === "string"
+                        ? {
+                            label: toCapitalCase(toSpacedCase(i)),
+                            value: i,
+                          }
+                        : i
+                    ),
+                  ]}
+                />
+              </Field>
 
+              <Field label="Direction">
+                <InputSelect
+                  {...form.getPropsOf("sortDir")}
+                  required
+                  options={[
+                    {label: "Ascending", value: "asc"},
+                    {label: "Descending", value: "desc"},
+                  ]}
+                />
+              </Field>
+            </FieldGroup>
+          </Spacer>
           {(children || showDates) && (
             <FieldGroup label="Filters">
               {children}
@@ -135,37 +181,6 @@ export const ListOptions = ({
               )}
             </FieldGroup>
           )}
-
-          <FieldGroup label="Sorting">
-            <Field label="Property">
-              <InputSelect
-                {...form.getPropsOf("sortKey")}
-                required
-                options={[
-                  {label: "Created Date", value: "createdDate"},
-                  ...(sortKeys || []).map((i) =>
-                    typeof i === "string"
-                      ? {
-                          label: toCapitalCase(toSpacedCase(i)),
-                          value: i,
-                        }
-                      : i
-                  ),
-                ]}
-              />
-            </Field>
-
-            <Field label="Direction">
-              <InputSelect
-                {...form.getPropsOf("sortDir")}
-                required
-                options={[
-                  {label: "Ascending", value: "asc"},
-                  {label: "Descending", value: "desc"},
-                ]}
-              />
-            </Field>
-          </FieldGroup>
         </Spacer>
       </Modal>
     </Fragment>

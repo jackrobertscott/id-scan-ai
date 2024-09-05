@@ -28,6 +28,7 @@ export const InputButton: FC<{
       style={{
         "--bg-color": bgColor,
         "--text-opacity": disabled ? 0.5 : 1,
+        "--pad": label ? "var(--pad-r)" : "var(--pad-r-y)",
       }}>
       {loading ? (
         <>
@@ -52,7 +53,7 @@ const cn_ib = prettyCns("InputButton", {
     justify-content: center;
     text-align: center;
     gap: var(--gap-r);
-    padding: var(--pad-r);
+    padding: var(--pad);
     transition: var(--hover-timing);
     color: hsl(0, 0%, 100%, var(--text-opacity));
     &[data-can-click="true"] {

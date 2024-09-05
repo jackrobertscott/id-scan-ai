@@ -13,13 +13,12 @@ export const VenueGate: FC<{redirect: string}> = ({redirect}) => {
 
   if (!authManager.getPayload()?.data.venueId) {
     return (
-      <Modal>
+      <Modal width="20rem">
         <Spacer>
           <Poster
             icon={mdiAlertRhombus}
             title="Access Denied"
             description="Please join a venue to continue"
-            bgColor="var(--bg-red)"
           />
           <Button label="Ok" onClick={() => navigate(redirect)} />
         </Spacer>

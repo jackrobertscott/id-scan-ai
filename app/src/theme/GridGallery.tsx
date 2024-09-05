@@ -36,7 +36,9 @@ const cn_gg = prettyCns("GridGallery", {
     overflow: auto;
   `,
   grid: css`
-    gap: 1rem;
+    gap: var(--shdw-thck);
+    padding: var(--shdw-thck);
+    background-color: hsl(0, 0%, 0%);
     display: grid;
     overflow: auto;
     flex-shrink: 0;

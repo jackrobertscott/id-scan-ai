@@ -52,12 +52,11 @@ export const Field: FC<{
 }
 
 const cn_f = prettyCns("Field", {
-  root: css`
-    gap: var(--gap-r);
-  `,
+  root: css``,
   head: css`
     flex-direction: row;
-    padding: 0 var(--pad-r-x);
+    padding: var(--pad-r);
+    padding-top: 0;
   `,
   label: css`
     flex-grow: 1;

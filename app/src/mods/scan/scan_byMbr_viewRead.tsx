@@ -1,4 +1,4 @@
-import {mdiClose, mdiHistory, mdiTag, mdiTrashCan} from "@mdi/js"
+import {mdiClose, mdiHistory, mdiTagOutline, mdiTrashCan} from "@mdi/js"
 import {useState} from "react"
 import {Fragment} from "react/jsx-runtime"
 import {Button} from "../../theme/Button"
@@ -74,7 +74,19 @@ export const ReadScanByMemberView = ({
         <Spacer>
           <TitleBar
             title="View Scan"
-            options={[{icon: mdiClose, label: "Close", onClick: onClose}]}
+            options={[
+              {
+                icon: mdiTagOutline,
+                label: "Tag Patron",
+                onClick: () => setShowTagCreate(true),
+                iconScale: 0.8,
+              },
+              {
+                icon: mdiClose,
+                label: "Close",
+                onClick: onClose,
+              },
+            ]}
           />
 
           <LoadingScreen
@@ -113,13 +125,7 @@ export const ReadScanByMemberView = ({
                     </Field>
                   )}
 
-                  <Button
-                    icon={mdiTag}
-                    label="Tag Patron"
-                    onClick={() => setShowTagCreate(true)}
-                  />
-
-                  <Spacer direction="row" nested={true} collapse={true}>
+                  <Spacer direction="row" slim mobileCollapse>
                     <Field
                       // bg={scan.faceSimilarity >= 80 ? "green" : "red"}
                       label="Face ID Comparison">
@@ -141,7 +147,7 @@ export const ReadScanByMemberView = ({
                     </Field>
                   </Spacer>
 
-                  <Spacer direction="row" nested={true} collapse={true}>
+                  <Spacer direction="row" slim mobileCollapse>
                     <Field label="Patron Photo">
                       <DisplayImage
                         alt="Patron Photo"

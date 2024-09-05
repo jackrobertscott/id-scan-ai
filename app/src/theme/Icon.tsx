@@ -8,7 +8,8 @@ export const Icon: FC<{
   animation?: string
   className?: string
   style?: CSSProperties
-}> = ({icon, spinning, className, style, animation}) => {
+  scale?: number
+}> = ({icon, spinning, className, style, animation, scale}) => {
   return (
     <div
       style={style}
@@ -20,6 +21,7 @@ export const Icon: FC<{
         className={cn_i.svg}
         style={{
           "--anim": spinning ? `500ms linear infinite rotate360` : animation,
+          "--scale": scale,
         }}>
         <path d={icon} />
       </svg>
@@ -41,5 +43,6 @@ const cn_i = prettyCns("Icon", {
     animation: var(--anim);
     width: calc(var(--line-height) * 1em);
     height: calc(var(--line-height) * 1em);
+    scale: var(--scale, 1);
   `,
 })

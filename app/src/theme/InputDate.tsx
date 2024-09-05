@@ -77,7 +77,7 @@ export const InputDate: FC<{
       renderPopupContent={(doHide) => (
         <PopupContainer minWidth="20rem" maxHeight={null}>
           <Spacer className={gcn.elevate}>
-            <Spacer direction="row" nested>
+            <Spacer direction="row" slim>
               <Field grow label="Month">
                 <InputSelect
                   value={contextDate.getMonth().toString()}

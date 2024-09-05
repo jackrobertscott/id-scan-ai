@@ -1,6 +1,7 @@
 import {css} from "@emotion/css"
 import {mdiCamera, mdiCameraOff, mdiLoading, mdiSync} from "@mdi/js"
 import {FC, useEffect, useState} from "react"
+import {gcn} from "../gcn"
 import {prettyCns} from "../utils/classNames"
 import {useWebcam} from "../utils/useWebcam"
 import {Button} from "./Button"
@@ -77,6 +78,7 @@ export const InputCamera: FC<{
 
 const cn_ic = prettyCns("InputCamera", {
   root: css`
+    ${gcn.depress}
     flex-grow: 1;
     min-height: var(--min-height, 10rem);
     position: relative;
@@ -90,7 +92,7 @@ const cn_ic = prettyCns("InputCamera", {
     flex-grow: 1;
     max-width: 100%;
     max-height: 100%;
-    object-fit: cover;
+    object-fit: contain;
     object-position: center;
     display: var(--display);
   `,

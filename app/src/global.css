@@ -19,11 +19,11 @@
   --bg-blu: hsl(var(--hsl-blu));
   --bg-grn: hsl(var(--hsl-grn));
   --bg-gry: hsl(0, 0%, 15%);
-  --bg-red: hsl(0, 100%, 45%);
+  --bg-red: hsl(0, 100%, 35%);
   --bg-ylw: hsl(60, 100%, 30%);
   --bg-non: hsl(0, 0%, 0%, 0);
 
-  --gap-r: 0.5rem;
+  --gap-r: 0.25rem; /* same as --gap-s looks nice */
   --pad-r-x: 0.75rem;
   --pad-r-y: 0.5rem;
   --pad-r: var(--pad-r-y) var(--pad-r-x);

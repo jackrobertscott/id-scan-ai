@@ -73,7 +73,7 @@ export const CreateScanByMemberView = ({
   }
 
   return (
-    <Spacer>
+    <Spacer grow>
       <TitleBar
         title="New Scan"
         options={[

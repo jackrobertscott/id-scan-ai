@@ -53,6 +53,7 @@ export type TitleBarOption = {
   label?: string
   onClick: () => void
   intercept?: PosterProps & {buttonLabel: string}
+  iconScale?: number
 }
 
 export type TitleBarProps = {
@@ -95,7 +96,7 @@ export const TitleBar = ({title, options = []}: TitleBarProps) => {
                     else option.onClick()
                   }}>
                   {option.label && <div>{option.label}</div>}
-                  <Icon icon={option.icon} />
+                  <Icon icon={option.icon} scale={option.iconScale} />
                 </div>
               )
             })}
@@ -113,6 +114,7 @@ const cn_tb = prettyCns("TitleBar", {
   title: css`
     flex-grow: 1;
     padding: var(--pad-s);
+    padding-left: var(--pad-r-x);
   `,
   options: css`
     gap: var(--gap-r);

@@ -6,6 +6,7 @@ import auth_edge from './mods/auth/auth_edge';
 import device_byMember_edge from './mods/device/device_byMember_edge';
 import faceTag_byMember_edge from './mods/faceTag/faceTag_byMember_edge';
 import inv_byMbr_edge from './mods/invoice/inv_byMbr_edge';
+import livePhoto_byMember_edge from './mods/livePhoto/livePhoto_byMember_edge';
 import logEvt_byMbr_edge from './mods/logEvent/logEvt_byMbr_edge';
 import member_byMember_edge from './mods/member/member_byMember_edge';
 import payCard_byMember_edge from './mods/payCard/payCard_byMember_edge';
@@ -27,6 +28,7 @@ export {
   device_byMember_edge,
   faceTag_byMember_edge,
   inv_byMbr_edge,
+  livePhoto_byMember_edge,
   logEvt_byMbr_edge,
   member_byMember_edge,
   payCard_byMember_edge,

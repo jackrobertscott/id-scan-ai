@@ -1,21 +1,23 @@
 import {css} from "@emotion/css"
 import {FC, ReactNode} from "react"
 import {MEDIA_WIDTH_MOBILE} from "../consts/MEDIA_SIZES"
+import {gcn} from "../gcn"
 import {jn_cn, prettyCns} from "../utils/classNames"
 
 export const Spacer: FC<{
+  grow?: boolean
   children?: ReactNode
   direction?: "row" | "column"
   className?: string
-  nested?: boolean
-  collapse?: boolean
-}> = ({children, direction, className, nested, collapse}) => {
+  slim?: boolean
+  mobileCollapse?: boolean
+}> = ({grow, children, direction, className, slim, mobileCollapse}) => {
   return (
     <div
-      data-nested={nested}
+      data-slim={slim}
       data-direction={direction}
-      data-collapse={collapse}
-      className={jn_cn(cn_s.root, className)}>
+      data-collapse={mobileCollapse}
+      className={jn_cn(cn_s.root, className, grow && gcn.grow)}>
       {children}
     </div>
   )
@@ -31,9 +33,9 @@ const cn_s = prettyCns("Spacer", {
     &[data-direction="row"] {
       flex-direction: row;
     }
-    &:not([data-nested="true"]) {
+    &:not([data-slim="true"]) {
       padding: 1rem;
-      flex-grow: 0;
+      /* flex-grow: 0; */
     }
     @media (width < ${MEDIA_WIDTH_MOBILE}px) {
       &[data-collapse="true"][data-direction="row"] {
