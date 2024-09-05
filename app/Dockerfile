@@ -29,7 +29,7 @@ RUN npm install
 COPY . .
 
 # Build the application
-# RUN npm run srv:build
+# RUN npm run s:build
 
 EXPOSE 8080
 
