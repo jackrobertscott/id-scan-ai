@@ -40,8 +40,8 @@ test("login user with invalid code", async ({page}) => {
   await page.fill('.field-root[data-name="code"] input', "000000")
   await page.getByRole("button", {name: "Submit"}).click()
 
-  // Wait for redirect
+  // Count errors
   const errorAlert = page.locator(".alert-manager-alert")
-  expect(await errorAlert.isVisible()).toBeTruthy()
+  expect(errorAlert).toBeVisible({timeout: 1000})
   expect(errorAlert).toContainText("Login code is invalid")
 })

@@ -106,7 +106,7 @@ export default createEdgeGroup(auth_eDef, {
 
     // Protect against brute force attacks
     const vftsArr = user.verifFailedTimestamps || []
-    if (vftsArr.length >= 5) {
+    if (vftsArr.length >= 10) {
       const timeSinceFirstFail = Date.now() - vftsArr.slice(-1)[0]
       if (timeSinceFirstFail > TIMING_VERIFICATION_CODE_LOCKOUT) {
         await UserStore.updateOneById(user.id, {
