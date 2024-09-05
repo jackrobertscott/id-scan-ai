@@ -65,7 +65,7 @@ export const UpdateAlbumByMemberView = ({
         />
 
         <Button
-          // variant="blue"
+          bgColor="var(--bg-blu)"
           label="Save Changes"
           {...$updateAlbum.getSubmitProps(() => $getAlbum.fetch())}
         />

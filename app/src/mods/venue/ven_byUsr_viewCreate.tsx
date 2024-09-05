@@ -37,7 +37,7 @@ export const CreateVenueByUserView = ({
 
         <Button
           label="Submit"
-          // variant="blue"
+          bgColor="var(--bg-blu)"
           icon={mdiArrowRight}
           {...$createVenue.getSubmitProps((i) => onClose(i.id))}
         />

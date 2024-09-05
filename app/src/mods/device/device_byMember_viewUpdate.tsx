@@ -50,7 +50,7 @@ export const UpdateDeviceByMemberView = ({
         />
 
         <Button
-          // variant="blue"
+          bgColor="var(--bg-blu)"
           label="Save Changes"
           {...$updateDevice.getSubmitProps(() => $getDevice.fetch())}
         />

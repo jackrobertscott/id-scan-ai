@@ -46,7 +46,7 @@ export const UpdateMemberByMemberView = ({
         />
 
         <Button
-          // variant="blue"
+          bgColor="var(--bg-blu)"
           label="Save Changes"
           {...$updateMember.getSubmitProps(() => $getMember.fetch())}
         />

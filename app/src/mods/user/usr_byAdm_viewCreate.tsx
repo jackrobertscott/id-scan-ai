@@ -28,7 +28,7 @@ export const CreateUserByAdminView = ({
         />
 
         <Button
-          // variant="blue"
+          bgColor="var(--bg-blu)"
           label="Create User"
           {...$createUser.getSubmitProps((i) => onClose(i.id))}
         />

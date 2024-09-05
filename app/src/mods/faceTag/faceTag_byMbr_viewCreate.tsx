@@ -31,7 +31,7 @@ export const CreateTagByMemberView = ({
         />
 
         <Button
-          // variant="blue"
+          bgColor="var(--bg-blu)"
           label="Create Tag"
           {...$createTag.getSubmitProps((i) => onClose(i.id))}
         />

@@ -7,9 +7,9 @@ import {LoadingScreen} from "../../theme/LoadingScreen"
 import {Modal} from "../../theme/Modal"
 import {Spacer} from "../../theme/Spacer"
 import {TitleBar} from "../../theme/TitleBar"
+import {downloadPdf} from "../../utils/downloadUtils"
 import {useEdge} from "../../utils/server/useEdge"
 import {inv_byMbr_eDef} from "./inv_byMbr_eDef.iso"
-import {downloadPdf} from "../../utils/downloadUtils"
 
 export type ReadInvoiceByMemberViewProps = {
   invoiceId: string
@@ -39,7 +39,7 @@ export const ReadInvoiceByMemberView = ({
             <Fragment>
               {invoice.invoicePdf && (
                 <Button
-                  // variant="blue"
+                  bgColor="var(--bg-blu)"
                   label="Download PDF"
                   onClick={() => {
                     if (!invoice.invoicePdf) return

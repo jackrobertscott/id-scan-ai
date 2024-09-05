@@ -13,8 +13,8 @@ import {Spacer} from "../../theme/Spacer"
 import {TitleBar} from "../../theme/TitleBar"
 import {useEdge} from "../../utils/server/useEdge"
 import {getCachedSignedUrl} from "../../utils/signedUrlCacheUtils"
-import {scan_byMember_eDef} from "./scan_byMember_eDef.iso"
 import {ReadScanByMemberView} from "./scan_byMbr_viewRead"
+import {scan_byMember_eDef} from "./scan_byMember_eDef.iso"
 
 export type CreateScanByMemberViewProps = {
   onClose?: () => void
@@ -161,7 +161,7 @@ export const CreateScanByMemberView = ({
                     </Field>
 
                     <Button
-                      // variant="green"
+                      bgColor="var(--bg-grn)"
                       label="Face Match"
                       {...$createScanOfOldDocument.getSubmitProps()}
                       onClick={() => {
@@ -175,7 +175,7 @@ export const CreateScanByMemberView = ({
                     />
 
                     <Button
-                      // variant="red"
+                      bgColor="var(--bg-red)"
                       label="Does Not Match"
                       onClick={() => setSelectedDocument(undefined)}
                     />

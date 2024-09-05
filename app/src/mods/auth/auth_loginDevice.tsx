@@ -34,7 +34,7 @@ export const AuthDeviceByMemberView = ({}: AuthDeviceByMemberViewProps) => {
       </Field> */}
 
       <Button
-        // variant="blue"
+        bgColor="var(--bg-blu)"
         label="Login"
         {...$authDevice.getSubmitProps((data) => {
           deviceManager.setData(data)
@@ -45,16 +45,11 @@ export const AuthDeviceByMemberView = ({}: AuthDeviceByMemberViewProps) => {
       <Divider />
 
       <Button
-        // variant="grey"
         label="Login to your account"
         onClick={() => navigate("/login")}
       />
 
-      <Button
-        // variant="clear"
-        label="Go to Home Page"
-        onClick={() => navigate("/")}
-      />
+      <Button label="Go to Home Page" onClick={() => navigate("/")} />
     </Spacer>
   )
 }

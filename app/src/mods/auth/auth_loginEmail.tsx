@@ -1,4 +1,4 @@
-import {mdiAccountLock, mdiEmailFast, mdiOpenInNew} from "@mdi/js"
+import {mdiAccountLock, mdiEmailFast} from "@mdi/js"
 import {FC, useState} from "react"
 import {useNavigate} from "react-router-dom"
 import {Button} from "../../theme/Button"
@@ -39,25 +39,19 @@ export const AuthEmailByUserView: FC<{}> = () => {
         </Field>
 
         <Button
-          // variant="blue"
-          label="Sign into account"
+          label="Login"
+          bgColor="var(--bg-blu)"
           {...$sendCode.getSubmitProps((data) => setEmail(data.email))}
         />
 
         <Divider />
 
         <Button
-          // variant="grey"
-          label="Login to a device"
-          icon={mdiOpenInNew}
+          label="Login to a Device"
           onClick={() => navigate("/login-device")}
         />
 
-        <Button
-          // variant="clear"
-          label="Go to Home Page"
-          onClick={() => navigate("/")}
-        />
+        <Button label="Go to Home Page" onClick={() => navigate("/")} />
       </Spacer>
     )
   }
@@ -85,7 +79,7 @@ export const AuthEmailByUserView: FC<{}> = () => {
 
       <Button
         label="Submit"
-        // variant="blue"
+        bgColor="var(--bg-blu)"
         {...$verifyCode.getSubmitProps((data) => {
           authManager.setPayload(data.payload)
           navigate(
@@ -96,11 +90,7 @@ export const AuthEmailByUserView: FC<{}> = () => {
 
       <Divider />
 
-      <Button
-        label="Cancel"
-        // variant="clear"
-        onClick={() => setEmail(null)}
-      />
+      <Button label="Cancel" onClick={() => setEmail(null)} />
     </Spacer>
   )
 }

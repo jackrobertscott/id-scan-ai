@@ -41,7 +41,7 @@ export const CreatePdfExportByMemberView = ({
         />
 
         <Button
-          // variant="blue"
+          bgColor="var(--bg-blu)"
           label="Create Pdf Export"
           {...$createPdfExport.getSubmitProps((data) => onClose(data.id))}
         />

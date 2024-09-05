@@ -20,7 +20,7 @@ export const ComingSoon = ({render}: ComingSoonProps) => {
             icon={mdiBell}
             title="Coming Soon"
             description="This feature is not yet available"
-            // variant="yellow"
+            bgColor="var(--bg-ylw)"
           />
           <Button label="Ok" onClick={() => setShow(false)} />
         </Spacer>

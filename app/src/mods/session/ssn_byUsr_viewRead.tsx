@@ -89,7 +89,7 @@ export const ReadSessionByUserView = ({
                     render={(doShow) => (
                       <Button
                         label="Deactivate Session"
-                        // variant="red"
+                        bgColor="var(--bg-red)"
                         onClick={doShow}
                       />
                     )}

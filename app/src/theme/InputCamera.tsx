@@ -67,7 +67,7 @@ export const InputCamera: FC<{
             label={value ? "Retake" : label ?? "Capture"}
             loading={loading || webcam.loading}
             onClick={handleCapture}
-            bgColor="hsl(var(--hsl-blu))"
+            bgColor="var(--bg-blu)"
           />
         </div>
       )}

@@ -62,7 +62,7 @@ export const UpdateTagByMemberView = ({
           />
 
           <Button
-            // variant="blue"
+            bgColor="var(--bg-blu)"
             label="Save Changes"
             {...$updateTag.getSubmitProps(() => $getTag.fetch())}
           />
@@ -71,7 +71,7 @@ export const UpdateTagByMemberView = ({
 
           {$getTag.output?.tag.livePhotoId && (
             <Button
-              // variant="blue"
+              bgColor="var(--bg-blu)"
               label="View patron's history"
               icon={mdiHistory}
               onClick={() =>

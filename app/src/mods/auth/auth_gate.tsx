@@ -20,13 +20,9 @@ export const AuthGate: FC<{redirect: string}> = ({redirect}) => {
             icon={mdiAlertRhombus}
             title="Access Denied"
             description="Please login to access this page"
-            // variant="red"
+            bgColor="var(--bg-red)"
           />
-          <Button
-            label="Ok"
-            // variant="grey"
-            onClick={() => navigate(redirect)}
-          />
+          <Button label="Ok" onClick={() => navigate(redirect)} />
         </Spacer>
       </Modal>
     )
@@ -50,13 +46,9 @@ export const AdminGate: FC<{
             icon={mdiAlertRhombus}
             title="Access Denied"
             description="You must be an admin to access this page"
-            // variant="red"
+            bgColor="var(--bg-red)"
           />
-          <Button
-            label="Ok"
-            // variant="grey"
-            onClick={() => navigate(redirect)}
-          />
+          <Button label="Ok" onClick={() => navigate(redirect)} />
         </Spacer>
       </Modal>
     )

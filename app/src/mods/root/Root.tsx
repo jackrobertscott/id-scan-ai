@@ -7,6 +7,7 @@ import {ListAlbumByMemberView} from "../album/album_byMember_viewList"
 import {ListAlbumByUserView} from "../album/album_byUser_viewList"
 import {AdminGate, AuthGate} from "../auth/auth_gate"
 import {AuthDeviceByMemberView} from "../auth/auth_loginDevice"
+import {AuthFaceByUserView} from "../auth/auth_loginDeviceFace"
 import {AuthEmailByUserView} from "../auth/auth_loginEmail"
 import {AuthLoginRoot} from "../auth/auth_viewRoot"
 import {ListDeviceByMemberView} from "../device/device_byMember_viewList"
@@ -31,7 +32,6 @@ import {ListVenueByAdminView} from "../venue/venue_byAdm_viewList"
 import {OnlineGate} from "./root_gate_online"
 import {RefresherGate} from "./root_gate_refresher"
 import {Page404} from "./root_page404"
-import {AuthFaceByUserView} from "../auth/auth_loginDeviceFace"
 
 export const Root: FC = () => {
   return (
@@ -44,7 +44,7 @@ export const Root: FC = () => {
 
       <Route element={<OnlineGate />}>
         {/* unauthenticated routes */}
-        <Route element={<CenterLayout />}>
+        <Route element={<CenterLayout width="20rem" />}>
           <Route path="login" element={<AuthLoginRoot />} />
           <Route path="login-email" element={<AuthEmailByUserView />} />
           <Route path="login-device" element={<AuthDeviceByMemberView />} />

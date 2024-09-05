@@ -50,7 +50,7 @@ export const UpdateUserBySelfView = () => {
         </Field>
 
         <Button
-          // variant="blue"
+          bgColor="var(--bg-blu)"
           label="Continue"
           {...$updateUser.getSubmitProps(() => () => $getUser.fetch())}
         />
@@ -68,7 +68,7 @@ export const UpdateUserBySelfView = () => {
               />
 
               <Button
-                // variant={user.faceAuth ? "grey" : "blue"}
+                bgColor={user.faceAuth ? undefined : "var(--bg-blu)"}
                 label={
                   user.faceAuth ? "Update Face Login" : "Enable Face Login"
                 }

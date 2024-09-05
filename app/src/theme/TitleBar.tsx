@@ -21,7 +21,6 @@ export const updatePageOptions = (
       intercept: hasChanged
         ? {
             icon: mdiContentSave,
-            // variant: "yellow",
             title: "Are you sure?",
             description: "You have unsaved changes",
             buttonLabel: "Leave without saving",

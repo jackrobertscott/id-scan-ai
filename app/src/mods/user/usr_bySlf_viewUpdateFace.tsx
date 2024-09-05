@@ -44,7 +44,7 @@ export const UpdateUserFaceBySelfView = ({
 
         <Button
           label="Save"
-          // variant="blue"
+          bgColor="var(--bg-blu)"
           {...$updateFace.getSubmitProps(() => onClose())}
         />
       </Spacer>

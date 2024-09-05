@@ -85,11 +85,7 @@ export const ListSimilarPatronByMemberView = ({
           <Fragment>
             <ComingSoon
               render={(doShow) => (
-                <Button
-                  // variant="grey"
-                  label="Upload A File"
-                  onClick={doShow}
-                />
+                <Button label="Upload A File" onClick={doShow} />
               )}
             />
 

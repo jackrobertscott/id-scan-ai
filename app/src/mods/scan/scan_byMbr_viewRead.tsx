@@ -104,7 +104,6 @@ export const ReadScanByMemberView = ({
                             tag.expiry.date
                           ).toLocaleString("en-au", {dateStyle: "medium"})
                           return {
-                            // variant,
                             label: tag.desc,
                             description: `Expires ${expiryDateString}`,
                             onClick: () => setShowTagId(tag.id),
@@ -116,7 +115,6 @@ export const ReadScanByMemberView = ({
 
                   <Button
                     icon={mdiTag}
-                    // variant="grey"
                     label="Tag Patron"
                     onClick={() => setShowTagCreate(true)}
                   />
@@ -174,7 +172,7 @@ export const ReadScanByMemberView = ({
                   <Divider />
 
                   <Button
-                    // variant="blue"
+                    bgColor="var(--bg-blu)"
                     label="View patron's history"
                     icon={mdiHistory}
                     onClick={() => setPatronFaceSearchId(scan.livePhotoId)}
@@ -183,7 +181,7 @@ export const ReadScanByMemberView = ({
                   <ComingSoon
                     render={(doShow) => (
                       <Button
-                        // variant="red"
+                        bgColor="var(--bg-red)"
                         label="Delete scan"
                         icon={mdiTrashCan}
                         onClick={() => doShow()}

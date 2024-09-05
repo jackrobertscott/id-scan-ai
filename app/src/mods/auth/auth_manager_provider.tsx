@@ -12,8 +12,8 @@ import {Spacer} from "../../theme/Spacer"
 import {StatusCodeError} from "../../utils/server/errorClasses"
 import {fetchEdge} from "../../utils/server/fetchEdge.brw"
 import {useLocalState} from "../../utils/useLocalState"
-import {AuthManagerContext, AuthPayloadType} from "./auth_manager"
 import {auth_eDef} from "./auth_eDef.iso"
+import {AuthManagerContext, AuthPayloadType} from "./auth_manager"
 
 export const AuthManagerProvider: FC<{
   children: ReactNode
@@ -78,17 +78,13 @@ export const AuthManagerProvider: FC<{
             />
             <Button
               label="Login"
-              // variant="blue"
+              bgColor="var(--bg-blu)"
               onClick={() => {
                 navigate("/login-face")
                 setReAuthWarn(false)
               }}
             />
-            <Button
-              label="Ignore"
-              // variant="grey"
-              onClick={() => setReAuthWarn(false)}
-            />
+            <Button label="Ignore" onClick={() => setReAuthWarn(false)} />
           </Spacer>
         </Modal>
       )}

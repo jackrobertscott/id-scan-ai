@@ -23,7 +23,7 @@ export const DeleteModal = ({
   return (
     <Fragment>
       <Button
-        // variant="red"
+        bgColor="var(--bg-red)"
         label={`Delete ${noun}`}
         onClick={() => setShow(true)}
       />
@@ -33,11 +33,11 @@ export const DeleteModal = ({
             icon={mdiBell}
             title={`Delete ${noun}`}
             description={`Are you sure you wish to permanently delete this ${noun}?`}
-            // variant="red"
+            bgColor="var(--bg-red)"
           />
           <Button
             label="Delete"
-            // variant="red"
+            bgColor="var(--bg-red)"
             loading={loading}
             onClick={() => {
               onDelete?.()
@@ -46,7 +46,6 @@ export const DeleteModal = ({
           />
           <Button
             label="Cancel"
-            // variant="grey"
             onClick={() => {
               if (!loading) setShow(false)
             }}

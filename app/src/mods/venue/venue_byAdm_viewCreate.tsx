@@ -28,7 +28,7 @@ export const CreateVenueByAdminView = ({
         />
 
         <Button
-          // variant="blue"
+          bgColor="var(--bg-blu)"
           label="Create Venue"
           {...$createVenue.getSubmitProps((i) => onClose(i.id))}
         />

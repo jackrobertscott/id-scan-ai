@@ -28,7 +28,7 @@ export const CreateDeviceByMemberView = ({
         />
 
         <Button
-          // variant="blue"
+          bgColor="var(--bg-blu)"
           label="Create Device"
           {...$createDevice.getSubmitProps((data) => onClose(data.id))}
         />

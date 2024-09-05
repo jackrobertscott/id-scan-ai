@@ -29,8 +29,8 @@ export const CreateAlbumByMemberView = ({
         />
 
         <Button
-          // variant="blue"
           label="Create Album"
+          bgColor="var(--bg-blu)"
           {...$createAlbum.getSubmitProps((data) => onClose(data.id))}
         />
       </Spacer>

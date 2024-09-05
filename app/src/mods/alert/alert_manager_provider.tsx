@@ -15,10 +15,7 @@ export type AlertManagerProviderProps = {
 export const AlertManagerProvider = ({children}: AlertManagerProviderProps) => {
   const [alerts, setAlerts] = useState<Alert[]>([])
 
-  const createAlert = (
-    message: string
-    // variant: ThemeColorVariant = "grey"
-  ) => {
+  const createAlert = (message: string) => {
     const id = createRandomString(10)
     setAlerts((i) => [...i, {id, message}])
     setTimeout(() => closeAlert(id), 8 * 1e3)

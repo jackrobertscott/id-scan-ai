@@ -50,7 +50,7 @@ export const AuthFaceByUserView = ({}: AuthFaceByUserViewProps) => {
 
       <Button
         label="Login"
-        // variant="blue"
+        bgColor="var(--bg-blu)"
         {...$loginFace.getSubmitProps((data) => {
           authManager.setPayload(data.payload)
           navigate("/new-scan")

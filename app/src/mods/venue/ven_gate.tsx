@@ -19,13 +19,9 @@ export const VenueGate: FC<{redirect: string}> = ({redirect}) => {
             icon={mdiAlertRhombus}
             title="Access Denied"
             description="Please join a venue to continue"
-            // variant="red"
+            bgColor="var(--bg-red)"
           />
-          <Button
-            label="Ok"
-            // variant="grey"
-            onClick={() => navigate(redirect)}
-          />
+          <Button label="Ok" onClick={() => navigate(redirect)} />
         </Spacer>
       </Modal>
     )

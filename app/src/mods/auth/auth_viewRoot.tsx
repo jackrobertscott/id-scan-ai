@@ -25,18 +25,14 @@ export const AuthLoginRoot = ({}: AuthLoginRootProps) => {
       />
 
       <Button
-        // variant="blue"
+        bgColor="var(--bg-blu)"
         label="Login with Face ID"
         onClick={() => navigate("/login-face")}
       />
 
       <ComingSoon
         render={(doShow) => (
-          <Button
-            // variant="grey"
-            label="Logout of device"
-            onClick={doShow}
-          />
+          <Button label="Logout of device" onClick={doShow} />
         )}
       />
     </Spacer>

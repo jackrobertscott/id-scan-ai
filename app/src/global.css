@@ -11,10 +11,17 @@
   --fnt-clr-plc: hsl(0, 0%, 100%, 0.5);
   --shdw-thck: 0.1rem;
 
-  --bg-clr: hsl(0, 0%, 25%);
-  --bg-fnt: hsl(0, 0%, 100%);
   --hsl-blu: 220, 100%, 40%;
   --hsl-grn: 120, 100%, 50%;
+
+  --bg-clr: hsl(0, 0%, 25%);
+  --bg-fnt: hsl(0, 0%, 100%);
+  --bg-blu: hsl(var(--hsl-blu));
+  --bg-grn: hsl(var(--hsl-grn));
+  --bg-gry: hsl(0, 0%, 15%);
+  --bg-red: hsl(0, 100%, 45%);
+  --bg-ylw: hsl(60, 100%, 30%);
+  --bg-non: hsl(0, 0%, 0%, 0);
 
   --gap-r: 0.5rem;
   --pad-r-x: 0.75rem;

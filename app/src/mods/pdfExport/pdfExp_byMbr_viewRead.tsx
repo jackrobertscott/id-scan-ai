@@ -42,7 +42,7 @@ export const ReadPdfExportByMemberView = ({
             <Fragment>
               {pdfExport.pdfUrl && (
                 <Button
-                  // variant="blue"
+                  bgColor="var(--bg-blu)"
                   label="Download PDF"
                   {...$downloadPdfExport.getSubmitProps(async (response) => {
                     const blob = await response.blob()

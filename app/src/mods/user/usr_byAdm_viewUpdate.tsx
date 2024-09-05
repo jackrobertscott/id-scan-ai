@@ -46,7 +46,7 @@ export const UpdateUserByAdminView = ({
         />
 
         <Button
-          // variant="blue"
+          bgColor="var(--bg-blu)"
           label="Save Changes"
           {...$updateUser.getSubmitProps(() => $getUser.fetch())}
         />

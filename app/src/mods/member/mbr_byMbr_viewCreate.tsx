@@ -31,7 +31,7 @@ export const CreateMemberByMemberView: FC<{
         />
 
         <Button
-          // variant="blue"
+          bgColor="var(--bg-blu)"
           label="Create Member"
           {...$createMember.getSubmitProps((i) => onClose(i.id))}
         />

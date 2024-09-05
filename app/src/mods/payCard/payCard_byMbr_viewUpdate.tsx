@@ -83,7 +83,7 @@ export const UpdatePayCardByMemberView = ({
                   ]}
                   render={(doOpen) => (
                     <Button
-                      // variant="blue"
+                      bgColor="var(--bg-blu)"
                       label="Save Changes"
                       onClick={doOpen}
                     />
