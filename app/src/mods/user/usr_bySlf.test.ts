@@ -12,28 +12,40 @@ test.describe("User actions by self", async () => {
 
     // Edit the account
     await page.goto("/my-account")
-    await expect(page.getByText("Your Account", {exact: true})).toBeVisible()
-    await page.fill("[data-name='first-name'] input", formData.firstName)
-    await page.fill("[data-name='last-name'] input", formData.lastName)
-    await page.getByRole("button", {name: "Save"}).click()
+    const dashBody = page.locator(".dashboard-layout-body")
+    await expect(
+      dashBody.getByText("Your Account", {exact: true})
+    ).toBeVisible()
+    await dashBody
+      .locator("[data-name='first-name'] input")
+      .fill(formData.firstName)
+    await dashBody
+      .locator("[data-name='last-name'] input")
+      .fill(formData.lastName)
+    await dashBody.getByRole("button", {name: "Save"}).click()
     const alert = page.locator(".alert-manager-alert")
     await expect(alert).toBeVisible()
     await expect(alert).toHaveText("Account updated")
 
     // Check the changes were saved
     await page.reload()
-    await expect(page.getByText("Your Account", {exact: true})).toBeVisible()
-    await expect(page.locator("[data-name='first-name'] input")).toHaveValue(
-      formData.firstName
-    )
-    await expect(page.locator("[data-name='last-name'] input")).toHaveValue(
+    await expect(
+      dashBody.getByText("Your Account", {exact: true})
+    ).toBeVisible()
+    await expect(
+      dashBody.locator("[data-name='first-name'] input")
+    ).toHaveValue(formData.firstName)
+    await expect(dashBody.locator("[data-name='last-name'] input")).toHaveValue(
       formData.lastName
     )
   })
 
   test("edit face login", async ({page}) => {
     await page.goto("/my-account")
-    await expect(page.getByText("Your Account", {exact: true})).toBeVisible()
+    const dashBody = page.locator(".dashboard-layout-body")
+    await expect(
+      dashBody.getByText("Your Account", {exact: true})
+    ).toBeVisible()
     // todo...
   })
 })
