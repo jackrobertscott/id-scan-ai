@@ -22,7 +22,7 @@ export const AuthDeviceByMemberView = ({}: AuthDeviceByMemberViewProps) => {
       <Poster
         icon={mdiDevices}
         title="Device Login"
-        description="You can find your device key in your venue's device dashboard"
+        desc="You can find your device key in your venue's device dashboard"
       />
 
       <Field label="Device Key">

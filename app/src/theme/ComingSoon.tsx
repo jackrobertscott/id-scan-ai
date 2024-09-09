@@ -19,7 +19,7 @@ export const ComingSoon = ({render}: ComingSoonProps) => {
           <Poster
             icon={mdiBell}
             title="Coming Soon"
-            description="This feature is not yet available"
+            desc="This feature is not yet available"
           />
           <Button label="Ok" onClick={() => setShow(false)} />
         </Spacer>

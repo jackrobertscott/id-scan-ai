@@ -52,7 +52,7 @@ export const ListVenueByUserView: FC<{}> = () => {
       <Poster
         icon={mdiStore}
         title="Select a Venue"
-        description="Scans are grouped by venue"
+        desc="Scans are grouped by venue"
       />
 
       <ListOptions

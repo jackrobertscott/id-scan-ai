@@ -49,7 +49,7 @@ export const ListScanByAlbumView = ({}: ListScanByAlbumViewProps) => {
         <Poster
           icon={mdiAlertCircle}
           title="Invalid Album ID"
-          description="The album ID in the URL is invalid"
+          desc="The album ID in the URL is invalid"
         />
       </Spacer>
     )

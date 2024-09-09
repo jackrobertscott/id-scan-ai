@@ -28,7 +28,9 @@ test("login user", async ({page}) => {
 
   // Wait for redirect
   await page.waitForURL("**/select-venue")
-  expect(page.getByText("Select a Venue")).toBeVisible({timeout: 1000})
+  const title = page.locator(".poster-title")
+  await expect(title).toBeVisible()
+  await expect(title).toContainText("Select a Venue")
 })
 
 test("login user with invalid code", async ({page}) => {
@@ -45,6 +47,6 @@ test("login user with invalid code", async ({page}) => {
 
   // Count errors
   const errorAlert = page.locator(".alert-manager-alert")
-  expect(errorAlert).toBeVisible({timeout: 1000})
-  expect(errorAlert).toContainText("Login code is invalid")
+  await expect(errorAlert).toBeVisible()
+  await expect(errorAlert).toContainText("Login code is invalid")
 })

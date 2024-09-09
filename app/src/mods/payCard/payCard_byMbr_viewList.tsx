@@ -32,7 +32,7 @@ export const ListPayCardByMemberView = () => {
       <Poster
         icon={mdiCreditCard}
         title="Payment Cards"
-        description="Your payment methods"
+        desc="Your payment methods"
       />
 
       <EmptyListWrap

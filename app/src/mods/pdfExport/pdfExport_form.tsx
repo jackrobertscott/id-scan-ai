@@ -42,7 +42,7 @@ export const PdfExportForm = ({
         <Poster
           icon={mdiLock}
           title="Locked Filters"
-          description="You can not change the filters once the PDF is created"
+          desc="You can not change the filters once the PDF is created"
         />
 
         <ScanFilterForm {...form.getPropsOf("filters")} disabled={disabled} />

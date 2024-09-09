@@ -6,7 +6,7 @@ import {Icon} from "./Icon"
 export type PosterProps = {
   icon: string
   title: string
-  description: string
+  desc: string
   bgColor?: string
   grow?: boolean
 }
@@ -14,7 +14,7 @@ export type PosterProps = {
 export const Poster = ({
   icon,
   title,
-  description,
+  desc: description,
   bgColor,
   grow,
 }: PosterProps) => {

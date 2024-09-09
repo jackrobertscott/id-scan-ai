@@ -38,7 +38,7 @@ export const UpdateUserBySelfView = () => {
         <Poster
           icon={mdiAccountEdit}
           title="Your Account"
-          description="We need some more details about you"
+          desc="We need some more details about you"
         />
 
         <Field label="First name" variant="required">
@@ -51,7 +51,7 @@ export const UpdateUserBySelfView = () => {
 
         <Button
           bgColor="var(--bg-blu)"
-          label="Continue"
+          label="Save"
           {...$updateUser.getSubmitProps(() => () => $getUser.fetch())}
         />
 
@@ -64,7 +64,7 @@ export const UpdateUserBySelfView = () => {
               <Poster
                 icon={mdiEmoticonHappy}
                 title="Face Login"
-                description="To help streamline the login process, you can enable face login"
+                desc="To help streamline the login process, you can enable face login"
               />
 
               <Button

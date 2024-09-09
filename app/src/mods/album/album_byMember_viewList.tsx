@@ -35,7 +35,7 @@ export const ListAlbumByMemberView = () => {
       <Poster
         icon={mdiShare}
         title="Shared Albums"
-        description="Securely share a filtered set of scans with external parties"
+        desc="Securely share a filtered set of scans with external parties"
       />
 
       <ListOptions

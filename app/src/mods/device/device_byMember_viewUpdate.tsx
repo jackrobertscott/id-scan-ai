@@ -60,7 +60,7 @@ export const UpdateDeviceByMemberView = ({
         <Poster
           icon={mdiLogin}
           title="Device Login"
-          description="Use the following details to login to a device at your venue"
+          desc="Use the following details to login to a device at your venue"
         />
 
         <Field label="Device Key">

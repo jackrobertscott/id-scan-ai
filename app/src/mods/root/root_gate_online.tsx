@@ -46,7 +46,7 @@ export const OnlineGate: FC = () => {
           <Poster
             icon={mdiWifi}
             title="No Connection"
-            description="Please check your internet connection and try again."
+            desc="Please check your internet connection and try again."
           />
           <Button
             icon={mdiSync}

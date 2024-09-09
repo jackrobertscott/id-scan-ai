@@ -59,7 +59,7 @@ export const ListScanByPdfView = ({}: ListScanByPdfViewProps) => {
             <Poster
               icon={mdiAlertCircle}
               title="Invalid Payload"
-              description="The provided PDF details are invalid"
+              desc="The provided PDF details are invalid"
             />
           </Spacer>
         </Container>

@@ -32,7 +32,7 @@ export const DeleteModal = ({
           <Poster
             icon={mdiBell}
             title={`Delete ${noun}`}
-            description={`Are you sure you wish to permanently delete this ${noun}?`}
+            desc={`Are you sure you wish to permanently delete this ${noun}?`}
           />
           <Button
             label="Delete"

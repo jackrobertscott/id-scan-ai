@@ -36,7 +36,7 @@ export const ListPdfExportByMemberView = () => {
       <Poster
         icon={mdiFileDocument}
         title="PDF Exports"
-        description="Export your data to a PDF file"
+        desc="Export your data to a PDF file"
       />
 
       <ListOptions

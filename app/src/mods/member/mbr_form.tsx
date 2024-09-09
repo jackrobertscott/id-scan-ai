@@ -37,7 +37,7 @@ export const MemberByMemberForm = ({
           getLabel={(value) => (value ? "Full Access" : "Limited Access")}
           getPoster={(value) => ({
             title: !value ? "Full Access" : "Limited Access",
-            description: !value
+            desc: !value
               ? "This member will have full access to all venues and assets."
               : "This member will have limited access to specific venues and assets.",
           })}

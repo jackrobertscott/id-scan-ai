@@ -27,7 +27,7 @@ export const CreateVenueByUserView = ({
         <Poster
           icon={mdiStore}
           title="New Venue"
-          description="Please tell us about your venue"
+          desc="Please tell us about your venue"
         />
 
         <VenueForm

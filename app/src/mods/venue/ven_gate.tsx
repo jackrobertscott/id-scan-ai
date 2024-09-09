@@ -18,7 +18,7 @@ export const VenueGate: FC<{redirect: string}> = ({redirect}) => {
           <Poster
             icon={mdiAlertRhombus}
             title="Access Denied"
-            description="Please join a venue to continue"
+            desc="Please join a venue to continue"
           />
           <Button label="Ok" onClick={() => navigate(redirect)} />
         </Spacer>

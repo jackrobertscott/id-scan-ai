@@ -31,7 +31,7 @@ export const AuthEmailByUserView: FC<{}> = () => {
         <Poster
           icon={mdiAccountLock}
           title="Account Login"
-          description="Please enter your email address to login"
+          desc="Please enter your email address to login"
         />
 
         <Field label="Email" variant="required">
@@ -62,7 +62,7 @@ export const AuthEmailByUserView: FC<{}> = () => {
       <Poster
         icon={mdiEmailFast}
         title="Check Your Email"
-        description="We have sent you a login code"
+        desc="We have sent you a login code"
       />
 
       <Field label="Email" variant="locked">

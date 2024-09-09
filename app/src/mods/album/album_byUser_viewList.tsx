@@ -30,7 +30,7 @@ export const ListAlbumByUserView = () => {
       <Poster
         icon={mdiViewGallery}
         title="My Albums"
-        description="Securely shared groups of scans"
+        desc="Securely shared groups of scans"
       />
 
       <ListOptions

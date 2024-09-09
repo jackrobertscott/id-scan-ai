@@ -26,9 +26,7 @@ export const QuestionModal = ({
             {...poster}
             icon={poster.icon ?? mdiBell}
             title={poster.title ?? "Please confirm"}
-            description={
-              poster.description ?? "Are you sure you want to continue?"
-            }
+            desc={poster.desc ?? "Are you sure you want to continue?"}
           />
           {...getButtons(() => setShow(false)).map((button) => (
             <Button {...button} />

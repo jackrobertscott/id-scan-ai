@@ -49,7 +49,7 @@ export const ListVenueByAdminView = () => {
               options={venues.map((venue) => ({
                 key: venue.id,
                 label: venue.name,
-                description: venue.createdDate.toLocaleString("en-au", {
+                desc: venue.createdDate.toLocaleString("en-au", {
                   dateStyle: "medium",
                   timeStyle: "medium",
                 }),

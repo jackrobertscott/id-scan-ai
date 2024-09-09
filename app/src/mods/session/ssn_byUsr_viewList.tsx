@@ -50,7 +50,7 @@ export const ListSessionByUserView = () => {
                   dateStyle: "medium",
                   timeStyle: "medium",
                 }),
-                description: session.userAgent ?? "Unknown agent",
+                desc: session.userAgent ?? "Unknown agent",
                 onClick: () => crud.onOpenRead(session.id),
               }))}
             />

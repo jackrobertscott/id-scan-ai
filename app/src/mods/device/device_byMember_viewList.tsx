@@ -35,7 +35,7 @@ export const ListDeviceByMemberView = () => {
       <Poster
         icon={mdiDevices}
         title="Venue Devices"
-        description="Your staff can login to these devices using face ID"
+        desc="Your staff can login to these devices using face ID"
       />
 
       <ListOptions

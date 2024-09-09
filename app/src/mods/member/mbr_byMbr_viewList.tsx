@@ -37,7 +37,7 @@ export const ListMemberByMemberView = () => {
       <Poster
         icon={mdiAccountGroup}
         title="Venue Members"
-        description="The people with access to your venue's assets"
+        desc="The people with access to your venue's assets"
       />
 
       <ListOptions

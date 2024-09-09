@@ -50,7 +50,7 @@ export const ListUserByAdminView = () => {
               options={users.map((user) => ({
                 key: user.id,
                 label: formatFullName(user) ?? user.email,
-                description: user.createdDate.toLocaleString("en-au", {
+                desc: user.createdDate.toLocaleString("en-au", {
                   dateStyle: "medium",
                   timeStyle: "medium",
                 }),

@@ -22,7 +22,7 @@ export const updatePageOptions = (
         ? {
             icon: mdiContentSave,
             title: "Are you sure?",
-            description: "You have unsaved changes",
+            desc: "You have unsaved changes",
             buttonLabel: "Leave without saving",
           }
         : undefined,

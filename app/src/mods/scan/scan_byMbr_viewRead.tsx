@@ -117,7 +117,7 @@ export const ReadScanByMemberView = ({
                           ).toLocaleString("en-au", {dateStyle: "medium"})
                           return {
                             label: tag.desc,
-                            description: `Expires ${expiryDateString}`,
+                            desc: `Expires ${expiryDateString}`,
                             onClick: () => setShowTagId(tag.id),
                           }
                         })}

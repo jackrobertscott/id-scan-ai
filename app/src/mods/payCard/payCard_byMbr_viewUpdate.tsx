@@ -64,8 +64,7 @@ export const UpdatePayCardByMemberView = ({
                   poster={{
                     icon: mdiCreditCard,
                     title: "Set as Default",
-                    description:
-                      "Are you sure you want to set this card as the default payment source?",
+                    desc: "Are you sure you want to set this card as the default payment source?",
                   }}
                   getButtons={(onClose) => [
                     {

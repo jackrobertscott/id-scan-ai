@@ -21,7 +21,7 @@ export const AuthLoginRoot = ({}: AuthLoginRootProps) => {
       <Poster
         icon={mdiCheckCircleOutline}
         title={deviceManager.data.payload.name}
-        description="Venue staff who have enabled face ID login on their account may now login"
+        desc="Venue staff who have enabled face ID login on their account may now login"
       />
 
       <Button

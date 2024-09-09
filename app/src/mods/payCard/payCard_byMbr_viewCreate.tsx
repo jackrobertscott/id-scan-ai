@@ -40,7 +40,7 @@ export const CreatePayCardByMemberView = ({
         <Poster
           icon={mdiCreditCardCheck}
           title="Pay Card"
-          description="See our pricing page for details"
+          desc="See our pricing page for details"
         />
 
         <Field label="Name on card" variant="required">

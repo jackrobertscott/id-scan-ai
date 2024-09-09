@@ -19,7 +19,7 @@ export const AuthGate: FC<{redirect: string}> = ({redirect}) => {
           <Poster
             icon={mdiAlertRhombus}
             title="Access Denied"
-            description="Please login to access this page"
+            desc="Please login to access this page"
           />
           <Button label="Ok" onClick={() => navigate(redirect)} />
         </Spacer>
@@ -44,7 +44,7 @@ export const AdminGate: FC<{
           <Poster
             icon={mdiAlertRhombus}
             title="Access Denied"
-            description="You must be an admin to access this page"
+            desc="You must be an admin to access this page"
           />
           <Button label="Ok" onClick={() => navigate(redirect)} />
         </Spacer>

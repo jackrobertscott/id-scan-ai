@@ -12,7 +12,7 @@ export const Page404 = ({}: Page404Props) => {
   const authManager = useAuthManager()
   return (
     <Spacer>
-      <Poster icon={mdiHeadQuestion} title="404" description="Page not found" />
+      <Poster icon={mdiHeadQuestion} title="404" desc="Page not found" />
       <Button label="Home" onClick={() => navigate("/")} />
       {authManager.getPayload()?.token ? (
         <Button label="Dashboard" onClick={() => navigate("/my-account")} />

@@ -80,12 +80,12 @@ export default defineConfig({
     {
       command: "npm run b:dev",
       url: "http://localhost:3000",
-      reuseExistingServer: false,
+      reuseExistingServer: true,
     },
     {
       command: "npm run s:dev",
       url: "http://localhost:4000",
-      reuseExistingServer: false,
+      reuseExistingServer: true,
     },
   ],
 })

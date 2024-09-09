@@ -74,7 +74,7 @@ export const AuthManagerProvider: FC<{
             <Poster
               icon={mdiLogin}
               title="Session Expiry Warning"
-              description="Please re-authenticate to continue using the application"
+              desc="Please re-authenticate to continue using the application"
             />
             <Button
               label="Login"

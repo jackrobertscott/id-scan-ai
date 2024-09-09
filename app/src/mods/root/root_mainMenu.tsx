@@ -217,7 +217,7 @@ export const LogoutButton = ({}: LogoutButtonProps) => {
       poster={{
         icon: mdiPower,
         title: "Logout",
-        description: "Are you sure you want to logout of your account?",
+        desc: "Are you sure you want to logout of your account?",
       }}
       render={(doShow) => (
         <Button label="Logout" onClick={doShow} bgColor="var(--bg-red)" />
