@@ -74,7 +74,7 @@ export const ListVenueByUserView: FC<{}> = () => {
             <SimpleList
               options={venues.map((venue) => ({
                 label: venue.name,
-                // description: venue.address.line1,
+                // desc: venue.address.line1,
                 onClick: () => handleSelectVenue(venue.id),
               }))}
             />

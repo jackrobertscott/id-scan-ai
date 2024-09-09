@@ -1,52 +1,84 @@
 import test, {expect} from "@playwright/test"
+import {SessionStore} from "../session/session_store"
+import {TEST_AUTH_USER_FILE} from "../test/testGlobalSetup"
 import {UserStore} from "../user/user_store"
+import {AuthDataSchema} from "./auth_schemas"
 
-test.beforeEach(async ({page}) => {
-  // Load the page to bring localStorage into existance
-  await page.goto("/")
+test.describe("Auth by email", async () => {
+  test.beforeEach(async ({page}) => {
+    // Load the page to bring localStorage into existance
+    await page.goto("/")
 
-  // Remove local storage
-  await page.evaluate(() => localStorage.clear())
+    // Remove local storage
+    await page.evaluate(() => localStorage.clear())
+  })
+
+  test("Login user", async ({page}) => {
+    const email = "fred@example.com"
+
+    // Go to login page
+    await page.goto("/login-email")
+    await page.fill('.field-root[data-name="email"] input', email)
+    await page.getByRole("button", {name: "Login", exact: true}).click()
+
+    // Get user code from db
+    const user = await UserStore.getOne({email})
+    const code = user.emailVerif?.code
+    if (!code) throw new Error("User missing verification code")
+
+    // Fill in code
+    await page.fill('.field-root[data-name="code"] input', code)
+    await page.getByRole("button", {name: "Submit"}).click()
+
+    // Wait for redirect
+    await page.waitForURL("**/select-venue")
+    const $title = page.locator(".poster-title")
+    await expect($title).toBeVisible()
+    await expect($title).toContainText("Select a Venue")
+  })
+
+  test("Invalid login code", async ({page}) => {
+    const email = "fred@example.com"
+
+    // Go to login page
+    await page.goto("/login-email")
+    await page.fill('.field-root[data-name="email"] input', email)
+    await page.getByRole("button", {name: "Login", exact: true}).click()
+
+    // Fill in code
+    await page.fill('.field-root[data-name="code"] input', "000000")
+    await page.getByRole("button", {name: "Submit"}).click()
+
+    // Count errors
+    const $alert = page.locator(".alert-manager-alert")
+    await expect($alert).toBeVisible()
+    await expect($alert).toContainText("Login code is invalid")
+  })
 })
 
-test("login user", async ({page}) => {
-  const email = "fred@example.com"
+test.describe("Logout", () => {
+  test.use({storageState: TEST_AUTH_USER_FILE})
 
-  // Go to login page
-  await page.goto("/login-email")
-  await page.fill('.field-root[data-name="email"] input', email)
-  await page.getByRole("button", {name: "Login", exact: true}).click()
+  test("Logout", async ({page}) => {
+    await page.goto("/my-account")
+    const $dashBody = page.locator(".dashboard-layout-body")
+    await expect($dashBody.locator(".title-bar-title")).toHaveText("My Account")
 
-  // Get user code from db
-  const user = await UserStore.getOne({email})
-  const code = user.emailVerif?.code
-  if (!code) throw new Error("User missing verification code")
+    const p1 = await page.evaluate(() => localStorage.getItem("auth"))
+    expect(p1).not.toBeNull()
+    const pd = AuthDataSchema.parse(JSON.parse(p1 as string).data.data)
 
-  // Fill in code
-  await page.fill('.field-root[data-name="code"] input', code)
-  await page.getByRole("button", {name: "Submit"}).click()
+    await page.getByRole("button", {name: "Logout"}).click()
+    const $modal = page.locator(".modal-root")
+    await expect($modal.locator(".poster-title")).toHaveText("Logout")
+    await $modal.getByRole("button", {name: "Logout"}).click()
 
-  // Wait for redirect
-  await page.waitForURL("**/select-venue")
-  const title = page.locator(".poster-title")
-  await expect(title).toBeVisible()
-  await expect(title).toContainText("Select a Venue")
-})
+    await page.waitForTimeout(100)
+    const p2 = await page.evaluate(() => localStorage.getItem("auth"))
+    expect(typeof p2 === "string").toBeTruthy()
+    expect(JSON.parse(p2 as string).data).toBeNull()
 
-test("login user with invalid code", async ({page}) => {
-  const email = "fred@example.com"
-
-  // Go to login page
-  await page.goto("/login-email")
-  await page.fill('.field-root[data-name="email"] input', email)
-  await page.getByRole("button", {name: "Login", exact: true}).click()
-
-  // Fill in code
-  await page.fill('.field-root[data-name="code"] input', "000000")
-  await page.getByRole("button", {name: "Submit"}).click()
-
-  // Count errors
-  const errorAlert = page.locator(".alert-manager-alert")
-  await expect(errorAlert).toBeVisible()
-  await expect(errorAlert).toContainText("Login code is invalid")
+    // Revert the logout
+    await SessionStore.updateOneById(pd.sessionId, {endedDate: null})
+  })
 })
