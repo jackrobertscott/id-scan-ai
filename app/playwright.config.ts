@@ -77,12 +77,12 @@ export default defineConfig({
   webServer: [
     {
       command: "npm run b:dev",
-      url: "http://127.0.0.1:3000",
+      url: "http://localhost:3000",
       reuseExistingServer: !process.env.CI,
     },
     {
       command: "npm run s:dev",
-      url: "http://127.0.0.1:4000",
+      url: "http://localhost:4000",
       reuseExistingServer: !process.env.CI,
     },
   ],

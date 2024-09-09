@@ -38,8 +38,11 @@ async function startServer() {
 
   // Start the server
   createEdgeServer(EDGE_ARRAY).listen(srvConf.PORT, () => {
-    console.log(`Port: ${srvConf.PORT}`)
-    console.log(`Worker: ${cluster.worker?.id}`)
+    console.log(
+      `Started: ${cluster.worker ? `WORKER ${cluster.worker.id}` : "MASTER"} (${
+        srvConf.PORT
+      })`
+    )
   })
 }
 
