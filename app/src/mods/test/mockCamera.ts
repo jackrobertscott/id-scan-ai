@@ -1,7 +1,7 @@
-import assetUrl from "./path/to/your/asset.webm"
+import assetUrl from "../../assets/faces/IMG_2925.jpg"
 
 export function mockCamera() {
-  if (!navigator.mediaDevices.getUserMedia) {
+  if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
     console.warn("getUserMedia is not supported in this browser")
     return
   }
@@ -12,36 +12,35 @@ export function mockCamera() {
 
   navigator.mediaDevices.getUserMedia = async (
     constraints: MediaStreamConstraints
-  ) => {
+  ): Promise<MediaStream> => {
     if (constraints.video) {
-      const video = document.createElement("video")
-      video.src = assetUrl
-      video.muted = true
-      video.loop = true
+      const img = new Image()
+      img.src = assetUrl
 
-      // Wait for the video to load metadata
       await new Promise<void>((resolve) => {
-        video.onloadedmetadata = () => resolve()
+        img.onload = () => resolve()
       })
 
-      await video.play()
-
-      // Fallback to canvas if captureStream is not available
       const canvas = document.createElement("canvas")
-      canvas.width = video.videoWidth
-      canvas.height = video.videoHeight
+      canvas.width = img.width
+      canvas.height = img.height
       const ctx = canvas.getContext("2d")
 
-      let stream: MediaStream = canvas.captureStream(30) // 30 FPS
-
-      const drawVideo = () => {
-        if (ctx) {
-          ctx.drawImage(video, 0, 0, canvas.width, canvas.height)
-        }
-        requestAnimationFrame(drawVideo)
+      if (!ctx) {
+        throw new Error("Failed to get 2D context from canvas")
       }
 
-      drawVideo()
+      ctx.drawImage(img, 0, 0)
+
+      let stream: MediaStream
+      if (canvas.captureStream) {
+        stream = canvas.captureStream()
+      } else {
+        // Fallback for browsers that don't support captureStream
+        stream = new MediaStream()
+        const track = (canvas as any).captureStream().getVideoTracks()[0]
+        stream.addTrack(track)
+      }
 
       return stream
     }
