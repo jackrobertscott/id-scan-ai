@@ -1,5 +1,5 @@
 import {expect, test} from "@playwright/test"
-import {UserStore} from "../mods/user/user_store"
+import {UserStore} from "../user/user_store"
 
 test.afterEach(async ({page}) => {
   // Remove local storage

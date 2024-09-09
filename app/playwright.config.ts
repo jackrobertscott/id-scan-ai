@@ -11,7 +11,7 @@ dotenv.config({
  */
 export default defineConfig({
   testDir: "./src",
-  testMatch: "**/*.spec.ts",
+  testMatch: "**/*.test.ts",
 
   /* Run tests in files in parallel */
   fullyParallel: true,
