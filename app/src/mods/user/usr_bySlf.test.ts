@@ -13,9 +13,7 @@ test.describe("User actions by self", async () => {
     // Edit the account
     await page.goto("/my-account")
     const dashBody = page.locator(".dashboard-layout-body")
-    await expect(
-      dashBody.getByText("Your Account", {exact: true})
-    ).toBeVisible()
+    await expect(dashBody.locator(".title-bar-title")).toHaveText("My Account")
     await dashBody
       .locator("[data-name='first-name'] input")
       .fill(formData.firstName)
@@ -29,9 +27,7 @@ test.describe("User actions by self", async () => {
 
     // Check the changes were saved
     await page.reload()
-    await expect(
-      dashBody.getByText("Your Account", {exact: true})
-    ).toBeVisible()
+    await expect(dashBody.locator(".title-bar-title")).toHaveText("My Account")
     await expect(
       dashBody.locator("[data-name='first-name'] input")
     ).toHaveValue(formData.firstName)

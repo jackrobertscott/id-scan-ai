@@ -8,6 +8,7 @@ import {InputString} from "../../theme/InputString"
 import {LoadingScreen} from "../../theme/LoadingScreen"
 import {Poster} from "../../theme/Poster"
 import {Spacer} from "../../theme/Spacer"
+import {TitleBar} from "../../theme/TitleBar"
 import {useEdge} from "../../utils/server/useEdge"
 import {usr_bySlf_eDef} from "./usr_bySlf_eDef.iso"
 import {UpdateUserFaceBySelfView} from "./usr_bySlf_viewUpdateFace"
@@ -35,9 +36,11 @@ export const UpdateUserBySelfView = () => {
       )}
 
       <Spacer>
+        <TitleBar title="My Account" />
+
         <Poster
           icon={mdiAccountEdit}
-          title="Your Account"
+          title="Update Account"
           desc="We need some more details about you"
         />
 
