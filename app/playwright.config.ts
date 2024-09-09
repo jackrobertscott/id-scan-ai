@@ -13,7 +13,7 @@ export default defineConfig({
   testMatch: "**/*.test.ts",
 
   /* Global setup for all tests */
-  globalSetup: resolve(THIS_DIR, "./src/mods/test/testSetup.ts"),
+  globalSetup: resolve(THIS_DIR, "./src/mods/test/testGlobalSetup.ts"),
 
   /* Run tests in files in parallel */
   fullyParallel: true,
@@ -76,16 +76,16 @@ export default defineConfig({
   ],
 
   /* Run your local dev server before starting the tests */
-  // webServer: [
-  //   {
-  //     command: "npm run b:dev",
-  //     url: "http://localhost:3000",
-  //     reuseExistingServer: !process.env.CI,
-  //   },
-  //   {
-  //     command: "npm run s:dev",
-  //     url: "http://localhost:4000",
-  //     reuseExistingServer: !process.env.CI,
-  //   },
-  // ],
+  webServer: [
+    {
+      command: "npm run b:dev",
+      url: "http://localhost:3000",
+      reuseExistingServer: false,
+    },
+    {
+      command: "npm run s:dev",
+      url: "http://localhost:4000",
+      reuseExistingServer: false,
+    },
+  ],
 })

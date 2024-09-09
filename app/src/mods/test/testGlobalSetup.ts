@@ -7,7 +7,7 @@ import {UserStore} from "../user/user_store"
 // const session = await SessionStore.createOne({userId: user.id})
 // const ap = await createAuthToken({session, user})
 
-export const test = base.extend<{otherPage: Page}>({
+export const extTest = base.extend<{otherPage: Page}>({
   otherPage: async ({page}, use) => {
     // Run for every test that uses this fixture
   },
@@ -20,7 +20,7 @@ export const TEST_AUTH_USER_FILE = path.resolve(
 )
 
 export default async function (conf: FullConfig) {
-  const browser = await chromium.launch({headless: true})
+  const browser = await chromium.launch()
   const page = await browser.newPage()
 
   // Go to login page
