@@ -1,4 +1,9 @@
-import assetUrl from "../../assets/faces/IMG_2925.jpg"
+export const MOCK_PHOTOS = {
+  OBSCURE: () => import("../../assets/faces/IMG_2925.jpg"),
+  LEFT: () => import("../../assets/faces/IMG_2924.jpg"),
+  RIGHT: () => import("../../assets/faces/IMG_2923.jpg"),
+  FRONT: () => import("../../assets/faces/IMG_2922.jpg"),
+}
 
 export function mockCamera() {
   if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
@@ -15,7 +20,8 @@ export function mockCamera() {
   ): Promise<MediaStream> => {
     if (constraints.video) {
       const img = new Image()
-      img.src = assetUrl
+      img.src = (await MOCK_PHOTOS.FRONT()).default
+      console.log(img.src)
 
       await new Promise<void>((resolve) => {
         img.onload = () => resolve()
