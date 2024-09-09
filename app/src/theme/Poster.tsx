@@ -23,7 +23,7 @@ export const Poster = ({
       className={jn_cn(cn_p.root, grow && gcn.grow)}
       style={{"--bgc": bgColor}}>
       <Icon icon={icon} className={cn_p.icon} />
-      <div className={title}>{title}</div>
+      <div className={cn_p.title}>{title}</div>
       <div className={cn_p.description}>{description}</div>
     </div>
   )

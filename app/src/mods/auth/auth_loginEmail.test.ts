@@ -1,7 +1,10 @@
-import {expect, test} from "@playwright/test"
+import test, {expect} from "@playwright/test"
 import {UserStore} from "../user/user_store"
 
-test.afterEach(async ({page}) => {
+test.beforeEach(async ({page}) => {
+  // Load the page to bring localStorage into existance
+  await page.goto("/")
+
   // Remove local storage
   await page.evaluate(() => localStorage.clear())
 })
@@ -25,7 +28,7 @@ test("login user", async ({page}) => {
 
   // Wait for redirect
   await page.waitForURL("**/select-venue")
-  expect(await page.getByText("Select a Venue").isVisible()).toBeTruthy()
+  expect(page.getByText("Select a Venue")).toBeVisible({timeout: 1000})
 })
 
 test("login user with invalid code", async ({page}) => {
