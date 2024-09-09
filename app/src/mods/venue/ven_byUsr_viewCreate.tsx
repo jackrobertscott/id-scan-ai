@@ -1,4 +1,4 @@
-import {mdiArrowRight, mdiStore} from "@mdi/js"
+import {mdiStore} from "@mdi/js"
 import {Button} from "../../theme/Button"
 import {Modal} from "../../theme/Modal"
 import {Poster} from "../../theme/Poster"
@@ -20,7 +20,7 @@ export const CreateVenueByUserView = ({
   })
 
   return (
-    <Modal>
+    <Modal width="20rem">
       <Spacer>
         <TitleBar title="New Venue" options={createPageOptions(onClose)} />
 
@@ -38,7 +38,6 @@ export const CreateVenueByUserView = ({
         <Button
           label="Submit"
           bgColor="var(--bg-blu)"
-          icon={mdiArrowRight}
           {...$createVenue.getSubmitProps((i) => onClose(i.id))}
         />
       </Spacer>

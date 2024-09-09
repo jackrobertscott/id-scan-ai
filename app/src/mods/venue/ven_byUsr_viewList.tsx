@@ -10,6 +10,7 @@ import {SimpleList} from "../../theme/SimpleList"
 import {Spacer} from "../../theme/Spacer"
 import {TitleBar} from "../../theme/TitleBar"
 import {useEdge} from "../../utils/server/useEdge"
+import {useAlertManager} from "../alert/alert_manager"
 import {useAuthManager} from "../auth/auth_manager"
 import {ven_byUsr_eDef} from "./ven_byUsr_eDef.iso"
 import {CreateVenueByUserView} from "./ven_byUsr_viewCreate"
@@ -17,20 +18,19 @@ import {CreateVenueByUserView} from "./ven_byUsr_viewCreate"
 export const ListVenueByUserView: FC<{}> = () => {
   const navigate = useNavigate()
   const authManager = useAuthManager()
-  const $setCurrentVenue = useEdge(ven_byUsr_eDef.setCurrent, {
-    successMessage: "Venue changed",
-  })
+  const alertManager = useAlertManager()
+  const $setCurrentVenue = useEdge(ven_byUsr_eDef.setCurrent)
   const $listVenues = useEdge(ven_byUsr_eDef.list, {
     fetchOnMount: true,
     fetchOnChangeDebounce: 500,
     pushValue: {sortKey: "createdDate", sortDir: "desc"},
   })
 
-  const handleSelectVenue = (venueId: string) => {
-    $setCurrentVenue.fetch({venueId}).then((data) => {
-      authManager.setPayload(data.payload)
-      if (data.payload.data.venueId) setTimeout(() => navigate("/new-scan"))
-    })
+  const handleSelectVenue = async (venueId: string, successMsg?: string) => {
+    const data = await $setCurrentVenue.fetch({venueId})
+    authManager.setPayload(data.payload)
+    if (data.payload.data.venueId) setTimeout(() => navigate("/new-scan"))
+    if (successMsg) alertManager.create(successMsg)
   }
 
   const crud = useCrudState({
@@ -75,7 +75,7 @@ export const ListVenueByUserView: FC<{}> = () => {
               options={venues.map((venue) => ({
                 label: venue.name,
                 // desc: venue.address.line1,
-                onClick: () => handleSelectVenue(venue.id),
+                onClick: () => handleSelectVenue(venue.id, "Venue changed"),
               }))}
             />
           </Field>

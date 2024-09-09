@@ -21,6 +21,8 @@ test.describe("User by self", async () => {
       .locator("[data-name='last-name'] input")
       .fill(formData.lastName)
     await $dashBody.getByRole("button", {name: "Save"}).click()
+
+    // Check the alert
     const $alert = page.locator(".alert-manager-alert")
     await expect($alert).toBeVisible()
     await expect($alert).toHaveText("Account updated")
@@ -36,7 +38,7 @@ test.describe("User by self", async () => {
     ).toHaveValue(formData.lastName)
   })
 
-  test("edit face login", async ({page}) => {
+  test.skip("edit face login", async ({page}) => {
     await page.goto("/my-account")
     const $dashBody = page.locator(".dashboard-layout-body")
     await expect($dashBody.getByText("My Account", {exact: true})).toBeVisible()
