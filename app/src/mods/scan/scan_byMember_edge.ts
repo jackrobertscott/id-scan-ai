@@ -99,7 +99,7 @@ export default createEdgeGroup(scan_byMember_eDef, {
       ? await FaceTagStore.getMany({
           venueId: auth.venue.id,
           awsFaceIds: {$in: tagAwsFaceIds},
-          expiryDate: {$gt: new Date()},
+          "expiry.date": {$gt: new Date()},
         })
       : []
 
