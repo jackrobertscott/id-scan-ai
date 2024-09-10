@@ -5,12 +5,18 @@ import {ComingSoon} from "../../theme/ComingSoon"
 import {Poster} from "../../theme/Poster"
 import {Spacer} from "../../theme/Spacer"
 import {useDeviceManager} from "../device/device_manager"
+import {useAuthManager} from "./auth_manager"
 
 export type AuthLoginRootProps = {}
 
 export const AuthLoginRoot = ({}: AuthLoginRootProps) => {
   const navigate = useNavigate()
+  const authManager = useAuthManager()
   const deviceManager = useDeviceManager()
+
+  if (authManager.isAuthed()) {
+    return <Navigate to="/my-account" />
+  }
 
   if (!deviceManager.data) {
     return <Navigate to="/login-email"></Navigate>

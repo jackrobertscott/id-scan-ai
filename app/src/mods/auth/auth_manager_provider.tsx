@@ -63,6 +63,7 @@ export const AuthManagerProvider: FC<{
     <AuthManagerContext.Provider
       value={{
         lastTimeStamp,
+        isAuthed: () => !!payloadRef.current,
         getPayload: () => payloadRef.current,
         setPayload,
         refresh,

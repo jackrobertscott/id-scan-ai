@@ -8,11 +8,13 @@ export type AuthPayloadType = {
 
 export const AuthManagerContext = createContext<{
   lastTimeStamp: number
+  isAuthed: () => boolean
   getPayload: () => AuthPayloadType | null
   setPayload: (payload: AuthPayloadType | null) => void
   refresh: () => Promise<void>
 }>({
   lastTimeStamp: Date.now(),
+  isAuthed: () => false,
   getPayload: () => null,
   setPayload: () => console.log("Auth provider not initialized yet"),
   refresh: async () => console.log("Auth provider not initialized yet"),
