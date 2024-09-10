@@ -1,3 +1,4 @@
+import {srvConf} from "../../srvConf"
 import {createEdgeGroup} from "../../utils/server/createEdge"
 import {upsertStripeCustomerOfVenue} from "../../utils/stripeCustomerUtils"
 import {ensureMemberOfVenue} from "../auth/auth_jwt"
@@ -32,7 +33,13 @@ export default createEdgeGroup(ven_byMbr_eDef, {
       ...body,
     })
 
-    await upsertStripeCustomerOfVenue(venue)
+    if (srvConf.STRIPE_ENABLED) {
+      try {
+        await upsertStripeCustomerOfVenue(venue)
+      } catch (e) {
+        console.error(e)
+      }
+    }
 
     LogEventStore.createOne({
       venueId: auth.venue.id,
