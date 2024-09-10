@@ -1,5 +1,5 @@
 import {mdiClose} from "@mdi/js"
-import {useEffect, useState} from "react"
+import {useState} from "react"
 import {Fragment} from "react/jsx-runtime"
 import {Button} from "../../theme/Button"
 import {DisplayImage} from "../../theme/DisplayImage"
@@ -24,7 +24,9 @@ export const CreateScanByMemberView = ({
   onClose,
 }: CreateScanByMemberViewProps) => {
   // Patron photo assets
-  const $uploadLivePhoto = useEdge(scan_byMember_eDef.uploadLivePhoto)
+  const $uploadLivePhoto = useEdge(scan_byMember_eDef.uploadLivePhoto, {
+    successMessage: "Photo uploaded",
+  })
   const [livePhotoId, setLivePhotoId] = useState<string>()
   const {livePhotoUrl} = $uploadLivePhoto.output ?? {}
 
@@ -52,14 +54,6 @@ export const CreateScanByMemberView = ({
     setShowScanId(data.id)
   }
 
-  // Set the patron's face photo in the document upload request
-  useEffect(() => {
-    if (livePhotoId) {
-      $uploadDocAndCreateScan.input.patchData({livePhotoId})
-      $listSimilarPhotos.fetch({livePhotoId: livePhotoId})
-    }
-  }, [livePhotoId])
-
   if (showScanId) {
     return (
       <ReadScanByMemberView
@@ -85,18 +79,22 @@ export const CreateScanByMemberView = ({
         // Step 1: Patron photo upload
         if (!livePhotoId) {
           return (
-            <Field grow label="Patron Photo">
+            <Field grow label="Patron Photo (1/2)">
               <InputCamera
                 label="Patron"
-                loading={$uploadLivePhoto.loading}
+                loading={$uploadLivePhoto.loading || $listSimilarPhotos.loading}
                 value={$uploadLivePhoto.input.getValueOf("livePhotoFile")}
-                onValue={(pf) => {
+                onValue={async (pf) => {
                   // Seperate the photo upload from the face photo id
                   // So that you can have the "preview" image appear
                   $uploadLivePhoto.input.setValueOf("livePhotoFile", pf)
-                  $uploadLivePhoto.fetch().then((data) => {
-                    setLivePhotoId(data.livePhotoId)
+                  const {livePhotoId} = await $uploadLivePhoto.fetch()
+                  const {docPhotos} = await $listSimilarPhotos.fetch({
+                    livePhotoId,
                   })
+                  if (!docPhotos.length) setNewDocPhoto(true)
+                  $uploadDocAndCreateScan.input.patchData({livePhotoId})
+                  setLivePhotoId(livePhotoId)
                 }}
               />
             </Field>
@@ -194,9 +192,10 @@ export const CreateScanByMemberView = ({
 
         // Step 3: Document photo upload
         return (
-          <Field grow label="Document Photo">
+          // add some sort of banner here??
+          <Field grow label="Document Photo (2/2)">
             <InputCamera
-              label="Patron"
+              label="Document"
               loading={$uploadDocAndCreateScan.loading}
               value={$uploadDocAndCreateScan.input.getValueOf("docPhotoFile")}
               onValue={(pf) => {
