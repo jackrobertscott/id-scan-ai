@@ -6,13 +6,20 @@
   "description": "Source available solution for venues looking to verify the identity of their patrons with AI",
   "author": "Jack Scott",
   "main": ".webpack/main",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jackrobertscott/id-scan-ai.git",
+    "directory": "desktop"
+  },
   "scripts": {
     "dev": "electron-forge start",
     "dev:build": "electron-forge package",
     "build": "electron-forge make",
     "build:win32": "electron-forge make --platform=win32",
+    "build:linux": "electron-forge make --platform=linux",
     "build:deploy": "electron-forge publish",
-    "build:deploy:win32": "electron-forge publish --platform=win32"
+    "build:deploy:win32": "electron-forge publish --platform=win32",
+    "build:deploy:linux": "electron-forge publish --platform=linux"
   },
   "devDependencies": {
     "@electron-forge/cli": "^7.4.0",
@@ -21,15 +28,19 @@
     "@electron-forge/maker-squirrel": "^7.4.0",
     "@electron-forge/maker-zip": "^7.4.0",
     "@electron-forge/plugin-webpack": "^7.4.0",
+    "@electron-forge/publisher-github": "^7.4.0",
     "@electron-forge/publisher-s3": "^7.4.0",
     "@types/node": "^22.5.4",
+    "dotenv": "^16.4.5",
     "electron": "^32.0.2",
     "ts-loader": "^9.5.1",
     "ts-node": "^10.9.2",
-    "typescript": "^5.6.2"
+    "typescript": "^5.6.2",
+    "update-electron-app": "^3.0.0"
   },
   "dependencies": {
     "electron-squirrel-startup": "^1.0.1",
+    "fs-extra": "^11.2.0",
     "glob": "^11.0.0",
     "zod": "^3.23.8"
   }

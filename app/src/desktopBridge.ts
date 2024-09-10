@@ -18,6 +18,7 @@ export type DesktopBridge =
       getStoreValue: <K extends keyof DesktopConfigSchema>(
         key: K
       ) => Promise<DesktopConfigSchema[K]>
+      twainScanBase64: () => Promise<string | undefined>
     }
   | undefined
 

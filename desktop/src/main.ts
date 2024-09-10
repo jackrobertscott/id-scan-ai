@@ -1,25 +1,18 @@
-import {
-  BrowserWindow,
-  app,
-  autoUpdater,
-  dialog,
-  ipcMain,
-  net,
-  protocol,
-} from "electron"
+import {BrowserWindow, app, dialog, ipcMain, net, protocol} from "electron"
 import fs from "fs"
 import {glob} from "glob"
+import {updateElectronApp} from "update-electron-app"
 import {debounce} from "./debounce"
 import {DesktopConfigSchema, dskConf} from "./dskConf"
+import {twainScanBase64} from "./twain"
 
 declare const MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY: string // preload.ts
 const APP_URL_LIVE = "https://www.idscanai.com"
 const APP_URL_DEV = "http://localhost:3000"
-const S3_PUBLISH_DIR = "id-scan-ai"
 const SHOW_DEV_TOOLS = false
 
-// global to prevent garbage collection
-let mainWindow: BrowserWindow
+// package.json repository field must be set
+updateElectronApp()
 
 // create/remove shortcuts on install/uninstall
 if (require("electron-squirrel-startup")) app.quit()
@@ -34,6 +27,9 @@ protocol.registerSchemesAsPrivileged([
     },
   },
 ])
+
+// global to prevent garbage collection
+let mainWindow: BrowserWindow
 
 const createWindow = () => {
   const bw = new BrowserWindow({
@@ -106,6 +102,9 @@ app.on("ready", () => {
     if (typeof key !== "string") throw new Error("Store key is not a string.")
     return dskConf.getValue()[key as keyof DesktopConfigSchema]
   })
+  ipcMain.handle("twainScanBase64", async () => {
+    return twainScanBase64()
+  })
 
   const setConfBox = debounce(() => {
     dskConf.patchValue({winPos: mainWindow.getBounds()})
@@ -125,26 +124,3 @@ app.on("activate", () => {
     mainWindow = createWindow()
   }
 })
-
-if (app.isPackaged) {
-  const publishUrl =
-    "https://public-electron-packages.s3.ap-southeast-2.amazonaws.com/" +
-    S3_PUBLISH_DIR
-  autoUpdater.setFeedURL({url: publishUrl})
-  setInterval(() => autoUpdater.checkForUpdates(), 6e4) // every 60 seconds
-  autoUpdater.on("error", (message) => console.error(message))
-  autoUpdater.on("checking-for-update", () => console.log("checking..."))
-  autoUpdater.on("update-downloaded", (_, releaseNotes, releaseName) => {
-    dialog
-      .showMessageBox({
-        type: "info",
-        title: "Application Update",
-        buttons: ["Restart", "Later"],
-        message: process.platform === "win32" ? releaseNotes : releaseName,
-        detail: "A new version has been downloaded. Please restart.",
-      })
-      .then((returnValue) => {
-        if (returnValue.response === 0) autoUpdater.quitAndInstall()
-      })
-  })
-}

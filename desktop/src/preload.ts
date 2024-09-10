@@ -14,6 +14,7 @@ contextBridge.exposeInMainWorld("_desktopBridge", {
   listGlobContent: createInvoker("listGlobContent"),
   setStoreValue: createInvoker("setStoreValue"),
   getStoreValue: createInvoker("getStoreValue"),
+  twainScanBase64: createInvoker("twainScanBase64"),
 })
 
 process.env["ELECTRON_DISABLE_SECURITY_WARNINGS"] = "true"
