@@ -30,7 +30,7 @@ export const ReadScanByAlbumView = ({
   })
 
   return (
-    <Modal>
+    <Modal size="large">
       <Spacer>
         <TitleBar
           title="View Scan"

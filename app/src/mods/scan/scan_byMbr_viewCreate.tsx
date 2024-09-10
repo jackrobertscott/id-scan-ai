@@ -142,43 +142,49 @@ export const CreateScanByMemberView = ({
               />
 
               {selectedDocument && livePhotoUrl && (
-                <Modal>
+                <Modal size="large">
                   <Spacer>
-                    <Field label="Patron Photo">
-                      <DisplayImage
-                        alt="Patron Photo"
-                        source={livePhotoUrl}
-                        aspectRatio={1}
+                    <TitleBar title="Please confirm face match" />
+
+                    <Spacer direction="row" slim mobileCollapse>
+                      <Field label="Patron Photo">
+                        <DisplayImage
+                          alt="Patron Photo"
+                          source={livePhotoUrl}
+                          aspectRatio={1}
+                        />
+                      </Field>
+
+                      <Field label="Document Photo">
+                        <DisplayImage
+                          alt="Document Photo"
+                          source={selectedDocument.photoUrl}
+                          aspectRatio={1}
+                        />
+                      </Field>
+                    </Spacer>
+
+                    <Spacer direction="row" slim mobileCollapse>
+                      <Button
+                        bgColor="var(--bg-grn)"
+                        label="Face Match"
+                        {...$createScanOfOldDocument.getSubmitProps()}
+                        onClick={() => {
+                          $createScanOfOldDocument
+                            .fetch({
+                              livePhotoId,
+                              docPhotoId: selectedDocument.id,
+                            })
+                            .then(handleSuccess)
+                        }}
                       />
-                    </Field>
 
-                    <Field label="Document Photo">
-                      <DisplayImage
-                        alt="Document Photo"
-                        source={selectedDocument.photoUrl}
-                        aspectRatio={1}
+                      <Button
+                        bgColor="var(--bg-red)"
+                        label="Does Not Match"
+                        onClick={() => setSelectedDocument(undefined)}
                       />
-                    </Field>
-
-                    <Button
-                      bgColor="var(--bg-grn)"
-                      label="Face Match"
-                      {...$createScanOfOldDocument.getSubmitProps()}
-                      onClick={() => {
-                        $createScanOfOldDocument
-                          .fetch({
-                            livePhotoId,
-                            docPhotoId: selectedDocument.id,
-                          })
-                          .then(handleSuccess)
-                      }}
-                    />
-
-                    <Button
-                      bgColor="var(--bg-red)"
-                      label="Does Not Match"
-                      onClick={() => setSelectedDocument(undefined)}
-                    />
+                    </Spacer>
                   </Spacer>
                 </Modal>
               )}

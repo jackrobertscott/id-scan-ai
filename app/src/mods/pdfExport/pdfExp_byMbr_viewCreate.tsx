@@ -31,7 +31,7 @@ export const CreatePdfExportByMemberView = ({
   }, [])
 
   return (
-    <Modal>
+    <Modal size="small">
       <Spacer>
         <TitleBar title="Pdf Export" options={createPageOptions(onClose)} />
 

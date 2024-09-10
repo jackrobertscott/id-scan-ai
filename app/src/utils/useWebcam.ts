@@ -1,7 +1,4 @@
 import {useEffect, useRef, useState} from "react"
-import {mockCamera} from "../mods/test/mockCamera"
-
-mockCamera()
 
 export const useWebcam = ({
   disabled,

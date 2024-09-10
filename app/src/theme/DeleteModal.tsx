@@ -27,7 +27,7 @@ export const DeleteModal = ({
         label={`Delete ${noun}`}
         onClick={() => setShow(true)}
       />
-      <Modal show={show} width="15rem">
+      <Modal show={show} size="small">
         <Spacer>
           <Poster
             icon={mdiBell}

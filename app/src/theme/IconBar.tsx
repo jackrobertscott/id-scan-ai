@@ -9,10 +9,10 @@ import {
 } from "@mdi/js"
 import {Fragment, useState} from "react"
 import {useNavigate} from "react-router-dom"
+import {MainMenu} from "../mods/root/root_mainMenu"
 import {prettyCns} from "../utils/classNames"
 import {Icon} from "./Icon"
 import {Modal} from "./Modal"
-import {MainMenu} from "../mods/root/root_mainMenu"
 
 export type IconBarProps = {}
 
@@ -50,7 +50,7 @@ export const IconBar = ({}: IconBarProps) => {
         />
       </div>
       {open && (
-        <Modal>
+        <Modal size="small">
           <MainMenu
             onSelect={() => setOpen(false)}
             titleBarOptions={[

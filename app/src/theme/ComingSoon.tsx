@@ -14,7 +14,7 @@ export const ComingSoon = ({render}: ComingSoonProps) => {
   return (
     <Fragment>
       {render(() => setShow(true))}
-      <Modal show={show} width="15rem">
+      <Modal show={show} size="small">
         <Spacer>
           <Poster
             icon={mdiBell}

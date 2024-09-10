@@ -28,7 +28,7 @@ export const UpdateUserByAdminView = ({
   })
 
   return (
-    <Modal>
+    <Modal size="small">
       <Spacer>
         <TitleBar
           title="User"

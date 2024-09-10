@@ -20,7 +20,7 @@ export const CreateVenueByUserView = ({
   })
 
   return (
-    <Modal width="20rem">
+    <Modal size="small">
       <Spacer>
         <TitleBar title="New Venue" options={createPageOptions(onClose)} />
 

@@ -31,7 +31,7 @@ export const ReadSessionByUserView = ({
   })
 
   return (
-    <Modal>
+    <Modal size="large">
       <Spacer>
         <TitleBar
           title="Session"

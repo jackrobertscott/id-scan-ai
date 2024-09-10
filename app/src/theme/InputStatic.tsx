@@ -1,5 +1,4 @@
 import {css} from "@emotion/css"
-import {mdiContentCopy} from "@mdi/js"
 import {ReactNode} from "react"
 import {gcn} from "../gcn"
 import {useAlertManager} from "../mods/alert/alert_manager"
@@ -40,7 +39,6 @@ export const InputStatic = ({
       </div>
       {label && canCopy && navigator.clipboard && (
         <InputButton
-          icon={mdiContentCopy}
           label="Copy"
           onClick={() => {
             navigator.clipboard.writeText(label.toString()).then(() => {
@@ -56,6 +54,7 @@ export const InputStatic = ({
 const cn_is = prettyCns("InputStatic", {
   root: css`
     flex-grow: 1;
+    flex-direction: row;
     overflow: auto;
   `,
   body: css`

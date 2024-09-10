@@ -68,7 +68,7 @@ export const TitleBar = ({title, options = []}: TitleBarProps) => {
   return (
     <Fragment>
       {intercept && (
-        <Modal width="15rem">
+        <Modal size="small">
           <Spacer>
             <Poster {...intercept} />
             <Button label={intercept.buttonLabel} onClick={intercept.onClick} />

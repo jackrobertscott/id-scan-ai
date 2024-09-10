@@ -33,7 +33,7 @@ export const CreatePayCardByMemberView = ({
   })
 
   return (
-    <Modal>
+    <Modal size="small">
       <Spacer>
         <TitleBar title="Pay Card" options={createPageOptions(onClose)} />
 

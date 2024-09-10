@@ -51,23 +51,21 @@ export const FieldGroup: FC<{
 const cn_fg = prettyCns("FieldGroup", {
   root: css`
     flex-shrink: 0;
-    gap: calc(0.5rem - var(--pad-s-y));
+    gap: var(--pad-r-y);
   `,
   head: css`
     flex-direction: row;
-    padding: 0 calc(1rem - var(--pad-s-x));
-    color: var(--fnt-clr-3rd);
+    padding: 0 var(--pad-r-x);
   `,
   label: css`
     flex-grow: 1;
-    padding: var(--pad-s);
   `,
   action: css`
     user-select: none;
     flex-direction: row;
-    gap: var(--gap-s);
-    padding: var(--pad-s);
+    gap: var(--gap-r);
     transition: var(--hover-timing);
+    color: var(--fnt-clr-3rd);
     &:hover:not(:active) {
       color: var(--bg-fnt);
     }

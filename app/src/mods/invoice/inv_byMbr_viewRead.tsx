@@ -26,7 +26,7 @@ export const ReadInvoiceByMemberView = ({
   })
 
   return (
-    <Modal>
+    <Modal size="small">
       <Spacer>
         <TitleBar
           title="Invoice"

@@ -26,7 +26,7 @@ export const ReadLoggedEventByMemberView = ({
   })
 
   return (
-    <Modal>
+    <Modal size="large">
       <Spacer>
         <TitleBar
           title="Logged Event"
@@ -36,48 +36,52 @@ export const ReadLoggedEventByMemberView = ({
         <LoadingScreen
           data={$getEdge.output}
           render={({loggedEvent}) => (
-            <Fragment>
-              <Field label="Occurred">
-                <InputStatic
-                  label={loggedEvent.createdDate.toLocaleString("en-au", {
-                    dateStyle: "medium",
-                    timeStyle: "medium",
-                  })}
-                />
-              </Field>
-              <Field label="Category">
-                <InputStatic
-                  label={toSentenceCase(toSpacedCase(loggedEvent.category))}
-                />
-              </Field>
-              <Field label="Model">
-                <InputStatic
-                  label={toSentenceCase(toSpacedCase(loggedEvent.table))}
-                />
-              </Field>
-              <Field label="Effected ID">
-                <InputStatic label={loggedEvent.dataId} />
-              </Field>
-              <Field label="Description">
-                <InputStatic label={loggedEvent.desc ?? "..."} />
-              </Field>
-              {loggedEvent.triggeredByUser ? (
-                <Fragment>
-                  <Field label="Triggered By">
-                    <InputStatic
-                      label={formatFullName(loggedEvent.triggeredByUser)}
-                    />
-                  </Field>
-                  <Field label="Triggered By Email">
-                    <InputStatic label={loggedEvent.triggeredByUser.email} />
-                  </Field>
-                </Fragment>
-              ) : (
-                <Field label="Triggered By">
-                  <InputStatic label={loggedEvent.triggeredByUserId} />
+            <Spacer direction="row" slim mobileCollapse>
+              <Spacer slim direction="column">
+                <Field label="Occurred">
+                  <InputStatic
+                    label={loggedEvent.createdDate.toLocaleString("en-au", {
+                      dateStyle: "medium",
+                      timeStyle: "medium",
+                    })}
+                  />
                 </Field>
-              )}
-            </Fragment>
+                <Field label="Category">
+                  <InputStatic
+                    label={toSentenceCase(toSpacedCase(loggedEvent.category))}
+                  />
+                </Field>
+                <Field label="Model">
+                  <InputStatic
+                    label={toSentenceCase(toSpacedCase(loggedEvent.table))}
+                  />
+                </Field>
+                <Field label="Effected ID">
+                  <InputStatic label={loggedEvent.dataId} />
+                </Field>
+                <Field label="Description">
+                  <InputStatic label={loggedEvent.desc ?? "..."} />
+                </Field>
+              </Spacer>
+              <Spacer slim direction="column">
+                {loggedEvent.triggeredByUser ? (
+                  <Fragment>
+                    <Field label="Triggered By">
+                      <InputStatic
+                        label={formatFullName(loggedEvent.triggeredByUser)}
+                      />
+                    </Field>
+                    <Field label="Triggered By Email">
+                      <InputStatic label={loggedEvent.triggeredByUser.email} />
+                    </Field>
+                  </Fragment>
+                ) : (
+                  <Field label="Triggered By">
+                    <InputStatic label={loggedEvent.triggeredByUserId} />
+                  </Field>
+                )}
+              </Spacer>
+            </Spacer>
           )}
         />
       </Spacer>

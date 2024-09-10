@@ -1,14 +1,13 @@
+import {Navigate} from "react-router-dom"
 import {useCrudState} from "../../theme/CrudLayout"
 import {EmptyListWrap} from "../../theme/EmptyListWrap"
 import {Field} from "../../theme/Field"
 import {GridGallery} from "../../theme/GridGallery"
 import {ListOptions} from "../../theme/ListOptions"
-import {Modal} from "../../theme/Modal"
 import {Spacer} from "../../theme/Spacer"
 import {TitleBar} from "../../theme/TitleBar"
 import {useEdge} from "../../utils/server/useEdge"
 import {getCachedSignedUrl} from "../../utils/signedUrlCacheUtils"
-import {CreateScanByMemberView} from "./scan_byMbr_viewCreate"
 import {ReadScanByMemberView} from "./scan_byMbr_viewRead"
 import {scan_byMember_eDef} from "./scan_byMember_eDef.iso"
 import {ScanFilterForm} from "./scan_formFilter"
@@ -22,11 +21,7 @@ export const ListScanByMemberView = () => {
 
   const crud = useCrudState({
     refetch: () => $listScans.fetch(),
-    renderCreate: (onClose) => (
-      <Modal>
-        <CreateScanByMemberView onClose={onClose} />
-      </Modal>
-    ),
+    renderCreate: (onClose) => <Navigate to="/new-scan" />,
     renderRead: (onClose, id) => (
       <ReadScanByMemberView scanId={id} onClose={onClose} />
     ),

@@ -13,7 +13,7 @@ export const VenueGate: FC<{redirect: string}> = ({redirect}) => {
 
   if (!authManager.getPayload()?.data.venueId) {
     return (
-      <Modal width="20rem">
+      <Modal size="small">
         <Spacer>
           <Poster
             icon={mdiAlertRhombus}

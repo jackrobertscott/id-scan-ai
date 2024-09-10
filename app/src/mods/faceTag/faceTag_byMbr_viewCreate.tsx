@@ -21,7 +21,7 @@ export const CreateTagByMemberView = ({
   })
 
   return (
-    <Modal>
+    <Modal size="small">
       <Spacer>
         <TitleBar title="Tag" options={createPageOptions(onClose)} />
 

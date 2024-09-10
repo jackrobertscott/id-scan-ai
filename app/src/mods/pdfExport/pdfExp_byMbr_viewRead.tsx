@@ -29,7 +29,7 @@ export const ReadPdfExportByMemberView = ({
   })
 
   return (
-    <Modal>
+    <Modal size="small">
       <Spacer>
         <TitleBar
           title="Pdf Export"

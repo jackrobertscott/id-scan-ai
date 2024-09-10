@@ -32,44 +32,46 @@ export const UpdateDeviceByMemberView = ({
   })
 
   return (
-    <Modal>
+    <Modal size="large">
       <Spacer>
         <TitleBar
           title="Device"
           options={updatePageOptions(onClose, $updateDevice.input.hasChanged)}
         />
 
-        <LoadingScreen
-          data={$getDevice.ready}
-          render={() => (
-            <DeviceByMemberForm
-              value={$updateDevice.input.getData()}
-              onValue={$updateDevice.input.patchData}
+        <Spacer direction="row" mobileCollapse slim>
+          <Spacer slim>
+            <LoadingScreen
+              data={$getDevice.ready}
+              render={() => (
+                <DeviceByMemberForm
+                  value={$updateDevice.input.getData()}
+                  onValue={$updateDevice.input.patchData}
+                />
+              )}
             />
-          )}
-        />
+          </Spacer>
+          <Spacer slim>
+            <Poster
+              icon={mdiLogin}
+              title="Device Login"
+              desc="Use the following details to login to a device at your venue"
+            />
 
+            <Field label="Device Key">
+              <InputStatic label={$getDevice.output?.device.deviceKey} />
+            </Field>
+
+            {/* <Field label="Passcode">
+          <InputStatic label={$getDevice.output?.device.passcode} />
+        </Field> */}
+          </Spacer>
+        </Spacer>
         <Button
           bgColor="var(--bg-blu)"
           label="Save Changes"
           {...$updateDevice.getSubmitProps(() => $getDevice.fetch())}
         />
-
-        <Divider />
-
-        <Poster
-          icon={mdiLogin}
-          title="Device Login"
-          desc="Use the following details to login to a device at your venue"
-        />
-
-        <Field label="Device Key">
-          <InputStatic label={$getDevice.output?.device.deviceKey} />
-        </Field>
-
-        {/* <Field label="Passcode">
-          <InputStatic label={$getDevice.output?.device.passcode} />
-        </Field> */}
 
         <Divider />
 

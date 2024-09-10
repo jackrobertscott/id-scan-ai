@@ -28,7 +28,7 @@ export const UpdateVenueByAdminView = ({
   })
 
   return (
-    <Modal>
+    <Modal size="small">
       <Spacer>
         <TitleBar
           title="Venue"

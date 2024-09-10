@@ -34,7 +34,7 @@ export const UpdateTagByMemberView = ({
   return (
     <Fragment>
       {liveFaceSearchId && (
-        <Modal>
+        <Modal size="large">
           <ListSimilarPatronByMemberView
             livePhotoId={liveFaceSearchId}
             onClose={() => setLiveFaceSearchId(null)}
@@ -42,7 +42,7 @@ export const UpdateTagByMemberView = ({
         </Modal>
       )}
 
-      <Modal>
+      <Modal size="small">
         <Spacer>
           <TitleBar
             title="Tag"

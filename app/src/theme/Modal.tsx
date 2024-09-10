@@ -9,10 +9,10 @@ import {Portal} from "./Portal"
 export type ModalProps = {
   show?: boolean
   children?: ReactNode
-  width?: string
+  size: "small" | "large"
 }
 
-export const Modal = ({show = true, children, width}: ModalProps) => {
+export const Modal = ({show = true, children, size}: ModalProps) => {
   const layerStack = useLayerStack()
 
   useEffect(() => {
@@ -31,7 +31,11 @@ export const Modal = ({show = true, children, width}: ModalProps) => {
       <div
         className={cn_m.root}
         style={{"--z": 100 + layerStack.getIndex() * 50}}>
-        <Container overlay width={width}>
+        <Container
+          overlay
+          width={
+            size === "small" ? "20rem" : size === "large" ? "40rem" : undefined
+          }>
           {children}
         </Container>
       </div>

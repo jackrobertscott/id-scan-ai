@@ -34,7 +34,7 @@
   --pad-s-x: 0.5rem;
   --pad-s-y: 0.25rem;
   --pad-s: var(--pad-s-y) var(--pad-s-x);
-  --fnt-s: 0.85rem;
+  --fnt-s: 0.875rem;
 
   --sbar-bg-clr: hsl(0, 0%, 100%, 0);
   --sbar-thb-clr: hsl(0, 0%, 100%, 0.05);

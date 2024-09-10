@@ -69,7 +69,7 @@ export const AuthManagerProvider: FC<{
       }}>
       {children}
       {reAuthWarn && (
-        <Modal>
+        <Modal size="small">
           <Spacer>
             <Poster
               icon={mdiLogin}

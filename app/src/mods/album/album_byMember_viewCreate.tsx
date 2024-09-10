@@ -19,7 +19,7 @@ export const CreateAlbumByMemberView = ({
   })
 
   return (
-    <Modal>
+    <Modal size="large">
       <Spacer>
         <TitleBar title="Album" options={createPageOptions(onClose)} />
 

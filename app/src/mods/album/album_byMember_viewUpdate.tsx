@@ -33,7 +33,7 @@ export const UpdateAlbumByMemberView = ({
   })
 
   return (
-    <Modal>
+    <Modal size="large">
       <Spacer>
         <TitleBar
           title="Album"

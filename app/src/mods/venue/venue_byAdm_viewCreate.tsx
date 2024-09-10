@@ -18,7 +18,7 @@ export const CreateVenueByAdminView = ({
   })
 
   return (
-    <Modal>
+    <Modal size="small">
       <Spacer>
         <TitleBar title="Venue" options={createPageOptions(onClose)} />
 

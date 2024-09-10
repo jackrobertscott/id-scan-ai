@@ -42,7 +42,7 @@ export const ReadScanByMemberView = ({
   return (
     <Fragment>
       {patronFaceSearchId && (
-        <Modal>
+        <Modal size="large">
           <ListSimilarPatronByMemberView
             livePhotoId={patronFaceSearchId}
             onClose={() => setPatronFaceSearchId(null)}
@@ -70,7 +70,7 @@ export const ReadScanByMemberView = ({
         />
       )}
 
-      <Modal>
+      <Modal size="large">
         <Spacer>
           <TitleBar
             title="View Scan"

@@ -18,7 +18,7 @@ export const CreateDeviceByMemberView = ({
   })
 
   return (
-    <Modal>
+    <Modal size="small">
       <Spacer>
         <TitleBar title="Device" options={createPageOptions(onClose)} />
 

@@ -28,7 +28,7 @@ export const UpdateMemberByMemberView = ({
   })
 
   return (
-    <Modal>
+    <Modal size="small">
       <Spacer>
         <TitleBar
           title="Member"

@@ -73,7 +73,7 @@ export const ListOptions = ({
         />
       </Field>
 
-      <Modal show={showOptions}>
+      <Modal show={showOptions} size="large">
         <Spacer>
           <TitleBar
             title="Options"

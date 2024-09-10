@@ -21,7 +21,7 @@ export const UpdateUserFaceBySelfView = ({
   })
 
   return (
-    <Modal>
+    <Modal size="small">
       <Spacer>
         <TitleBar
           title="Face Login"

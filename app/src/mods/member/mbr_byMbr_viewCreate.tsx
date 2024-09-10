@@ -17,7 +17,7 @@ export const CreateMemberByMemberView: FC<{
   })
 
   return (
-    <Modal>
+    <Modal size="small">
       <Spacer>
         <TitleBar title="Member" options={createPageOptions(onClose)} />
 

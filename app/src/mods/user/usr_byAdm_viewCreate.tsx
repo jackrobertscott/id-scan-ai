@@ -18,7 +18,7 @@ export const CreateUserByAdminView = ({
   })
 
   return (
-    <Modal>
+    <Modal size="small">
       <Spacer>
         <TitleBar title="User" options={createPageOptions(onClose)} />
 

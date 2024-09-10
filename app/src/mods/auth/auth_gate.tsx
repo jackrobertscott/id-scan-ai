@@ -14,7 +14,7 @@ export const AuthGate: FC<{redirect: string}> = ({redirect}) => {
   // If the user is not logged in, show the login form
   if (!authManager.getPayload()) {
     return (
-      <Modal width="20rem">
+      <Modal size="small">
         <Spacer>
           <Poster
             icon={mdiAlertRhombus}
@@ -39,7 +39,7 @@ export const AdminGate: FC<{
 
   if (!authManager.getPayload()?.data.isAdmin) {
     return (
-      <Modal width="20rem">
+      <Modal size="small">
         <Spacer>
           <Poster
             icon={mdiAlertRhombus}
