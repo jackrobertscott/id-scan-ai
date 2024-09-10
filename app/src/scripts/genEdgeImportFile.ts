@@ -71,9 +71,9 @@ export function getEdgeImportFile(): void {
     existsSync(OUTPUT_FILE) &&
     readFileSync(OUTPUT_FILE, "utf8") === outputContent
   ) {
-    console.log(`Edge file: up to date`)
+    console.log(`Edges: up to date`)
   } else {
     writeFileSync(OUTPUT_FILE, outputContent)
-    console.log(`Edge file: updated (${relative(SRC_DIR, OUTPUT_FILE)})`)
+    console.log(`Edges: updated (${relative(SRC_DIR, OUTPUT_FILE)})`)
   }
 }

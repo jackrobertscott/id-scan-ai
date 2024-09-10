@@ -92,8 +92,9 @@ export function createEdgeServer(edges: Edge<EdgeDef>[]) {
           timeZone: "Australia/Perth",
         })
         .toUpperCase()
+      const envName = srvConf.IS_DEV ? "DEV" : "PROD"
       const cid = cluster.worker?.id ? `W${cluster.worker.id}` : "MASTER"
-      const message = `[${dateString}] ${cid} ${req.url}: ${timeDiff}ms`
+      const message = `[${dateString}] ${envName} ${cid} ${req.url}: ${timeDiff}ms`
       console.log(colorCb(message))
       __requestCount += 1
     }
