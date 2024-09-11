@@ -3,7 +3,9 @@ import dotenv from "dotenv"
 import path, {resolve} from "path"
 
 const THIS_DIR = new URL(".", import.meta.url).pathname
-dotenv.config({path: path.resolve(THIS_DIR, ".env")})
+dotenv.config({
+  path: path.resolve(THIS_DIR, ".env"),
+})
 
 /**
  * See https://playwright.dev/docs/test-configuration.
@@ -14,6 +16,7 @@ export default defineConfig({
 
   /* Global setup for all tests */
   globalSetup: resolve(THIS_DIR, "./src/mods/test/testGlobalSetup.ts"),
+  globalTeardown: resolve(THIS_DIR, "./src/mods/test/testGlobalTeardown.ts"),
 
   /* Run tests in files in parallel */
   fullyParallel: true,

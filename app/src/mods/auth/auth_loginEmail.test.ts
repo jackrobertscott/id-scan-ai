@@ -1,6 +1,6 @@
 import test, {expect} from "@playwright/test"
 import {SessionStore} from "../session/session_store"
-import {TEST_AUTH_USER_FILE} from "../test/testGlobalSetup"
+import {TEST_AUTH_USER_BASIC_FILE} from "../test/testGlobalSetup"
 import {UserStore} from "../user/user_store"
 import {AuthDataSchema} from "./auth_schemas"
 
@@ -57,7 +57,7 @@ test.describe("Auth by email", async () => {
 })
 
 test.describe("Logout", () => {
-  test.use({storageState: TEST_AUTH_USER_FILE})
+  test.use({storageState: TEST_AUTH_USER_BASIC_FILE})
 
   test("Logout", async ({page}) => {
     await page.goto("/my-account")

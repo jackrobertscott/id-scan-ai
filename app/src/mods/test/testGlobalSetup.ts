@@ -1,11 +1,19 @@
 import base, {chromium, FullConfig, Page} from "@playwright/test"
-import path from "path"
-import {fileURLToPath} from "url"
+import {promises as fs} from "node:fs"
+import {z} from "zod"
+import {createAuthToken} from "../auth/auth_jwt"
+import {MemberStore} from "../member/member_store"
+import {MemberType} from "../member/member_storeDef.iso"
+import {SessionStore} from "../session/session_store"
 import {UserStore} from "../user/user_store"
-
-// const user = await UserStore.upsertOneByEmail("fred@example.com")
-// const session = await SessionStore.createOne({userId: user.id})
-// const ap = await createAuthToken({session, user})
+import {VenueStore} from "../venue/venue_store"
+import {VenueType} from "../venue/venue_storeDef.iso"
+import {
+  TestGlobalUserType,
+  testUserBasic,
+  testUserMemberAdmin,
+  testUserMemberNoob,
+} from "./testGlobalUsers"
 
 export const extTest = base.extend<{otherPage: Page}>({
   otherPage: async ({page}, use) => {
@@ -13,19 +21,106 @@ export const extTest = base.extend<{otherPage: Page}>({
   },
 })
 
-const THIS_DIR = fileURLToPath(new URL(".", import.meta.url))
-export const TEST_AUTH_USER_FILE = path.resolve(
-  THIS_DIR,
-  "../../../playwright/.auth/user.json"
-)
+// {
+//   "cookies": [],
+//   "origins": [
+//     {
+//       "origin": "http://localhost:3000",
+//       "localStorage": [
+//         {
+//           "name": "auth",
+//           "value": "{\"data\":{\"token\":\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJ1c3Jfd3d6YWVuaGtyemZuMTFwbG1tenEwZmw0Iiwic2Vzc2lvbklkIjoic3NuX2h1ZjM2bWZpYXFqMnp2cXZiaGs5cHpuMCIsInNlc3Npb25DcmVhdGVkRGF0ZSI6IjIwMjQtMDktMDlUMDg6MDM6MzIuNDE4WiIsImlhdCI6MTcyNTg2OTAxMiwiZXhwIjoxNzI2NDczODEyfQ.rQZQ5bEwpkyiPic3sqApRf04i7ZobEpK2b-Gnv7zdFQ\",\"data\":{\"userId\":\"usr_wwzaenhkrzfn11plmmzq0fl4\",\"sessionId\":\"ssn_huf36mfiaqj2zvqvbhk9pzn0\",\"sessionCreatedDate\":\"2024-09-09T08:03:32.418Z\"}}}"
+//         }
+//       ]
+//     }
+//   ]
+// }
+
+const storageFileSchema = () => {
+  return z.object({
+    cookies: z.array(z.object({name: z.string(), value: z.string()})),
+    origins: z.array(
+      z.object({
+        origin: z.string().url(),
+        localStorage: z.array(z.object({name: z.string(), value: z.string()})),
+      })
+    ),
+  })
+}
 
 export default async function (conf: FullConfig) {
+  const users: TestGlobalUserType[] = [
+    testUserBasic,
+    testUserMemberAdmin,
+    testUserMemberNoob,
+  ]
+  for (const user of users) {
+    if (user.venue) {
+      await createUserMember(user.email, user.fileStorePath, user.venue)
+    } else {
+      await createUserBasic(user.email, user.fileStorePath)
+    }
+  }
+}
+
+const createUserBasic = async (email: string, filePath: string) => {
+  const user = await UserStore.upsertOneByEmail(email)
+  const session = await SessionStore.createOne({userId: user.id})
+  const authData = await createAuthToken({session, user})
+  const fileData = storageFileSchema().parse({
+    cookies: [],
+    origins: [
+      {
+        origin: "http://localhost:3000",
+        localStorage: [{name: "auth", value: JSON.stringify(authData)}],
+      },
+    ],
+  })
+  await fs.writeFile(filePath, JSON.stringify(fileData))
+}
+
+const createUserMember = async (
+  email: string,
+  filePath: string,
+  options: Pick<VenueType, "name"> &
+    Pick<MemberType, "fullAccess" | "permissions">
+) => {
+  const user = await UserStore.upsertOneByEmail(email)
+  const venue = await VenueStore.createOne({
+    name: options.name,
+    createdByUserId: user.id,
+  })
+  const member = await MemberStore.createOne({
+    userId: user.id,
+    venueId: venue.id,
+    ...options,
+  })
+  const session = await SessionStore.createOne({userId: user.id})
+  const authData = await createAuthToken({session, user, venue, member})
+  const fileData = storageFileSchema().parse({
+    cookies: [],
+    origins: [
+      {
+        origin: "http://localhost:3000",
+        localStorage: [{name: "auth", value: JSON.stringify(authData)}],
+      },
+    ],
+  })
+  await fs.writeFile(filePath, JSON.stringify(fileData))
+}
+
+/**
+ * const baseUrl = conf.projects[0].use.baseURL
+ * if (!baseUrl) throw new Error("Missing base URL")
+ * await legacyCreateUserBasic(baseUrl)
+ */
+const legacyCreateUserBasic = async (baseUrl: string) => {
   const browser = await chromium.launch()
   const page = await browser.newPage()
 
   // Go to login page
-  const EMAIL = "fred@example.com"
-  await page.goto(conf.projects[0].use.baseURL + "/login-email")
+  const EMAIL = "userBasic@example.com"
+  await page.goto(baseUrl + "/login-email")
   await page.fill('.field-root[data-name="email"] input', EMAIL)
   await page.getByRole("button", {name: "Login", exact: true}).click()
 
@@ -40,7 +135,7 @@ export default async function (conf: FullConfig) {
 
   // Wait for redirect
   await page.waitForURL("**/select-venue")
-  await page.context().storageState({path: TEST_AUTH_USER_FILE})
+  // await page.context().storageState({path: TEST_AUTH_USER_BASIC_FILE})
 
   // Close browser
   await browser.close()
