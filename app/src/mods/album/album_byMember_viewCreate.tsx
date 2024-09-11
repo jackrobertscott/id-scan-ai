@@ -21,7 +21,7 @@ export const CreateAlbumByMemberView = ({
   return (
     <Modal size="large">
       <Spacer>
-        <TitleBar title="Album" options={createPageOptions(onClose)} />
+        <TitleBar title="New Album" options={createPageOptions(onClose)} />
 
         <AlbumForm
           value={$createAlbum.input.getData()}

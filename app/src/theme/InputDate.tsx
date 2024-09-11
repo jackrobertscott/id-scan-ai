@@ -277,6 +277,7 @@ const DateCell: FC<{
   return (
     <div
       className={cn_dc.root}
+      data-day={day.toISOString().split("T")[0]}
       style={{
         color: isCur
           ? "white"
