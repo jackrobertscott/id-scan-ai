@@ -90,7 +90,7 @@ export const ListSimilarPatronByMemberView = ({
             />
 
             {!livePhotoId && (
-              <Field grow>
+              <Field grow noBasis>
                 <InputCamera
                   loading={$listSimilar.loading}
                   value={$listSimilar.input.getValueOf("photoFile")}

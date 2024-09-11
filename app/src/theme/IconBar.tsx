@@ -9,6 +9,7 @@ import {
 } from "@mdi/js"
 import {Fragment, useState} from "react"
 import {useNavigate} from "react-router-dom"
+import {gcn} from "../gcn"
 import {MainMenu} from "../mods/root/root_mainMenu"
 import {prettyCns} from "../utils/classNames"
 import {Icon} from "./Icon"
@@ -65,7 +66,6 @@ export const IconBar = ({}: IconBarProps) => {
 
 const cn_ib = prettyCns("IconBar", {
   root: css`
-    padding: 0.5rem;
     flex-direction: row;
   `,
 })
@@ -80,14 +80,14 @@ export const IconBarOption = ({icon, label, onClick}: IconBarOptionProps) => {
   return (
     <div onClick={onClick} className={cn_ibo.root}>
       <Icon icon={icon} />
-      <div>{label}</div>
+      <div className={cn_ibo.label}>{label}</div>
     </div>
   )
 }
 
 const cn_ibo = prettyCns("IconBarOption", {
   root: css`
-    gap: 0.25rem;
+    ${gcn.elevate}
     flex-grow: 1;
     flex-basis: 0;
     cursor: default;
@@ -95,12 +95,16 @@ const cn_ibo = prettyCns("IconBarOption", {
     text-align: center;
     justify-content: center;
     align-items: center;
+    gap: var(--gap-r);
     color: var(--fnt-clr-2nd);
-    padding: var(--pad-s-y) 0;
+    padding: var(--pad-r-y) 0;
     font-size: var(--fnt-s);
     &:hover:not(:active) {
       color: var(--bg-fnt);
       background-color: var(--lgt-clr);
     }
+  `,
+  label: css`
+    padding-bottom: env(safe-area-inset-bottom);
   `,
 })

@@ -37,7 +37,7 @@ export const AuthFaceByUserView = ({}: AuthFaceByUserViewProps) => {
         ]}
       />
 
-      <Field label="Your face" variant="required">
+      <Field label="Your face" variant="required" noBasis>
         <InputCamera {...$loginFace.input.getPropsOf("photoFile")} />
       </Field>
 

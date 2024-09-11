@@ -79,7 +79,7 @@ export const CreateScanByMemberView = ({
         // Step 1: Patron photo upload
         if (!livePhotoId) {
           return (
-            <Field grow label="Patron Photo (1/2)">
+            <Field grow label="Patron Photo (1/2)" noBasis>
               <InputCamera
                 label="Patron"
                 loading={$uploadLivePhoto.loading || $listSimilarPhotos.loading}
@@ -193,8 +193,9 @@ export const CreateScanByMemberView = ({
         // Step 3: Document photo upload
         return (
           // add some sort of banner here??
-          <Field grow label="Document Photo (2/2)">
+          <Field grow label="Document Photo (2/2)" noBasis>
             <InputCamera
+              enableScanner
               label="Document"
               loading={$uploadDocAndCreateScan.loading}
               value={$uploadDocAndCreateScan.input.getValueOf("docPhotoFile")}

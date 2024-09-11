@@ -23,6 +23,7 @@ import {CreateScanByMemberView} from "../scan/scan_byMbr_viewCreate"
 import {ListScanByMemberView} from "../scan/scan_byMbr_viewList"
 import {ListScanByPdfView} from "../scan/scan_byPdf_viewList"
 import {ListSessionByUserView} from "../session/ssn_byUsr_viewList"
+import {GraphStatsByMemberView} from "../stats/stats_byMbr_viewGraph"
 import {ListUserByAdminView} from "../user/usr_byAdm_viewList"
 import {UpdateUserBySelfView} from "../user/usr_bySlf_viewUpdate"
 import {UpdateVenueByMemberView} from "../venue/ven_byMbr_viewUpdate"
@@ -79,6 +80,12 @@ export const Root: FC = () => {
                       }}
                     />
                   }
+                />
+
+                {/* Stats */}
+                <Route
+                  path="venue-stats"
+                  element={<GraphStatsByMemberView />}
                 />
 
                 {/* Scans */}

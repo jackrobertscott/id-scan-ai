@@ -28,7 +28,7 @@ export const UpdateUserFaceBySelfView = ({
           options={[{icon: mdiClose, label: "Close", onClick: onClose}]}
         />
 
-        <Field label="Your face">
+        <Field label="Your face" noBasis>
           <InputCamera {...$updateFace.input.getPropsOf("photoFile")} />
         </Field>
 

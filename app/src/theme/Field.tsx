@@ -14,6 +14,7 @@ export const Field: FC<{
   overflow?: "auto"
   direction?: "row" | "column"
   variant?: string // flag strings separated by spaces
+  noBasis?: boolean
 }> = ({
   grow,
   label,
@@ -22,6 +23,7 @@ export const Field: FC<{
   footNote,
   overflow,
   direction = "row",
+  noBasis,
 }) => {
   return (
     <div
@@ -39,6 +41,7 @@ export const Field: FC<{
         </div>
       )}
       <div
+        style={{"--basis": noBasis ? "0" : undefined}}
         className={jn_cn([
           cn_f.inputWrap,
           grow && gcn.grow,
@@ -65,6 +68,7 @@ const cn_f = prettyCns("Field", {
   inputWrap: css`
     overflow: auto;
     transition: var(--hover-timing);
+    flex-basis: var(--basis);
     gap: var(--gap-r);
   `,
   foot: css`
