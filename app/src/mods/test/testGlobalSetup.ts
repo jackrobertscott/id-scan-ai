@@ -1,5 +1,6 @@
-import base, {chromium, FullConfig, Page} from "@playwright/test"
+import base, {chromium, Page} from "@playwright/test"
 import {promises as fs} from "node:fs"
+import path from "node:path"
 import {z} from "zod"
 import {createAuthToken} from "../auth/auth_jwt"
 import {MemberStore} from "../member/member_store"
@@ -8,12 +9,7 @@ import {SessionStore} from "../session/session_store"
 import {UserStore} from "../user/user_store"
 import {VenueStore} from "../venue/venue_store"
 import {VenueType} from "../venue/venue_storeDef.iso"
-import {
-  TestGlobalUserType,
-  testUserBasic,
-  testUserMemberAdmin,
-  testUserMemberNoob,
-} from "./testGlobalUsers"
+import {testUserBasic, testUsers} from "./testGlobalUsers"
 
 export const extTest = base.extend<{otherPage: Page}>({
   otherPage: async ({page}, use) => {
@@ -48,13 +44,9 @@ const storageFileSchema = () => {
   })
 }
 
-export default async function (conf: FullConfig) {
-  const users: TestGlobalUserType[] = [
-    testUserBasic,
-    testUserMemberAdmin,
-    testUserMemberNoob,
-  ]
-  for (const user of users) {
+export default async function () {
+  for (const user of testUsers) {
+    await fs.mkdir(path.dirname(user.fileStorePath), {recursive: true})
     if (user.venue) {
       await createUserMember(user.email, user.fileStorePath, user.venue)
     } else {
@@ -66,13 +58,13 @@ export default async function (conf: FullConfig) {
 const createUserBasic = async (email: string, filePath: string) => {
   const user = await UserStore.upsertOneByEmail(email)
   const session = await SessionStore.createOne({userId: user.id})
-  const authData = await createAuthToken({session, user})
+  const data = await createAuthToken({session, user})
   const fileData = storageFileSchema().parse({
     cookies: [],
     origins: [
       {
         origin: "http://localhost:3000",
-        localStorage: [{name: "auth", value: JSON.stringify(authData)}],
+        localStorage: [{name: "auth", value: JSON.stringify({data})}],
       },
     ],
   })
@@ -96,13 +88,13 @@ const createUserMember = async (
     ...options,
   })
   const session = await SessionStore.createOne({userId: user.id})
-  const authData = await createAuthToken({session, user, venue, member})
+  const data = await createAuthToken({session, user, venue, member})
   const fileData = storageFileSchema().parse({
     cookies: [],
     origins: [
       {
         origin: "http://localhost:3000",
-        localStorage: [{name: "auth", value: JSON.stringify(authData)}],
+        localStorage: [{name: "auth", value: JSON.stringify({data})}],
       },
     ],
   })
@@ -135,7 +127,7 @@ const legacyCreateUserBasic = async (baseUrl: string) => {
 
   // Wait for redirect
   await page.waitForURL("**/select-venue")
-  // await page.context().storageState({path: TEST_AUTH_USER_BASIC_FILE})
+  await page.context().storageState({path: testUserBasic.fileStorePath})
 
   // Close browser
   await browser.close()

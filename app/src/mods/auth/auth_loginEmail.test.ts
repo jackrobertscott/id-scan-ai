@@ -1,6 +1,6 @@
 import test, {expect} from "@playwright/test"
 import {SessionStore} from "../session/session_store"
-import {TEST_AUTH_USER_BASIC_FILE} from "../test/testGlobalSetup"
+import {testUserBasic} from "../test/testGlobalUsers"
 import {UserStore} from "../user/user_store"
 import {AuthDataSchema} from "./auth_schemas"
 
@@ -14,7 +14,7 @@ test.describe("Auth by email", async () => {
   })
 
   test("Login user", async ({page}) => {
-    const email = "fred@example.com"
+    const email = `test_${Date.now()}@example.com`
 
     // Go to login page
     await page.goto("/login-email")
@@ -38,7 +38,7 @@ test.describe("Auth by email", async () => {
   })
 
   test("Invalid login code", async ({page}) => {
-    const email = "fred@example.com"
+    const email = `test_${Date.now()}@example.com`
 
     // Go to login page
     await page.goto("/login-email")
@@ -57,7 +57,7 @@ test.describe("Auth by email", async () => {
 })
 
 test.describe("Logout", () => {
-  test.use({storageState: TEST_AUTH_USER_BASIC_FILE})
+  test.use({storageState: testUserBasic.fileStorePath})
 
   test("Logout", async ({page}) => {
     await page.goto("/my-account")

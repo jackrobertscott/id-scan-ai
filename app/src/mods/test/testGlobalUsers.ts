@@ -38,3 +38,9 @@ export const testUserMemberNoob: TestGlobalUserType = {
     permissions: [],
   },
 }
+
+export const testUsers: TestGlobalUserType[] = [
+  testUserBasic,
+  testUserMemberAdmin,
+  testUserMemberNoob,
+]

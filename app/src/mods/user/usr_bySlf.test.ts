@@ -1,8 +1,8 @@
 import test, {expect} from "@playwright/test"
-import {TEST_AUTH_USER_BASIC_FILE} from "../test/testGlobalSetup"
+import {testUserBasic} from "../test/testGlobalUsers"
 
 test.describe("User by self", async () => {
-  test.use({storageState: TEST_AUTH_USER_BASIC_FILE})
+  test.use({storageState: testUserBasic.fileStorePath})
 
   test("edit my account", async ({page}) => {
     const formData = {
