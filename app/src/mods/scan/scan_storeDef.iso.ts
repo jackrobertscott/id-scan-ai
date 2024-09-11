@@ -39,8 +39,8 @@ export type ScanLargeFilterFormValue = z.infer<ScanLargeFilterFormSchema>
 
 export const getScanLargeFilterFormSchema = () => {
   return z.object({
-    createdAfterDate: z.coerce.date().nullish(),
-    createdBeforeDate: z.coerce.date().nullish(),
+    createdAfterDate: z.coerce.date(),
+    createdBeforeDate: z.coerce.date(),
     primaryEmotion: z.string().nullish(),
     postCode: z.string().nullish(),
     bornAfterDate: z.coerce.date().nullish(),
@@ -58,11 +58,16 @@ export const getScanLargeFilterFormSchema = () => {
 export type ScanFilterFormSchema = ReturnType<typeof getScanFilterFormSchema>
 export type ScanFilterFormValue = z.infer<ScanFilterFormSchema>
 
-export const getScanFilterFormSchema = () =>
-  getScanLargeFilterFormSchema().pick({
-    createdAfterDate: true,
-    createdBeforeDate: true,
-    gender: true,
-    postCode: true,
-    hasFaceMismatch: true,
-  })
+export const getScanFilterFormSchema = () => {
+  return getScanLargeFilterFormSchema()
+    .pick({
+      createdAfterDate: true,
+      createdBeforeDate: true,
+      gender: true,
+      postCode: true,
+      hasFaceMismatch: true,
+    })
+    .refine((group) => group.createdAfterDate < group.createdBeforeDate, {
+      message: "Start date must be before end date",
+    })
+}
