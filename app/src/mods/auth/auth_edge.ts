@@ -26,6 +26,8 @@ import {createDeviceAuthToken, digestDeviceAuthToken} from "./auth_device.srv"
 import {auth_eDef} from "./auth_eDef.iso"
 import {createAuthToken, ensureUser} from "./auth_jwt"
 
+console.log(auth_eDef.sendAuthCode.slug)
+
 export default createEdgeGroup(auth_eDef, {
   /**
    * Get the current user's auth payload.

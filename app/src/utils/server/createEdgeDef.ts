@@ -24,11 +24,15 @@ export type EdgeInputSchema<E extends EdgeDef> = NonNullable<
 const __globalSlugs = new Set<string>()
 
 export function createEdgeDef<E extends EdgeDef>(data: E) {
+  if (data.slug.startsWith("/")) data.slug = data.slug.substring(1)
+  data.slug =
+    "/" +
+    toKebabCase(data.slug.replace(/Def$/, ""))
+      .replace(/[^a-zA-Z0-9]/g, "-")
+      .replace(/-+/g, "-")
   if (__globalSlugs.has(data.slug))
     throw new Error(`The slug ${data.slug} was registered multiple times.`)
   else __globalSlugs.add(data.slug)
-  if (!data.slug.startsWith("/")) data.slug = "/" + data.slug
-  data.slug = toKebabCase(data.slug.replace(/Def$/, ""))
   return data
 }
 
@@ -36,11 +40,12 @@ export function createEdgeGroupDef<
   R extends Record<string, Omit<EdgeDef, "slug">>
 >(prefix: string, routes: R): {[K in keyof R]: R[K] & Pick<EdgeDef, "slug">} {
   return Object.keys(routes).reduce((all, key) => {
-    const route = routes[key as keyof typeof routes]
-    if (!prefix.startsWith("/")) prefix = "/" + prefix
     return {
       ...all,
-      [key]: {...route, slug: prefix + "/" + key},
+      [key]: createEdgeDef({
+        ...routes[key as keyof typeof routes],
+        slug: [prefix, key].join(),
+      }),
     }
   }, {} as any)
 }

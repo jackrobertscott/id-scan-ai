@@ -1,4 +1,4 @@
-import test, {expect} from "@playwright/test"
+import test, {APIRequestContext, expect} from "@playwright/test"
 import {SessionStore} from "../session/session_store"
 import {testUserBasic} from "../test/testGlobalUsers"
 import {UserStore} from "../user/user_store"
@@ -80,5 +80,27 @@ test.describe("Logout", () => {
 
     // Revert the logout
     await SessionStore.updateOneById(pd.sessionId, {endedDate: null})
+  })
+
+  test.describe("API", () => {
+    let apiCtx: APIRequestContext
+
+    test.beforeAll(async ({playwright}) => {
+      apiCtx = await playwright.request.newContext({
+        baseURL: "http://localhost:4000",
+      })
+    })
+
+    test.afterAll(async () => {
+      await apiCtx?.dispose()
+    })
+
+    test.skip("POST /auth-send-auth-code", async () => {
+      // todo
+      apiCtx.post("/auth-send-auth-code", {
+        data: JSON.stringify({email: ""}),
+        headers: {"Content-Type": "application/json"},
+      })
+    })
   })
 })
